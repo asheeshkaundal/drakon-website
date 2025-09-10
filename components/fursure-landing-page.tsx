@@ -2,15 +2,68 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Heart, XCircle, ArrowRight, Menu, Check } from "lucide-react";
+import {
+  Heart,
+  XCircle,
+  ArrowRight,
+  Menu,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useState, useEffect } from "react";
 
 export default function FurSureLandingPage() {
+  // Hero slideshow state
+  const heroImages = [
+    {
+      src: "/hero-slideshow/cricket-equipment-hero-bg.jpg",
+      alt: "Premium Cricket Equipment Background",
+    },
+    {
+      src: "/hero-slideshow/crick_hero.jpg",
+      alt: "Cricket Action Shot",
+    },
+    {
+      src: "/hero-slideshow/cricket-stadium-experience.jpg",
+      alt: "Cricket Stadium Experience",
+    },
+    {
+      src: "/hero-slideshow/hero_team.jpg",
+      alt: "Professional Athletes",
+    },
+    {
+      src: "/hero-slideshow/hero_5.jpg",
+      alt: "Premium Cricket Equipment",
+    },
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? heroImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  // Auto-advance slideshow every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(nextImage, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="flex flex-col min-h-[100dvh] bg-gray-50 text-gray-800">
       {/* Header */}
       <header className="fixed top-0 left-0 w-full z-50">
-        <div className="bg-white border-b-2 border-gray-200 px-6 py-3 flex items-center justify-between backdrop-blur-sm bg-white/95 w-full h-20">
+        <div className="bg-white/60 border-b border-gray-200/20 px-6 py-3 flex items-center justify-between backdrop-blur-lg w-full h-20 transition-all duration-300">
           <Link
             href="#"
             className="flex items-center justify-center"
@@ -110,27 +163,81 @@ export default function FurSureLandingPage() {
         </div>
       </header>
 
-      <main className="flex-1 pt-[64px]">
+      <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative w-full min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden">
-          {/* Full-screen cricket equipment background */}
+        <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+          {/* Full-screen cricket equipment background slideshow */}
           <div className="absolute inset-0 z-0">
-            <Image
-              src="/cricket-equipment-hero-bg.jpg"
-              alt="Premium Cricket Equipment Background"
-              fill
-              className="object-cover object-center"
-              priority
-            />
+            {heroImages.map((image, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-1000 ${
+                  index === currentImageIndex ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover object-center"
+                  priority={index === 0}
+                />
+              </div>
+            ))}
             <div className="absolute inset-0 bg-black/40"></div>
           </div>
 
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevImage}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 p-3 rounded-full bg-black/30 backdrop-blur-sm border border-white/30 text-white hover:bg-black/50 transition-all duration-300 group"
+            aria-label="Previous image"
+          >
+            <ChevronLeft
+              className="h-6 w-6 group-hover:scale-110 transition-transform"
+              style={{ color: "#CD853F" }}
+            />
+          </button>
+
+          <button
+            onClick={nextImage}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 p-3 rounded-full bg-black/30 backdrop-blur-sm border border-white/30 text-white hover:bg-black/50 transition-all duration-300 group"
+            aria-label="Next image"
+          >
+            <ChevronRight
+              className="h-6 w-6 group-hover:scale-110 transition-transform"
+              style={{ color: "#CD853F" }}
+            />
+          </button>
+
+          {/* Slide Indicators */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
+            {heroImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentImageIndex
+                    ? "scale-125 shadow-lg"
+                    : "hover:scale-110"
+                }`}
+                style={{
+                  backgroundColor:
+                    index === currentImageIndex
+                      ? "#CD853F"
+                      : "rgba(192, 192, 192, 0.6)",
+                }}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
           {/* Hero Content */}
-          <div className="relative z-10 container px-5 md:px-6 text-center text-white flex flex-col items-center justify-center h-full">
-            <div className="max-w-4xl mx-auto pt-8 pb-12 space-y-8">
+          <div className="relative z-10 container px-5 md:px-6 text-center text-white flex flex-col items-center justify-center h-full pt-20">
+            <div className="max-w-3xl mx-auto pt-4 pb-8 space-y-6">
               {/* Animated badge */}
-              <div className="inline-block animate-fade-in-up opacity-0 animation-delay-300 mb-8">
-                <div className="inline-block bg-black/30 backdrop-blur-sm border border-white/30 px-6 py-3 text-lg font-medium text-white shadow-lg">
+              <div className="inline-block animate-fade-in-up opacity-0 animation-delay-300 mb-6">
+                <div className="inline-block bg-black/30 backdrop-blur-sm border border-white/30 px-4 py-2 text-base font-medium text-white shadow-lg">
                   <span className="animate-pulse drop-shadow-lg">
                     Where the Elite Play Their Own Game
                   </span>
@@ -138,15 +245,15 @@ export default function FurSureLandingPage() {
               </div>
 
               {/* Main heading with animation */}
-              <div className="mb-10">
-                <h1 className="text-5xl font-bold tracking-tighter sm:text-6xl md:text-8xl text-white font-serif animate-fade-in-up opacity-0 animation-delay-500 drop-shadow-2xl leading-tight">
+              <div className="mb-8">
+                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-white font-serif animate-fade-in-up opacity-0 animation-delay-500 drop-shadow-2xl leading-tight">
                   Discretion. Precision. Excellence.
                 </h1>
               </div>
 
               {/* Subtitle */}
-              <div className="mb-12">
-                <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed animate-fade-in-up opacity-0 animation-delay-700 drop-shadow-lg">
+              <div className="mb-10">
+                <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed animate-fade-in-up opacity-0 animation-delay-700 drop-shadow-lg">
                   DRAKON SPORTS PRIVATE LIMITED is not just a brand. It is a
                   private gateway into the rarest, most luxurious expressions of
                   the gentleman's game.
@@ -154,7 +261,7 @@ export default function FurSureLandingPage() {
               </div>
 
               {/* Three CTAs */}
-              <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up opacity-0 animation-delay-900">
+              <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up opacity-0 animation-delay-900">
                 <Button
                   size="lg"
                   className="text-white shadow-2xl px-8 py-4 text-lg font-semibold border-2 border-transparent hover:border-white/20 transition-all duration-300 hover:scale-105"
@@ -1495,7 +1602,52 @@ export default function FurSureLandingPage() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white relative overflow-hidden">
+        <section className="w-full py-12 md:py-24 lg:py-32 text-white relative overflow-hidden bg-[#722F37]">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <svg
+              className="w-full h-full"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+            >
+              <defs>
+                <pattern
+                  id="ctaPattern"
+                  x="0"
+                  y="0"
+                  width="20"
+                  height="20"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <circle cx="10" cy="10" r="2" fill="#CD853F" />
+                  <circle cx="5" cy="15" r="1" fill="#C0C0C0" />
+                  <circle cx="15" cy="5" r="1.5" fill="#B8860B" />
+                </pattern>
+              </defs>
+              <rect width="100" height="100" fill="url(#ctaPattern)" />
+            </svg>
+          </div>
+
+          {/* Floating geometric shapes */}
+          <div className="absolute inset-0 opacity-15">
+            <div
+              className="absolute top-20 left-20 w-16 h-16 transform rotate-45 animate-pulse"
+              style={{ backgroundColor: "#CD853F" }}
+            ></div>
+            <div
+              className="absolute bottom-20 right-32 w-12 h-12 border-4 animate-pulse animation-delay-1000"
+              style={{ borderColor: "#C0C0C0" }}
+            ></div>
+            <div
+              className="absolute top-1/3 right-1/4 w-20 h-20 transform rotate-12 animate-pulse animation-delay-2000"
+              style={{ backgroundColor: "#A8A8A8" }}
+            ></div>
+            <div
+              className="absolute bottom-1/3 left-1/3 w-14 h-14 border-2 animate-pulse animation-delay-3000"
+              style={{ backgroundColor: "#B8860B", borderColor: "#722F37" }}
+            ></div>
+          </div>
+
           {/* Call to Action Content */}
           <div className="container px-4 md:px-6 relative z-10">
             <div className="text-center mb-12">
@@ -1540,30 +1692,71 @@ export default function FurSureLandingPage() {
         </section>
 
         {/* Footer */}
-        <footer className="bg-gray-900 text-white border-t-4 border-primary-600">
+        <footer
+          className="bg-gray-900 text-white border-t-4"
+          style={{ borderColor: "#CD853F" }}
+        >
           <div className="container px-4 md:px-6 py-12">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {/* Brand Section */}
               <div className="space-y-4">
-                <Link href="#" className="flex items-center space-x-2">
-                  <Heart className="h-8 w-8 text-primary-500" />
-                  <div>
-                    <div className="text-2xl font-bold">drakon</div>
-                    <div className="text-sm text-gray-300 -mt-1">sports</div>
-                  </div>
-                </Link>
+                <div className="mb-4">
+                  <Image
+                    src="/drakon_logo-removebg.png"
+                    alt="Drakon Sports Logo"
+                    width={120}
+                    height={48}
+                    className="h-12 w-auto object-contain"
+                  />
+                </div>
                 <p className="text-gray-300 text-sm leading-relaxed max-w-xs">
                   Your gateway into the rarest, most luxurious expressions of
                   cricket excellence. Where elite meets precision.
                 </p>
                 <div className="flex space-x-4">
-                  <div className="w-8 h-8 bg-primary-600 border border-primary-500 flex items-center justify-center hover:bg-primary-700 transition-colors cursor-pointer">
+                  <div
+                    className="w-8 h-8 flex items-center justify-center transition-colors cursor-pointer border"
+                    style={{
+                      backgroundColor: "#722F37",
+                      borderColor: "#CD853F",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "#8B0000";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "#722F37";
+                    }}
+                  >
                     <span className="text-white text-xs font-bold">f</span>
                   </div>
-                  <div className="w-8 h-8 bg-primary-600 border border-primary-500 flex items-center justify-center hover:bg-primary-700 transition-colors cursor-pointer">
+                  <div
+                    className="w-8 h-8 flex items-center justify-center transition-colors cursor-pointer border"
+                    style={{
+                      backgroundColor: "#722F37",
+                      borderColor: "#CD853F",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "#8B0000";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "#722F37";
+                    }}
+                  >
                     <span className="text-white text-xs font-bold">t</span>
                   </div>
-                  <div className="w-8 h-8 bg-primary-600 border border-primary-500 flex items-center justify-center hover:bg-primary-700 transition-colors cursor-pointer">
+                  <div
+                    className="w-8 h-8 flex items-center justify-center transition-colors cursor-pointer border"
+                    style={{
+                      backgroundColor: "#722F37",
+                      borderColor: "#CD853F",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "#8B0000";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "#722F37";
+                    }}
+                  >
                     <span className="text-white text-xs font-bold">in</span>
                   </div>
                 </div>
@@ -1571,14 +1764,23 @@ export default function FurSureLandingPage() {
 
               {/* Products */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold border-b-2 border-primary-600 pb-2 inline-block">
+                <h3
+                  className="text-lg font-semibold border-b-2 pb-2 inline-block"
+                  style={{ borderColor: "#CD853F" }}
+                >
                   Products
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li>
                     <Link
                       href="#"
-                      className="text-gray-300 hover:text-primary-400 transition-colors"
+                      className="text-gray-300 transition-colors"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#CD853F";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#D1D5DB";
+                      }}
                     >
                       Premium Bats
                     </Link>
@@ -1586,7 +1788,13 @@ export default function FurSureLandingPage() {
                   <li>
                     <Link
                       href="#"
-                      className="text-gray-300 hover:text-primary-400 transition-colors"
+                      className="text-gray-300 transition-colors"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#CD853F";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#D1D5DB";
+                      }}
                     >
                       Protective Gear
                     </Link>
@@ -1594,7 +1802,13 @@ export default function FurSureLandingPage() {
                   <li>
                     <Link
                       href="#"
-                      className="text-gray-300 hover:text-primary-400 transition-colors"
+                      className="text-gray-300 transition-colors"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#CD853F";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#D1D5DB";
+                      }}
                     >
                       Team Uniforms
                     </Link>
@@ -1602,7 +1816,13 @@ export default function FurSureLandingPage() {
                   <li>
                     <Link
                       href="#"
-                      className="text-gray-300 hover:text-primary-400 transition-colors"
+                      className="text-gray-300 transition-colors"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#CD853F";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#D1D5DB";
+                      }}
                     >
                       Signed Equipment
                     </Link>
@@ -1610,7 +1830,13 @@ export default function FurSureLandingPage() {
                   <li>
                     <Link
                       href="#"
-                      className="text-gray-300 hover:text-primary-400 transition-colors"
+                      className="text-gray-300 transition-colors"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#CD853F";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#D1D5DB";
+                      }}
                     >
                       Custom Orders
                     </Link>
@@ -1620,14 +1846,23 @@ export default function FurSureLandingPage() {
 
               {/* Services */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold border-b-2 border-primary-600 pb-2 inline-block">
+                <h3
+                  className="text-lg font-semibold border-b-2 pb-2 inline-block"
+                  style={{ borderColor: "#C0C0C0" }}
+                >
                   Services
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li>
                     <Link
                       href="#"
-                      className="text-gray-300 hover:text-primary-400 transition-colors"
+                      className="text-gray-300 transition-colors"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#C0C0C0";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#D1D5DB";
+                      }}
                     >
                       Private Tournaments
                     </Link>
@@ -1635,7 +1870,13 @@ export default function FurSureLandingPage() {
                   <li>
                     <Link
                       href="#"
-                      className="text-gray-300 hover:text-primary-400 transition-colors"
+                      className="text-gray-300 transition-colors"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#C0C0C0";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#D1D5DB";
+                      }}
                     >
                       Cricket Retreats
                     </Link>
@@ -1643,7 +1884,13 @@ export default function FurSureLandingPage() {
                   <li>
                     <Link
                       href="#"
-                      className="text-gray-300 hover:text-primary-400 transition-colors"
+                      className="text-gray-300 transition-colors"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#C0C0C0";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#D1D5DB";
+                      }}
                     >
                       Equipment Consultation
                     </Link>
@@ -1651,7 +1898,13 @@ export default function FurSureLandingPage() {
                   <li>
                     <Link
                       href="#"
-                      className="text-gray-300 hover:text-primary-400 transition-colors"
+                      className="text-gray-300 transition-colors"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#C0C0C0";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#D1D5DB";
+                      }}
                     >
                       Professional Fitting
                     </Link>
@@ -1659,7 +1912,13 @@ export default function FurSureLandingPage() {
                   <li>
                     <Link
                       href="#"
-                      className="text-gray-300 hover:text-primary-400 transition-colors"
+                      className="text-gray-300 transition-colors"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#C0C0C0";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#D1D5DB";
+                      }}
                     >
                       Maintenance Services
                     </Link>
@@ -1669,7 +1928,10 @@ export default function FurSureLandingPage() {
 
               {/* Contact & Legal */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold border-b-2 border-primary-600 pb-2 inline-block">
+                <h3
+                  className="text-lg font-semibold border-b-2 pb-2 inline-block"
+                  style={{ borderColor: "#722F37" }}
+                >
                   Contact
                 </h3>
                 <ul className="space-y-2 text-sm">
@@ -1682,19 +1944,37 @@ export default function FurSureLandingPage() {
                 <div className="space-y-2 text-sm">
                   <Link
                     href="#"
-                    className="text-gray-300 hover:text-primary-400 transition-colors block"
+                    className="text-gray-300 transition-colors block"
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = "#722F37";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = "#D1D5DB";
+                    }}
                   >
                     Privacy Policy
                   </Link>
                   <Link
                     href="#"
-                    className="text-gray-300 hover:text-primary-400 transition-colors block"
+                    className="text-gray-300 transition-colors block"
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = "#722F37";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = "#D1D5DB";
+                    }}
                   >
                     Terms of Service
                   </Link>
                   <Link
                     href="#"
-                    className="text-gray-300 hover:text-primary-400 transition-colors block"
+                    className="text-gray-300 transition-colors block"
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = "#722F37";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = "#D1D5DB";
+                    }}
                   >
                     Shipping Policy
                   </Link>
@@ -1710,11 +1990,17 @@ export default function FurSureLandingPage() {
                 </div>
                 <div className="flex items-center space-x-6 text-sm text-gray-400">
                   <span className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-400 transform rotate-45"></div>
+                    <div
+                      className="w-2 h-2 transform rotate-45"
+                      style={{ backgroundColor: "#CD853F" }}
+                    ></div>
                     <span>Premium Quality Assured</span>
                   </span>
                   <span className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-primary-400 transform rotate-45"></div>
+                    <div
+                      className="w-2 h-2 transform rotate-45"
+                      style={{ backgroundColor: "#C0C0C0" }}
+                    ></div>
                     <span>Worldwide Shipping</span>
                   </span>
                 </div>
