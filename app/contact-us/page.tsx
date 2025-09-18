@@ -57,7 +57,7 @@ export default function ContactUsPage() {
 
               {/* Contact Info Cards */}
               <div className="space-y-6 animate-fade-in-up opacity-0 animation-delay-900">
-                {/* Address Card */}
+                {/* Sales & Communication Office Card */}
                 <Card
                   className="p-6 border-l-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/80 backdrop-blur-sm"
                   style={{ borderLeftColor: "#CD853F" }}
@@ -74,10 +74,40 @@ export default function ContactUsPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                        Our Address
+                        Sales & Communication Office
                       </h3>
                       <p className="text-gray-600">
-                        AMB 619, AMB PATHIAR
+                        FF-69, First Floor, SS Omnia
+                        <br />
+                        Sector-86, Gurugram
+                        <br />
+                        Haryana - 122004
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Head Office Card */}
+                <Card
+                  className="p-6 border-l-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/80 backdrop-blur-sm"
+                  style={{ borderLeftColor: "#722F37" }}
+                >
+                  <div className="flex items-start space-x-4">
+                    <div
+                      className="p-3 rounded-full transition-all duration-300 hover:scale-110"
+                      style={{ backgroundColor: "#722F3720" }}
+                    >
+                      <Pin
+                        className="h-6 w-6 transition-all duration-300"
+                        style={{ color: "#722F37" }}
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                        Head Office
+                      </h3>
+                      <p className="text-gray-600">
+                        Drakon Sports, 619
                         <br />
                         Jawalamukhi, Kangra
                         <br />
@@ -104,12 +134,12 @@ export default function ContactUsPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                        Our Contact Info
+                        Contact Information
                       </h3>
                       <p className="text-gray-600">
-                        +91 456 789
+                        +91-8888813841
                         <br />
-                        info@drakonsports.com
+                        asheesh.kaundal@drakonsports.com
                       </p>
                     </div>
                   </div>
@@ -139,9 +169,18 @@ export default function ContactUsPage() {
                   </h4>
                   <div className="text-sm text-gray-700 space-y-2">
                     <div>
-                      <strong>Headquarter:</strong>
+                      <strong>Sales & Communication:</strong>
                       <br />
-                      AMB 619, AMB PATHIAR
+                      FF-69, First Floor, SS Omnia
+                      <br />
+                      Sector-86, Gurugram
+                      <br />
+                      Haryana - 122004
+                    </div>
+                    <div className="mt-3">
+                      <strong>Head Office:</strong>
+                      <br />
+                      Drakon Sports, 619
                       <br />
                       Jawalamukhi, Kangra
                       <br />

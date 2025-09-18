@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Facebook, Twitter, Linkedin } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -13,7 +14,7 @@ export const Footer = () => {
           <div className="space-y-4">
             <div className="mb-4">
               <Image
-                src="/drakon_logo-removebg.png"
+                src="/newlogo.png"
                 alt="Drakon Sports Logo"
                 width={120}
                 height={48}
@@ -25,7 +26,10 @@ export const Footer = () => {
               cricket excellence. Where elite meets precision.
             </p>
             <div className="flex space-x-4">
-              <div
+              <Link
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center transition-colors cursor-pointer border"
                 style={{
                   backgroundColor: "#722F37",
@@ -38,9 +42,12 @@ export const Footer = () => {
                   e.currentTarget.style.backgroundColor = "#722F37";
                 }}
               >
-                <span className="text-white text-xs font-bold">f</span>
-              </div>
-              <div
+                <Facebook className="w-4 h-4 text-white" />
+              </Link>
+              <Link
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center transition-colors cursor-pointer border"
                 style={{
                   backgroundColor: "#722F37",
@@ -53,9 +60,12 @@ export const Footer = () => {
                   e.currentTarget.style.backgroundColor = "#722F37";
                 }}
               >
-                <span className="text-white text-xs font-bold">t</span>
-              </div>
-              <div
+                <Twitter className="w-4 h-4 text-white" />
+              </Link>
+              <Link
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 flex items-center justify-center transition-colors cursor-pointer border"
                 style={{
                   backgroundColor: "#722F37",
@@ -68,8 +78,8 @@ export const Footer = () => {
                   e.currentTarget.style.backgroundColor = "#722F37";
                 }}
               >
-                <span className="text-white text-xs font-bold">in</span>
-              </div>
+                <Linkedin className="w-4 h-4 text-white" />
+              </Link>
             </div>
           </div>
 
@@ -84,7 +94,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
+                  href="/contact-us"
                   className="text-gray-300 transition-colors"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = "#CD853F";
@@ -98,7 +108,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/contact-us"
                   className="text-gray-300 transition-colors"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = "#CD853F";
@@ -112,7 +122,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/contact-us"
                   className="text-gray-300 transition-colors"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = "#CD853F";
@@ -126,7 +136,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/contact-us"
                   className="text-gray-300 transition-colors"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = "#CD853F";
@@ -140,7 +150,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/contact-us"
                   className="text-gray-300 transition-colors"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = "#CD853F";
@@ -166,7 +176,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
+                  href="/contact-us"
                   className="text-gray-300 transition-colors"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = "#C0C0C0";
@@ -180,7 +190,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/contact-us"
                   className="text-gray-300 transition-colors"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = "#C0C0C0";
@@ -194,7 +204,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/contact-us"
                   className="text-gray-300 transition-colors"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = "#C0C0C0";
@@ -208,7 +218,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/contact-us"
                   className="text-gray-300 transition-colors"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = "#C0C0C0";
@@ -222,7 +232,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/contact-us"
                   className="text-gray-300 transition-colors"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = "#C0C0C0";
@@ -246,13 +256,26 @@ export const Footer = () => {
               Contact
             </h3>
             <ul className="space-y-2 text-sm">
-              <li className="text-gray-300">Email: info@drakonsports.com</li>
-              <li className="text-gray-300">Phone: +1 (555) 123-4567</li>
-              <li className="text-gray-300">Global Headquarters</li>
+              <li className="text-gray-300">
+                Email: asheesh.kaundal@drakonsports.com
+              </li>
+              <li className="text-gray-300">Phone: +91-8888813841</li>
+              <li className="text-gray-300">
+                <div>Sales & Communication:</div>
+                <div className="ml-2">FF-69, First Floor, SS Omnia</div>
+                <div className="ml-2">
+                  Sector-86, Gurugram, Haryana - 122004
+                </div>
+              </li>
+              <li className="text-gray-300 mt-2">
+                <div>Head Office:</div>
+                <div className="ml-2">Drakon Sports, 619</div>
+                <div className="ml-2">Jawalamukhi, Kangra, HP - 176031</div>
+              </li>
             </ul>
             <div className="space-y-2 text-sm">
               <Link
-                href="#"
+                href="/privacy-policy"
                 className="text-gray-300 transition-colors block"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = "#722F37";
@@ -264,7 +287,7 @@ export const Footer = () => {
                 Privacy Policy
               </Link>
               <Link
-                href="#"
+                href="/terms-of-service"
                 className="text-gray-300 transition-colors block"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = "#722F37";
@@ -276,7 +299,7 @@ export const Footer = () => {
                 Terms of Service
               </Link>
               <Link
-                href="#"
+                href="/shipping-policy"
                 className="text-gray-300 transition-colors block"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = "#722F37";

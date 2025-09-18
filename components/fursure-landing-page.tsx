@@ -10,6 +10,7 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
+  MapPin,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState, useEffect } from "react";
@@ -190,7 +191,7 @@ export default function FurSureLandingPage() {
                   className="bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/30 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105"
                   asChild
                 >
-                  <Link href="#contact">Contact</Link>
+                  <Link href="/contact-us">Contact</Link>
                 </Button>
               </div>
             </div>
@@ -477,7 +478,7 @@ export default function FurSureLandingPage() {
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 mb-4 font-serif">
                 Our Premium Collection
               </h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -488,363 +489,159 @@ export default function FurSureLandingPage() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
               {/* Premium Bats */}
-              <div className="group relative bg-white border-2 border-gray-200 overflow-hidden hover:border-[#CD853F] transition-all duration-300 hover:-translate-y-2 cursor-pointer">
-                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-6">
+              <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
+                <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src="/premium-cricket-bat.jpg"
                     alt="Premium Cricket Bats"
-                    width={120}
-                    height={120}
-                    className="object-contain group-hover:scale-110 transition-transform duration-300"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                </div>
-                <div className="p-4 text-center">
-                  <h3 className="font-bold text-gray-900 mb-1">Premium Bats</h3>
-                  <p className="text-sm text-gray-600">
-                    Handcrafted Excellence
-                  </p>
-                </div>
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                  style={{ backgroundColor: "#CD853F" }}
-                >
-                  <div className="text-center">
-                    <span className="text-white font-semibold text-lg">
-                      Explore Collection
-                    </span>
-                    <p className="text-white text-sm mt-1">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                  {/* Main Text Overlay */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
+                    <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
+                      Premium Bats
+                    </h3>
+                    <p className="text-sm font-light opacity-90 italic">
                       Handcrafted Excellence
                     </p>
                   </div>
+
+                  {/* Accent Corner */}
+                  <div className="absolute top-3 right-3 w-2 h-2 bg-[#CD853F] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
 
               {/* Custom Gear */}
-              <div className="group relative bg-white border-2 border-gray-200 overflow-hidden hover:border-[#C0C0C0] transition-all duration-300 hover:-translate-y-2 cursor-pointer">
-                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-6">
+              <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
+                <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src="/custom-cricket-gear-equipment.jpg"
                     alt="Custom Cricket Gear"
-                    width={120}
-                    height={120}
-                    className="object-contain group-hover:scale-110 transition-transform duration-300"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                </div>
-                <div className="p-4 text-center">
-                  <h3 className="font-bold text-gray-900 mb-1">Custom Gear</h3>
-                  <p className="text-sm text-gray-600">
-                    Personalized Equipment
-                  </p>
-                </div>
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                  style={{ backgroundColor: "#C0C0C0" }}
-                >
-                  <div className="text-center">
-                    <span className="text-white font-semibold text-lg">
-                      Customize Now
-                    </span>
-                    <p className="text-white text-sm mt-1">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                  {/* Main Text Overlay */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
+                    <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
+                      Custom Gear
+                    </h3>
+                    <p className="text-sm font-light opacity-90 italic">
                       Personalized Equipment
                     </p>
                   </div>
+
+                  {/* Accent Corner */}
+                  <div className="absolute top-3 right-3 w-2 h-2 bg-[#C0C0C0] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
 
               {/* Stadium Experiences */}
-              <div className="group relative bg-white border-2 border-gray-200 overflow-hidden hover:border-[#722F37] transition-all duration-300 hover:-translate-y-2 cursor-pointer">
-                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-6">
+              <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
+                <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src="/cricket-stadium-experience.jpg"
                     alt="Stadium Experiences"
-                    width={120}
-                    height={120}
-                    className="object-contain group-hover:scale-110 transition-transform duration-300"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                </div>
-                <div className="p-4 text-center">
-                  <h3 className="font-bold text-gray-900 mb-1">
-                    Stadium Experiences
-                  </h3>
-                  <p className="text-sm text-gray-600">Elite Events</p>
-                </div>
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                  style={{ backgroundColor: "#722F37" }}
-                >
-                  <div className="text-center">
-                    <span className="text-white font-semibold text-lg">
-                      Book Experience
-                    </span>
-                    <p className="text-white text-sm mt-1">Elite Events</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                  {/* Main Text Overlay */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
+                    <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
+                      Stadium Experiences
+                    </h3>
+                    <p className="text-sm font-light opacity-90 italic">
+                      Elite Events
+                    </p>
                   </div>
+
+                  {/* Accent Corner */}
+                  <div className="absolute top-3 right-3 w-2 h-2 bg-[#722F37] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
 
               {/* Legacy Items */}
-              <div className="group relative bg-white border-2 border-gray-200 overflow-hidden hover:border-[#B8860B] transition-all duration-300 hover:-translate-y-2 cursor-pointer">
-                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-6">
+              <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
+                <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src="/vintage-cricket-legacy-items.jpg"
                     alt="Legacy Cricket Items"
-                    width={120}
-                    height={120}
-                    className="object-contain group-hover:scale-110 transition-transform duration-300"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                </div>
-                <div className="p-4 text-center">
-                  <h3 className="font-bold text-gray-900 mb-1">Legacy Items</h3>
-                  <p className="text-sm text-gray-600">Collector's Edition</p>
-                </div>
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                  style={{ backgroundColor: "#B8860B" }}
-                >
-                  <div className="text-center">
-                    <span className="text-white font-semibold text-lg">
-                      View Collection
-                    </span>
-                    <p className="text-white text-sm mt-1">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                  {/* Main Text Overlay */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
+                    <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
+                      Legacy Items
+                    </h3>
+                    <p className="text-sm font-light opacity-90 italic">
                       Collector's Edition
                     </p>
                   </div>
+
+                  {/* Accent Corner */}
+                  <div className="absolute top-3 right-3 w-2 h-2 bg-[#B8860B] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
 
               {/* Accessories */}
-              <div className="group relative bg-white border-2 border-gray-200 overflow-hidden hover:border-[#A8A8A8] transition-all duration-300 hover:-translate-y-2 cursor-pointer">
-                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-6">
+              <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
+                <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src="/cricket-accessories-gloves-pads.jpg"
                     alt="Cricket Accessories"
-                    width={120}
-                    height={120}
-                    className="object-contain group-hover:scale-110 transition-transform duration-300"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                </div>
-                <div className="p-4 text-center">
-                  <h3 className="font-bold text-gray-900 mb-1">Accessories</h3>
-                  <p className="text-sm text-gray-600">Essential Gear</p>
-                </div>
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                  style={{ backgroundColor: "#A8A8A8" }}
-                >
-                  <div className="text-center">
-                    <span className="text-white font-semibold text-lg">
-                      Shop Now
-                    </span>
-                    <p className="text-white text-sm mt-1">Essential Gear</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                  {/* Main Text Overlay */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
+                    <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
+                      Accessories
+                    </h3>
+                    <p className="text-sm font-light opacity-90 italic">
+                      Essential Gear
+                    </p>
                   </div>
+
+                  {/* Accent Corner */}
+                  <div className="absolute top-3 right-3 w-2 h-2 bg-[#A8A8A8] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
 
               {/* Exclusive Kits */}
-              <div className="group relative bg-white border-2 border-gray-200 overflow-hidden hover:border-[#8B0000] transition-all duration-300 hover:-translate-y-2 cursor-pointer">
-                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-6">
+              <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
+                <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src="/exclusive-cricket-team-kits-uniforms.jpg"
                     alt="Exclusive Cricket Kits"
-                    width={120}
-                    height={120}
-                    className="object-contain group-hover:scale-110 transition-transform duration-300"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                </div>
-                <div className="p-4 text-center">
-                  <h3 className="font-bold text-gray-900 mb-1">
-                    Exclusive Kits
-                  </h3>
-                  <p className="text-sm text-gray-600">Team Uniforms</p>
-                </div>
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10"
-                  style={{ backgroundColor: "#8B0000" }}
-                >
-                  <div className="text-center">
-                    <span className="text-white font-semibold text-lg">
-                      Order Kits
-                    </span>
-                    <p className="text-white text-sm mt-1">Team Uniforms</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
 
-        {/* Services Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
-          <div className="container px-4 md:px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 mb-4 font-serif">
-                Our Elite Services
-              </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Comprehensive cricket solutions tailored for champions and
-                enthusiasts alike
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Bespoke Bat Creation */}
-              <div className="group bg-white border-2 border-gray-200 p-8 hover:border-[#CD853F] transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <div
-                    className="w-8 h-8 flex items-center justify-center"
-                    style={{ backgroundColor: "#CD853F" }}
-                  >
-                    <span className="text-white font-bold text-lg">🏏</span>
+                  {/* Main Text Overlay */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
+                    <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
+                      Exclusive Kits
+                    </h3>
+                    <p className="text-sm font-light opacity-90 italic">
+                      Team Uniforms
+                    </p>
                   </div>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Bespoke Bat Creation
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Handcrafted cricket bats tailored to your exact
-                  specifications, playing style, and preferences by master
-                  craftsmen.
-                </p>
-                <Button
-                  variant="outline"
-                  className="w-full bg-transparent transition-all duration-300"
-                  style={{
-                    borderColor: "#CD853F",
-                    color: "#CD853F",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#CD853F";
-                    e.currentTarget.style.color = "white";
-                    e.currentTarget.style.borderColor = "#CD853F";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = "#CD853F";
-                    e.currentTarget.style.borderColor = "#CD853F";
-                  }}
-                >
-                  Learn More
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
-              </div>
 
-              {/* Stadium Bookings */}
-              <div className="group bg-white border-2 border-gray-200 p-8 hover:border-[#C0C0C0] transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <div
-                    className="w-8 h-8 flex items-center justify-center"
-                    style={{ backgroundColor: "#C0C0C0" }}
-                  >
-                    <span className="text-white font-bold text-lg">🏟️</span>
-                  </div>
+                  {/* Accent Corner */}
+                  <div className="absolute top-3 right-3 w-2 h-2 bg-[#8B0000] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Stadium Bookings
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Exclusive access to premium cricket facilities and stadiums
-                  for training, matches, and special events worldwide.
-                </p>
-                <Button
-                  variant="outline"
-                  className="w-full bg-transparent transition-all duration-300"
-                  style={{
-                    borderColor: "#C0C0C0",
-                    color: "#722F37",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#C0C0C0";
-                    e.currentTarget.style.color = "white";
-                    e.currentTarget.style.borderColor = "#C0C0C0";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = "#722F37";
-                    e.currentTarget.style.borderColor = "#C0C0C0";
-                  }}
-                >
-                  Learn More
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
-              </div>
-
-              {/* Exclusive Experiences */}
-              <div className="group bg-white border-2 border-gray-200 p-8 hover:border-[#722F37] transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <div
-                    className="w-8 h-8 flex items-center justify-center"
-                    style={{ backgroundColor: "#722F37" }}
-                  >
-                    <span className="text-white font-bold text-lg">⭐</span>
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Exclusive Experiences
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  VIP cricket experiences including private coaching with
-                  legends, exclusive tournaments, and behind-the-scenes access.
-                </p>
-                <Button
-                  variant="outline"
-                  className="w-full bg-transparent transition-all duration-300"
-                  style={{
-                    borderColor: "#722F37",
-                    color: "#722F37",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#722F37";
-                    e.currentTarget.style.color = "white";
-                    e.currentTarget.style.borderColor = "#722F37";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = "#722F37";
-                    e.currentTarget.style.borderColor = "#722F37";
-                  }}
-                >
-                  Learn More
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
-              </div>
-
-              {/* Global Partnerships */}
-              <div className="group bg-white border-2 border-gray-200 p-8 hover:border-[#B8860B] transition-all duration-300 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <div
-                    className="w-8 h-8 flex items-center justify-center"
-                    style={{ backgroundColor: "#B8860B" }}
-                  >
-                    <span className="text-white font-bold text-lg">🌍</span>
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Global Partnerships
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Strategic partnerships with international cricket brands,
-                  academies, and professional teams for unmatched opportunities.
-                </p>
-                <Button
-                  variant="outline"
-                  className="w-full bg-transparent transition-all duration-300"
-                  style={{
-                    borderColor: "#B8860B",
-                    color: "#B8860B",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#B8860B";
-                    e.currentTarget.style.color = "white";
-                    e.currentTarget.style.borderColor = "#B8860B";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = "#B8860B";
-                    e.currentTarget.style.borderColor = "#B8860B";
-                  }}
-                >
-                  Learn More
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
               </div>
             </div>
           </div>
@@ -1478,22 +1275,22 @@ export default function FurSureLandingPage() {
             <div className="text-center">
               <div className="inline-flex items-center gap-6 bg-gray-800/30 backdrop-blur-sm border border-gray-600/50 px-8 py-4">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-green-400 animate-pulse"></div>
+                  <MapPin className="w-4 h-4 text-green-400 animate-pulse" />
                   <span className="text-white font-medium">North America</span>
                 </div>
                 <div className="w-1 h-6 bg-gray-600"></div>
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-blue-400 animate-pulse animation-delay-500"></div>
+                  <MapPin className="w-4 h-4 text-blue-400 animate-pulse animation-delay-500" />
                   <span className="text-white font-medium">Europe</span>
                 </div>
                 <div className="w-1 h-6 bg-gray-600"></div>
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-yellow-400 animate-pulse animation-delay-1000"></div>
+                  <MapPin className="w-4 h-4 text-yellow-400 animate-pulse animation-delay-1000" />
                   <span className="text-white font-medium">Asia Pacific</span>
                 </div>
                 <div className="w-1 h-6 bg-gray-600"></div>
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-red-400 animate-pulse animation-delay-1500"></div>
+                  <MapPin className="w-4 h-4 text-red-400 animate-pulse animation-delay-1500" />
                   <span className="text-white font-medium">Australia</span>
                 </div>
               </div>
@@ -1505,50 +1302,16 @@ export default function FurSureLandingPage() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 text-white relative overflow-hidden bg-[#722F37]">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <svg
-              className="w-full h-full"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-            >
-              <defs>
-                <pattern
-                  id="ctaPattern"
-                  x="0"
-                  y="0"
-                  width="20"
-                  height="20"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <circle cx="10" cy="10" r="2" fill="#CD853F" />
-                  <circle cx="5" cy="15" r="1" fill="#C0C0C0" />
-                  <circle cx="15" cy="5" r="1.5" fill="#B8860B" />
-                </pattern>
-              </defs>
-              <rect width="100" height="100" fill="url(#ctaPattern)" />
-            </svg>
-          </div>
-
-          {/* Floating geometric shapes */}
-          <div className="absolute inset-0 opacity-15">
-            <div
-              className="absolute top-20 left-20 w-16 h-16 transform rotate-45 animate-pulse"
-              style={{ backgroundColor: "#CD853F" }}
-            ></div>
-            <div
-              className="absolute bottom-20 right-32 w-12 h-12 border-4 animate-pulse animation-delay-1000"
-              style={{ borderColor: "#C0C0C0" }}
-            ></div>
-            <div
-              className="absolute top-1/3 right-1/4 w-20 h-20 transform rotate-12 animate-pulse animation-delay-2000"
-              style={{ backgroundColor: "#A8A8A8" }}
-            ></div>
-            <div
-              className="absolute bottom-1/3 left-1/3 w-14 h-14 border-2 animate-pulse animation-delay-3000"
-              style={{ backgroundColor: "#B8860B", borderColor: "#722F37" }}
-            ></div>
+        <section className="w-full py-12 md:py-24 lg:py-32 text-white relative overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/nbg.jpeg"
+              alt="Cricket Action Background"
+              fill
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/80"></div>
           </div>
 
           {/* Call to Action Content */}
@@ -1579,7 +1342,7 @@ export default function FurSureLandingPage() {
                 }}
                 asChild
               >
-                <Link href="/shop">Shop Now</Link>
+                <Link href="/contact-us">Shop Now</Link>
               </Button>
               <Button
                 size="lg"
@@ -1588,7 +1351,7 @@ export default function FurSureLandingPage() {
                 style={{ borderColor: "#C0C0C0" }}
                 asChild
               >
-                <Link href="#contact">Contact Us</Link>
+                <Link href="/contact-us">Contact Us</Link>
               </Button>
             </div>
           </div>

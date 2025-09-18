@@ -9,12 +9,12 @@ export const Navbar = () => {
     <header className="fixed top-0 left-0 w-full z-50">
       <div className="bg-white/60 border-b border-gray-200/20 px-6 py-3 flex items-center justify-between backdrop-blur-lg w-full h-20 transition-all duration-300">
         <Link
-          href="#"
+          href="/"
           className="flex items-center justify-center"
           prefetch={false}
         >
           <Image
-            src="/drakon_logo-removebg.png"
+            src="/newlogo.png"
             alt="Drakon Sports Logo"
             width={200}
             height={80}
@@ -43,7 +43,7 @@ export const Navbar = () => {
           </Link>
           <div className="w-px h-6 bg-gray-300 mx-4"></div>
           <Link
-            href="#contact"
+            href="/contact-us"
             className="text-sm px-4 py-2 font-medium relative group transition-colors duration-200"
             style={{ color: "#722F37" }}
             onMouseEnter={(e) => {
@@ -86,7 +86,7 @@ export const Navbar = () => {
                 ></span>
               </Link>
               <Link
-                href="#contact"
+                href="/contact-us"
                 className="text-base font-medium text-gray-900 relative group py-2 border-b border-gray-200 transition-colors duration-200"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = "#722F37";
