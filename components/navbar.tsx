@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { useState } from "react";
 
 export const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header className="fixed top-0 left-0 w-full z-50">
       <div className="bg-white/60 border-b border-gray-200/20 px-6 py-3 flex items-center justify-between backdrop-blur-lg w-full h-20 transition-all duration-300">
@@ -23,87 +25,60 @@ export const Navbar = () => {
         </Link>
 
         <div className="hidden md:flex items-center">
-          <div className="w-px h-6 bg-gray-300 mx-4"></div>
+          <div className="w-px h-6 bg-light-silver mx-4"></div>
           <Link
             href="/about"
-            className="text-sm px-4 py-2 font-medium relative group transition-colors duration-200"
-            style={{ color: "#722F37" }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = "#8B0000";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = "#722F37";
-            }}
+            className="text-sm px-4 py-2 font-medium relative group transition-colors duration-200 text-navy-blue hover:text-teal-blue"
           >
             About Us
-            <span
-              className="absolute bottom-0 left-0 right-0 h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200"
-              style={{ backgroundColor: "#CD853F" }}
-            ></span>
+            <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200"></span>
           </Link>
-          <div className="w-px h-6 bg-gray-300 mx-4"></div>
+          <div className="w-px h-6 bg-light-silver mx-4"></div>
           <Link
             href="/contact-us"
-            className="text-sm px-4 py-2 font-medium relative group transition-colors duration-200"
-            style={{ color: "#722F37" }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = "#8B0000";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = "#722F37";
-            }}
+            className="text-sm px-4 py-2 font-medium relative group transition-colors duration-200 text-navy-blue hover:text-teal-blue"
           >
             Contact Us
-            <span
-              className="absolute bottom-0 left-0 right-0 h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200"
-              style={{ backgroundColor: "#CD853F" }}
-            ></span>
+            <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200"></span>
           </Link>
         </div>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="ghost" className="md:hidden">
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Open menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="sm:max-w-xs">
-            <nav className="mt-8 flex flex-col gap-6">
+
+        {/* Mobile Menu */}
+        <div className="md:hidden relative">
+          <Button
+            variant="ghost"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2"
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6 text-navy-blue" />
+            ) : (
+              <Menu className="h-6 w-6 text-navy-blue" />
+            )}
+            <span className="sr-only">Toggle menu</span>
+          </Button>
+
+          {/* Dropdown Menu */}
+          {isMenuOpen && (
+            <div className="absolute right-0 top-12 w-48 bg-white/95 backdrop-blur-lg border border-gray-200/50 rounded-lg shadow-lg py-2 z-50">
               <Link
                 href="/about"
-                className="text-base font-medium text-gray-900 relative group py-2 border-b border-gray-200 transition-colors duration-200"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#722F37";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "#111827";
-                }}
+                className="block px-4 py-3 text-navy-blue hover:text-teal-blue hover:bg-teal-blue/5 transition-colors duration-200 font-medium"
+                onClick={() => setIsMenuOpen(false)}
               >
                 About Us
-                <span
-                  className="absolute bottom-0 left-0 right-0 h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200"
-                  style={{ backgroundColor: "#CD853F" }}
-                ></span>
               </Link>
+              <div className="border-t border-gray-200/30 mx-2"></div>
               <Link
                 href="/contact-us"
-                className="text-base font-medium text-gray-900 relative group py-2 border-b border-gray-200 transition-colors duration-200"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#722F37";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "#111827";
-                }}
+                className="block px-4 py-3 text-navy-blue hover:text-teal-blue hover:bg-teal-blue/5 transition-colors duration-200 font-medium"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Contact Us
-                <span
-                  className="absolute bottom-0 left-0 right-0 h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200"
-                  style={{ backgroundColor: "#CD853F" }}
-                ></span>
               </Link>
-            </nav>
-          </SheetContent>
-        </Sheet>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

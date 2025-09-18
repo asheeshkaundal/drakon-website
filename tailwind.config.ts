@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
@@ -25,19 +25,28 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        // Logo-derived color palette
+        "navy-blue": "#1a2332", // Dragon/shield dark
+        "teal-blue": "#4a9b9b", // Dragon accents
+        "silver-gray": "#8a9ba8", // Shield border
+        "cricket-red": "#c41e3a", // Cricket ball
+        "wicket-green": "#2d5016", // Cricket stumps
+        "light-gray": "#f8f9fa", // Supporting color
+        charcoal: "#2c3e50", // Supporting color
+        "light-silver": "#e9ecef", // Supporting color
         primary: {
-          DEFAULT: "#8B5FBF", // Sophisticated purple from reference
+          DEFAULT: "#1a2332", // Navy blue as primary
           foreground: "hsl(var(--primary-foreground))",
-          50: "#F8F6FC",
-          100: "#F0EBFF",
-          200: "#E1D4FF",
-          300: "#C9B3FF",
-          400: "#A688FF",
-          500: "#8B5FBF",
-          600: "#7C4DFF",
-          700: "#6B46C1",
-          800: "#553C9A",
-          900: "#44337A",
+          50: "#f8f9fa",
+          100: "#e9ecef",
+          200: "#8a9ba8",
+          300: "#4a9b9b",
+          400: "#2d5016",
+          500: "#1a2332",
+          600: "#c41e3a",
+          700: "#1a2332",
+          800: "#2c3e50",
+          900: "#1a2332",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -86,6 +95,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

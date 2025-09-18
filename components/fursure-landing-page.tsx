@@ -63,7 +63,7 @@ export default function FurSureLandingPage() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-[100dvh] bg-gray-50 text-gray-800">
+    <div className="flex flex-col min-h-[100dvh] bg-light-gray text-navy-blue">
       {/* Header */}
       <Navbar />
 
@@ -88,32 +88,23 @@ export default function FurSureLandingPage() {
                 />
               </div>
             ))}
-            <div className="absolute inset-0 bg-black/40"></div>
-          </div>
-
+            <div className="absolute inset-0 bg-navy-blue/70"></div>
+          </div>{" "}
           {/* Navigation Arrows */}
           <button
             onClick={prevImage}
             className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 p-3 rounded-full bg-black/30 backdrop-blur-sm border border-white/30 text-white hover:bg-black/50 transition-all duration-300 group"
             aria-label="Previous image"
           >
-            <ChevronLeft
-              className="h-6 w-6 group-hover:scale-110 transition-transform"
-              style={{ color: "#CD853F" }}
-            />
+            <ChevronLeft className="h-6 w-6 group-hover:scale-110 transition-transform text-teal-blue" />
           </button>
-
           <button
             onClick={nextImage}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 p-3 rounded-full bg-black/30 backdrop-blur-sm border border-white/30 text-white hover:bg-black/50 transition-all duration-300 group"
             aria-label="Next image"
           >
-            <ChevronRight
-              className="h-6 w-6 group-hover:scale-110 transition-transform"
-              style={{ color: "#CD853F" }}
-            />
+            <ChevronRight className="h-6 w-6 group-hover:scale-110 transition-transform text-teal-blue" />
           </button>
-
           {/* Slide Indicators */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
             {heroImages.map((_, index) => (
@@ -122,20 +113,13 @@ export default function FurSureLandingPage() {
                 onClick={() => setCurrentImageIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentImageIndex
-                    ? "scale-125 shadow-lg"
-                    : "hover:scale-110"
+                    ? "bg-teal-blue scale-125 shadow-lg"
+                    : "bg-silver-gray/60 hover:scale-110"
                 }`}
-                style={{
-                  backgroundColor:
-                    index === currentImageIndex
-                      ? "#CD853F"
-                      : "rgba(192, 192, 192, 0.6)",
-                }}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
-
           {/* Hero Content */}
           <div className="relative z-10 container px-5 md:px-6 text-center text-white flex flex-col items-center justify-center h-full pt-20">
             <div className="max-w-3xl mx-auto pt-4 pb-8 space-y-6">
@@ -157,7 +141,7 @@ export default function FurSureLandingPage() {
 
               {/* Subtitle */}
               <div className="mb-10">
-                <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed animate-fade-in-up opacity-0 animation-delay-700 drop-shadow-lg">
+                <p className="text-lg md:text-xl text-teal-blue max-w-2xl mx-auto leading-relaxed animate-fade-in-up opacity-0 animation-delay-700 drop-shadow-lg">
                   DRAKON SPORTS PRIVATE LIMITED is not just a brand. It is a
                   private gateway into the rarest, most luxurious expressions of
                   the gentleman's game.
@@ -168,27 +152,20 @@ export default function FurSureLandingPage() {
               <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up opacity-0 animation-delay-900">
                 <Button
                   size="lg"
-                  className="text-white shadow-2xl px-8 py-4 text-lg font-semibold border-2 border-transparent hover:border-white/20 transition-all duration-300 hover:scale-105"
-                  style={{ backgroundColor: "#CD853F" }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#B8860B";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "#CD853F";
-                  }}
+                  className="bg-teal-blue text-white shadow-2xl px-8 py-4 text-lg font-semibold border-2 border-transparent hover:border-white/20 transition-all duration-300 hover:scale-105 hover:bg-teal-blue/80"
                 >
                   Explore Collection
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 bg-transparent"
+                  className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 bg-transparent hover:text-navy-blue hover:bg-white"
                 >
                   Custom Orders
                 </Button>
                 <Button
                   size="lg"
-                  className="bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/30 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105"
+                  className="bg-cricket-red border-2 border-cricket-red text-white hover:bg-red-700 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105"
                   asChild
                 >
                   <Link href="/contact-us">Contact</Link>
@@ -199,30 +176,21 @@ export default function FurSureLandingPage() {
         </section>
 
         {/* Official Partners & Suppliers Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-light-gray">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 mb-4 font-serif">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-navy-blue mb-4 font-serif">
                 Official Partners & Suppliers
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-xl text-silver-gray max-w-2xl mx-auto">
                 Trusted partnerships with the world's leading cricket brands and
                 manufacturers
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 max-w-5xl mx-auto">
               {/* MRF */}
-              <div
-                className="group flex flex-col items-center p-6 bg-white border-2 border-gray-200 hover:bg-gray-50 transition-all duration-300"
-                style={{ borderColor: "inherit" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#CD853F";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "inherit";
-                }}
-              >
-                <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-gray-200">
+              <div className="group flex flex-col items-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+                <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
                   <Image
                     src="/mrf.jpeg"
                     alt="MRF Logo"
@@ -231,23 +199,14 @@ export default function FurSureLandingPage() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-gray-600 text-sm font-medium">
+                <span className="text-charcoal text-sm font-medium">
                   Premium Bats
                 </span>
               </div>
 
               {/* SS */}
-              <div
-                className="group flex flex-col items-center p-6 bg-white border-2 border-gray-200 hover:bg-gray-50 transition-all duration-300"
-                style={{ borderColor: "inherit" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#CD853F";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "inherit";
-                }}
-              >
-                <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-gray-200">
+              <div className="group flex flex-col items-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+                <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
                   <Image
                     src="/ss.jpeg"
                     alt="SS Cricket Logo"
@@ -256,23 +215,14 @@ export default function FurSureLandingPage() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-gray-600 text-sm font-medium">
+                <span className="text-charcoal text-sm font-medium">
                   Equipment
                 </span>
               </div>
 
               {/* Adidas */}
-              <div
-                className="group flex flex-col items-center p-6 bg-white border-2 border-gray-200 hover:bg-gray-50 transition-all duration-300"
-                style={{ borderColor: "inherit" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#CD853F";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "inherit";
-                }}
-              >
-                <div className="w-16 h-16 bg-black flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-gray-200">
+              <div className="group flex flex-col items-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+                <div className="w-16 h-16 bg-black flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
                   <Image
                     src="/adidasnew.jpeg"
                     alt="Adidas Logo"
@@ -281,23 +231,14 @@ export default function FurSureLandingPage() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-gray-600 text-sm font-medium">
+                <span className="text-charcoal text-sm font-medium">
                   Apparel
                 </span>
               </div>
 
               {/* Gray-Nicolls */}
-              <div
-                className="group flex flex-col items-center p-6 bg-white border-2 border-gray-200 hover:bg-gray-50 transition-all duration-300"
-                style={{ borderColor: "inherit" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#CD853F";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "inherit";
-                }}
-              >
-                <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-gray-200">
+              <div className="group flex flex-col items-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+                <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
                   <Image
                     src="/grayn.jpeg"
                     alt="Gray-Nicolls Logo"
@@ -306,23 +247,14 @@ export default function FurSureLandingPage() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-gray-600 text-sm font-medium">
+                <span className="text-charcoal text-sm font-medium">
                   Heritage
                 </span>
               </div>
 
               {/* Kookaburra */}
-              <div
-                className="group flex flex-col items-center p-6 bg-white border-2 border-gray-200 hover:bg-gray-50 transition-all duration-300"
-                style={{ borderColor: "inherit" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#CD853F";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "inherit";
-                }}
-              >
-                <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-gray-200">
+              <div className="group flex flex-col items-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+                <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
                   <Image
                     src="/kooko.jpeg"
                     alt="Kookaburra Logo"
@@ -331,23 +263,14 @@ export default function FurSureLandingPage() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-gray-600 text-sm font-medium">
+                <span className="text-charcoal text-sm font-medium">
                   Balls & Gear
                 </span>
               </div>
 
               {/* New Balance */}
-              <div
-                className="group flex flex-col items-center p-6 bg-white border-2 border-gray-200 hover:bg-gray-50 transition-all duration-300"
-                style={{ borderColor: "inherit" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#CD853F";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "inherit";
-                }}
-              >
-                <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-gray-200">
+              <div className="group flex flex-col items-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+                <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
                   <Image
                     src="/nbnew.jpeg"
                     alt="New Balance Logo"
@@ -356,7 +279,7 @@ export default function FurSureLandingPage() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-gray-600 text-sm font-medium">
+                <span className="text-charcoal text-sm font-medium">
                   Footwear
                 </span>
               </div>
@@ -369,71 +292,71 @@ export default function FurSureLandingPage() {
           <div className="container px-4 md:px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="animate-fade-in-left">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 mb-6">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-navy-blue mb-6">
                   Why Choose Drakon?
                 </h2>
                 <div className="space-y-4">
-                  <div className="flex items-start gap-3 hover:bg-gray-50 p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-0.5">
+                  <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
+                    <div className="flex-shrink-0 w-6 h-6 bg-wicket-green rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">
+                      <h3 className="font-semibold text-navy-blue mb-1">
                         Premium Quality Materials
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-silver-gray">
                         Designed for durability and comfort
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 hover:bg-gray-50 p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-0.5">
+                  <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
+                    <div className="flex-shrink-0 w-6 h-6 bg-wicket-green rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">
+                      <h3 className="font-semibold text-navy-blue mb-1">
                         Performance-Driven Design
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-silver-gray">
                         Crafted for serious athletes and casual players alike
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 hover:bg-gray-50 p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-0.5">
+                  <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
+                    <div className="flex-shrink-0 w-6 h-6 bg-wicket-green rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">
+                      <h3 className="font-semibold text-navy-blue mb-1">
                         Custom Solutions
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-silver-gray">
                         Team kits, personalized gear & bulk orders
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 hover:bg-gray-50 p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-0.5">
+                  <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
+                    <div className="flex-shrink-0 w-6 h-6 bg-wicket-green rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">
+                      <h3 className="font-semibold text-navy-blue mb-1">
                         Sustainable Manufacturing
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-silver-gray">
                         We care about your performance and the planet
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 hover:bg-gray-50 p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-0.5">
+                  <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
+                    <div className="flex-shrink-0 w-6 h-6 bg-wicket-green rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">
+                      <h3 className="font-semibold text-navy-blue mb-1">
                         Trusted by Champions
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-silver-gray">
                         Endorsed by professionals and rising stars
                       </p>
                     </div>
@@ -446,28 +369,28 @@ export default function FurSureLandingPage() {
                   alt="Premium Cricket Equipment"
                   width={300}
                   height={200}
-                  className="border-2 border-gray-200 object-cover hover:scale-105 transition-transform duration-300"
+                  className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300"
                 />
                 <Image
                   src="/custom-team-uniforms.jpg"
                   alt="Custom Team Uniforms"
                   width={300}
                   height={200}
-                  className="border-2 border-gray-200 object-cover hover:scale-105 transition-transform duration-300"
+                  className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300"
                 />
                 <Image
                   src="/sustainable-manufacturing.jpg"
                   alt="Sustainable Manufacturing"
                   width={300}
                   height={200}
-                  className="border-2 border-gray-200 object-cover hover:scale-105 transition-transform duration-300"
+                  className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300"
                 />
                 <Image
                   src="/professional-athletes.jpg"
                   alt="Professional Athletes"
                   width={300}
                   height={200}
-                  className="border-2 border-gray-200 object-cover hover:scale-105 transition-transform duration-300"
+                  className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
             </div>
@@ -475,13 +398,13 @@ export default function FurSureLandingPage() {
         </section>
 
         {/* Product Showcase Grid Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-light-gray">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 mb-4 font-serif">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-navy-blue mb-4 font-serif">
                 Our Premium Collection
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-xl text-silver-gray max-w-2xl mx-auto">
                 Discover our curated selection of elite cricket equipment and
                 experiences
               </p>
@@ -497,20 +420,20 @@ export default function FurSureLandingPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-blue/80 via-navy-blue/30 to-transparent"></div>
 
                   {/* Main Text Overlay */}
                   <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
                     <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
                       Premium Bats
                     </h3>
-                    <p className="text-sm font-light opacity-90 italic">
+                    <p className="text-sm font-light opacity-90 italic text-teal-blue">
                       Handcrafted Excellence
                     </p>
                   </div>
 
                   {/* Accent Corner */}
-                  <div className="absolute top-3 right-3 w-2 h-2 bg-[#CD853F] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-3 right-3 w-2 h-2 bg-teal-blue transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
 
@@ -523,20 +446,20 @@ export default function FurSureLandingPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-blue/80 via-navy-blue/30 to-transparent"></div>
 
                   {/* Main Text Overlay */}
                   <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
                     <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
                       Custom Gear
                     </h3>
-                    <p className="text-sm font-light opacity-90 italic">
+                    <p className="text-sm font-light opacity-90 italic text-teal-blue">
                       Personalized Equipment
                     </p>
                   </div>
 
                   {/* Accent Corner */}
-                  <div className="absolute top-3 right-3 w-2 h-2 bg-[#C0C0C0] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-3 right-3 w-2 h-2 bg-silver-gray transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
 
@@ -549,20 +472,20 @@ export default function FurSureLandingPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-blue/80 via-navy-blue/30 to-transparent"></div>
 
                   {/* Main Text Overlay */}
                   <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
                     <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
                       Stadium Experiences
                     </h3>
-                    <p className="text-sm font-light opacity-90 italic">
+                    <p className="text-sm font-light opacity-90 italic text-teal-blue">
                       Elite Events
                     </p>
                   </div>
 
                   {/* Accent Corner */}
-                  <div className="absolute top-3 right-3 w-2 h-2 bg-[#722F37] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-3 right-3 w-2 h-2 bg-cricket-red transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
 
@@ -575,20 +498,20 @@ export default function FurSureLandingPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-blue/80 via-navy-blue/30 to-transparent"></div>
 
                   {/* Main Text Overlay */}
                   <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
                     <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
                       Legacy Items
                     </h3>
-                    <p className="text-sm font-light opacity-90 italic">
+                    <p className="text-sm font-light opacity-90 italic text-teal-blue">
                       Collector's Edition
                     </p>
                   </div>
 
                   {/* Accent Corner */}
-                  <div className="absolute top-3 right-3 w-2 h-2 bg-[#B8860B] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-3 right-3 w-2 h-2 bg-wicket-green transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
 
@@ -601,20 +524,20 @@ export default function FurSureLandingPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-blue/80 via-navy-blue/30 to-transparent"></div>
 
                   {/* Main Text Overlay */}
                   <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
                     <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
                       Accessories
                     </h3>
-                    <p className="text-sm font-light opacity-90 italic">
+                    <p className="text-sm font-light opacity-90 italic text-teal-blue">
                       Essential Gear
                     </p>
                   </div>
 
                   {/* Accent Corner */}
-                  <div className="absolute top-3 right-3 w-2 h-2 bg-[#A8A8A8] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-3 right-3 w-2 h-2 bg-light-silver transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
 
@@ -627,20 +550,20 @@ export default function FurSureLandingPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-blue/80 via-navy-blue/30 to-transparent"></div>
 
                   {/* Main Text Overlay */}
                   <div className="absolute inset-0 flex flex-col justify-end p-4 text-white">
                     <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
                       Exclusive Kits
                     </h3>
-                    <p className="text-sm font-light opacity-90 italic">
+                    <p className="text-sm font-light opacity-90 italic text-teal-blue">
                       Team Uniforms
                     </p>
                   </div>
 
                   {/* Accent Corner */}
-                  <div className="absolute top-3 right-3 w-2 h-2 bg-[#8B0000] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-3 right-3 w-2 h-2 bg-cricket-red transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
             </div>
@@ -653,7 +576,7 @@ export default function FurSureLandingPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left: Large cricket action image */}
               <div className="relative animate-fade-in-left">
-                <div className="aspect-[4/3] relative overflow-hidden border-2 border-gray-300 hover:border-primary-400 transition-colors duration-300">
+                <div className="aspect-[4/3] relative overflow-hidden border-2 border-light-silver hover:border-teal-blue transition-colors duration-300">
                   <Image
                     src="/cricket-action-hero-shot.jpg"
                     alt="Cricket Action Shot"
@@ -662,36 +585,30 @@ export default function FurSureLandingPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                   {/* Geometric overlay elements */}
-                  <div className="absolute top-0 right-0 w-16 h-16 border-l-4 border-b-4 border-primary-600/30"></div>
-                  <div className="absolute bottom-0 left-0 w-20 h-20 border-r-4 border-t-4 border-primary-600/30"></div>
+                  <div className="absolute top-0 right-0 w-16 h-16 border-l-4 border-b-4 border-teal-blue/30"></div>
+                  <div className="absolute bottom-0 left-0 w-20 h-20 border-r-4 border-t-4 border-teal-blue/30"></div>
                 </div>
                 {/* Sharp geometric accent elements */}
-                <div className="absolute -top-2 -right-2 w-16 h-16 bg-primary-100 border-2 border-primary-200 opacity-60"></div>
-                <div className="absolute -bottom-3 -left-3 w-12 h-12 bg-orange-100 border-2 border-orange-200 opacity-50"></div>
+                <div className="absolute -top-2 -right-2 w-16 h-16 bg-light-gray border-2 border-light-silver opacity-60"></div>
+                <div className="absolute -bottom-3 -left-3 w-12 h-12 bg-teal-blue/10 border-2 border-teal-blue/20 opacity-50"></div>
               </div>
 
               {/* Right: Brand story content */}
               <div className="animate-fade-in-right">
                 {/* Since 2020 Badge */}
                 <div className="inline-block mb-6">
-                  <div
-                    className="bg-gradient-to-r from-gray-100 to-gray-50 border-2 px-6 py-2"
-                    style={{ borderColor: "#CD853F" }}
-                  >
-                    <span
-                      className="font-semibold text-sm tracking-wide"
-                      style={{ color: "#722F37" }}
-                    >
+                  <div className="bg-gradient-to-r from-light-gray to-light-gray border-2 border-cricket-red px-6 py-2">
+                    <span className="font-semibold text-sm tracking-wide text-cricket-red">
                       SINCE 2020
                     </span>
                   </div>
                 </div>
 
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 mb-6 font-serif">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-navy-blue mb-6 font-serif">
                   Our Journey to Cricket Excellence
                 </h2>
 
-                <div className="space-y-6 text-gray-600 leading-relaxed">
+                <div className="space-y-6 text-charcoal leading-relaxed">
                   <p className="text-lg">
                     Founded in 2020 with a vision to revolutionize the cricket
                     equipment industry, Drakon Sports emerged from a simple
@@ -717,26 +634,17 @@ export default function FurSureLandingPage() {
                   </p>
 
                   <div className="pt-4">
-                    <div className="flex items-center gap-4 text-sm text-gray-500">
+                    <div className="flex items-center gap-4 text-sm text-silver-gray">
                       <div className="flex items-center gap-2">
-                        <div
-                          className="w-2 h-2 transform rotate-45"
-                          style={{ backgroundColor: "#CD853F" }}
-                        ></div>
+                        <div className="w-2 h-2 bg-cricket-red transform rotate-45"></div>
                         <span>4+ Years of Excellence</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div
-                          className="w-2 h-2 transform rotate-45"
-                          style={{ backgroundColor: "#C0C0C0" }}
-                        ></div>
+                        <div className="w-2 h-2 bg-teal-blue transform rotate-45"></div>
                         <span>Global Partnerships</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div
-                          className="w-2 h-2 transform rotate-45"
-                          style={{ backgroundColor: "#722F37" }}
-                        ></div>
+                        <div className="w-2 h-2 bg-wicket-green transform rotate-45"></div>
                         <span>Trusted by Champions</span>
                       </div>
                     </div>
@@ -746,14 +654,7 @@ export default function FurSureLandingPage() {
                 <div className="mt-8">
                   <Button
                     size="lg"
-                    className="text-white shadow-lg px-8 py-3 font-semibold transition-all duration-300 hover:scale-105"
-                    style={{ backgroundColor: "#722F37" }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = "#8B0000";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = "#722F37";
-                    }}
+                    className="bg-cricket-red text-white shadow-lg px-8 py-3 font-semibold transition-all duration-300 hover:scale-105 hover:bg-red-700"
                   >
                     Learn More About Us
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -765,13 +666,13 @@ export default function FurSureLandingPage() {
         </section>
 
         {/* Product Categories Showcase */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-light-gray">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 mb-4 font-serif">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-navy-blue mb-4 font-serif">
                 Exclusive Collections
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-silver-gray max-w-3xl mx-auto leading-relaxed">
                 Discover our curated selection of premium cricket offerings,
                 each representing the pinnacle of craftsmanship and exclusivity
               </p>
@@ -779,7 +680,7 @@ export default function FurSureLandingPage() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
               {/* Grade 1 English Willow Bats */}
-              <div className="group relative bg-white border-2 border-gray-300 overflow-hidden hover:border-[#CD853F] transition-all duration-500 hover:-translate-y-2">
+              <div className="group relative bg-white border-2 border-light-silver overflow-hidden hover:border-teal-blue transition-all duration-500 hover:-translate-y-2">
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <Image
                     src="/premium-english-willow-cricket-bat-handcrafted.jpg"
@@ -787,47 +688,35 @@ export default function FurSureLandingPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-blue/60 via-navy-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute top-4 right-4">
-                    <div
-                      className="text-white px-3 py-1 text-xs font-semibold border"
-                      style={{
-                        backgroundColor: "#CD853F",
-                        borderColor: "#CD853F",
-                      }}
-                    >
+                    <div className="bg-teal-blue border border-teal-blue text-white px-3 py-1 text-xs font-semibold">
                       PREMIUM
                     </div>
                   </div>
                   {/* Geometric corner accents */}
-                  <div
-                    className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ borderColor: "#CD853F" }}
-                  ></div>
+                  <div className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 border-teal-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors">
+                  <h3 className="text-xl font-bold text-navy-blue mb-3 transition-colors">
                     Grade 1 English Willow Bats
                   </h3>
-                  <p className="text-gray-600 leading-relaxed mb-4">
+                  <p className="text-silver-gray leading-relaxed mb-4">
                     Handcrafted from the finest English willow, each bat is
                     meticulously selected and shaped by master craftsmen for
                     unparalleled performance.
                   </p>
                   <div className="flex items-center justify-between">
-                    <span
-                      className="font-semibold text-sm"
-                      style={{ color: "#CD853F" }}
-                    >
+                    <span className="font-semibold text-sm text-teal-blue">
                       ARTISAN CRAFTED
                     </span>
-                    <ArrowRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-all duration-300" />
+                    <ArrowRight className="h-5 w-5 text-silver-gray group-hover:translate-x-1 transition-all duration-300" />
                   </div>
                 </div>
               </div>
 
               {/* Platinum-Stitched Collector's Kits */}
-              <div className="group relative bg-white border-2 border-gray-300 overflow-hidden hover:border-[#C0C0C0] transition-all duration-500 hover:-translate-y-2">
+              <div className="group relative bg-white border-2 border-light-silver overflow-hidden hover:border-silver-gray transition-all duration-500 hover:-translate-y-2">
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <Image
                     src="/luxury-cricket-team-kit-platinum-stitching-collect.jpg"
@@ -835,47 +724,35 @@ export default function FurSureLandingPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-blue/60 via-navy-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute top-4 right-4">
-                    <div
-                      className="text-white px-3 py-1 text-xs font-semibold border"
-                      style={{
-                        backgroundColor: "#C0C0C0",
-                        borderColor: "#A8A8A8",
-                      }}
-                    >
+                    <div className="bg-silver-gray border border-silver-gray text-white px-3 py-1 text-xs font-semibold">
                       COLLECTOR'S
                     </div>
                   </div>
                   {/* Geometric corner accents */}
-                  <div
-                    className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ borderColor: "#C0C0C0" }}
-                  ></div>
+                  <div className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 border-silver-gray opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors">
+                  <h3 className="text-xl font-bold text-navy-blue mb-3 transition-colors">
                     Platinum-Stitched Collector's Kits
                   </h3>
-                  <p className="text-gray-600 leading-relaxed mb-4">
+                  <p className="text-silver-gray leading-relaxed mb-4">
                     Limited edition team kits featuring platinum threading and
                     exclusive designs, reserved for the most discerning
                     collectors.
                   </p>
                   <div className="flex items-center justify-between">
-                    <span
-                      className="font-semibold text-sm"
-                      style={{ color: "#A8A8A8" }}
-                    >
+                    <span className="font-semibold text-sm text-silver-gray">
                       LIMITED EDITION
                     </span>
-                    <ArrowRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-all duration-300" />
+                    <ArrowRight className="h-5 w-5 text-silver-gray group-hover:translate-x-1 transition-all duration-300" />
                   </div>
                 </div>
               </div>
 
               {/* Custom Signed Equipment */}
-              <div className="group relative bg-white border-2 border-gray-300 overflow-hidden hover:border-[#722F37] transition-all duration-500 hover:-translate-y-2">
+              <div className="group relative bg-white border-2 border-light-silver overflow-hidden hover:border-cricket-red transition-all duration-500 hover:-translate-y-2">
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <Image
                     src="/cricket-equipment-signed-by-professional-players-c.jpg"
@@ -883,46 +760,34 @@ export default function FurSureLandingPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-blue/60 via-navy-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute top-4 right-4">
-                    <div
-                      className="text-white px-3 py-1 text-xs font-semibold border"
-                      style={{
-                        backgroundColor: "#722F37",
-                        borderColor: "#8B0000",
-                      }}
-                    >
+                    <div className="bg-cricket-red border border-cricket-red text-white px-3 py-1 text-xs font-semibold">
                       SIGNED
                     </div>
                   </div>
                   {/* Geometric corner accents */}
-                  <div
-                    className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ borderColor: "#722F37" }}
-                  ></div>
+                  <div className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 border-cricket-red opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors">
+                  <h3 className="text-xl font-bold text-navy-blue mb-3 transition-colors">
                     Custom Signed Equipment
                   </h3>
-                  <p className="text-gray-600 leading-relaxed mb-4">
+                  <p className="text-silver-gray leading-relaxed mb-4">
                     Authentic equipment personally signed by cricket legends and
                     current stars, complete with certificates of authenticity.
                   </p>
                   <div className="flex items-center justify-between">
-                    <span
-                      className="font-semibold text-sm"
-                      style={{ color: "#722F37" }}
-                    >
+                    <span className="font-semibold text-sm text-cricket-red">
                       AUTHENTICATED
                     </span>
-                    <ArrowRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-all duration-300" />
+                    <ArrowRight className="h-5 w-5 text-silver-gray group-hover:translate-x-1 transition-all duration-300" />
                   </div>
                 </div>
               </div>
 
               {/* Private Tournament Arrangements */}
-              <div className="group relative bg-white border-2 border-gray-300 overflow-hidden hover:border-[#B8860B] transition-all duration-500 hover:-translate-y-2">
+              <div className="group relative bg-white border-2 border-light-silver overflow-hidden hover:border-wicket-green transition-all duration-500 hover:-translate-y-2">
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <Image
                     src="/private-cricket-tournament-exclusive-venue-luxury-.jpg"
@@ -930,46 +795,34 @@ export default function FurSureLandingPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-blue/60 via-navy-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute top-4 right-4">
-                    <div
-                      className="text-white px-3 py-1 text-xs font-semibold border"
-                      style={{
-                        backgroundColor: "#B8860B",
-                        borderColor: "#B8860B",
-                      }}
-                    >
+                    <div className="bg-wicket-green border border-wicket-green text-white px-3 py-1 text-xs font-semibold">
                       EXCLUSIVE
                     </div>
                   </div>
                   {/* Geometric corner accents */}
-                  <div
-                    className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ borderColor: "#B8860B" }}
-                  ></div>
+                  <div className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 border-wicket-green opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors">
+                  <h3 className="text-xl font-bold text-navy-blue mb-3 transition-colors">
                     Private Tournament Arrangements
                   </h3>
-                  <p className="text-gray-600 leading-relaxed mb-4">
+                  <p className="text-silver-gray leading-relaxed mb-4">
                     Bespoke tournament experiences at world-class venues,
                     complete with professional umpiring and luxury hospitality.
                   </p>
                   <div className="flex items-center justify-between">
-                    <span
-                      className="font-semibold text-sm"
-                      style={{ color: "#B8860B" }}
-                    >
+                    <span className="font-semibold text-sm text-wicket-green">
                       BESPOKE
                     </span>
-                    <ArrowRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-all duration-300" />
+                    <ArrowRight className="h-5 w-5 text-silver-gray group-hover:translate-x-1 transition-all duration-300" />
                   </div>
                 </div>
               </div>
 
               {/* Master Artisan Collections */}
-              <div className="group relative bg-white border-2 border-gray-300 overflow-hidden hover:border-[#A8A8A8] transition-all duration-500 hover:-translate-y-2">
+              <div className="group relative bg-white border-2 border-light-silver overflow-hidden hover:border-charcoal transition-all duration-500 hover:-translate-y-2">
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <Image
                     src="/master-craftsman-cricket-equipment-artisan-collect.jpg"
@@ -977,47 +830,35 @@ export default function FurSureLandingPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-blue/60 via-navy-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute top-4 right-4">
-                    <div
-                      className="text-white px-3 py-1 text-xs font-semibold border"
-                      style={{
-                        backgroundColor: "#A8A8A8",
-                        borderColor: "#A8A8A8",
-                      }}
-                    >
+                    <div className="bg-charcoal border border-charcoal text-white px-3 py-1 text-xs font-semibold">
                       ARTISAN
                     </div>
                   </div>
                   {/* Geometric corner accents */}
-                  <div
-                    className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ borderColor: "#A8A8A8" }}
-                  ></div>
+                  <div className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 border-charcoal opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors">
+                  <h3 className="text-xl font-bold text-navy-blue mb-3 transition-colors">
                     Master Artisan Collections
                   </h3>
-                  <p className="text-gray-600 leading-relaxed mb-4">
+                  <p className="text-silver-gray leading-relaxed mb-4">
                     Exceptional pieces crafted by renowned artisans,
                     representing centuries of traditional craftsmanship and
                     modern innovation.
                   </p>
                   <div className="flex items-center justify-between">
-                    <span
-                      className="font-semibold text-sm"
-                      style={{ color: "#A8A8A8" }}
-                    >
+                    <span className="font-semibold text-sm text-charcoal">
                       MASTERPIECE
                     </span>
-                    <ArrowRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-all duration-300" />
+                    <ArrowRight className="h-5 w-5 text-silver-gray group-hover:translate-x-1 transition-all duration-300" />
                   </div>
                 </div>
               </div>
 
               {/* Exclusive Cricket Retreats */}
-              <div className="group relative bg-white border-2 border-gray-300 overflow-hidden hover:border-[#8B0000] transition-all duration-500 hover:-translate-y-2">
+              <div className="group relative bg-white border-2 border-light-silver overflow-hidden hover:border-cricket-red transition-all duration-500 hover:-translate-y-2">
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <Image
                     src="/luxury-cricket-retreat-exclusive-training-camp-sce.jpg"
@@ -1025,41 +866,29 @@ export default function FurSureLandingPage() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-blue/60 via-navy-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute top-4 right-4">
-                    <div
-                      className="text-white px-3 py-1 text-xs font-semibold border"
-                      style={{
-                        backgroundColor: "#8B0000",
-                        borderColor: "#8B0000",
-                      }}
-                    >
+                    <div className="bg-cricket-red border border-cricket-red text-white px-3 py-1 text-xs font-semibold">
                       RETREAT
                     </div>
                   </div>
                   {/* Geometric corner accents */}
-                  <div
-                    className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ borderColor: "#8B0000" }}
-                  ></div>
+                  <div className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 border-cricket-red opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors">
+                  <h3 className="text-xl font-bold text-navy-blue mb-3 transition-colors">
                     Exclusive Cricket Retreats
                   </h3>
-                  <p className="text-gray-600 leading-relaxed mb-4">
+                  <p className="text-silver-gray leading-relaxed mb-4">
                     Immersive cricket experiences in breathtaking locations,
                     combining intensive training with luxury accommodations and
                     fine dining.
                   </p>
                   <div className="flex items-center justify-between">
-                    <span
-                      className="font-semibold text-sm"
-                      style={{ color: "#8B0000" }}
-                    >
+                    <span className="font-semibold text-sm text-cricket-red">
                       IMMERSIVE
                     </span>
-                    <ArrowRight className="h-5 w-5 text-gray-400 group-hover:translate-x-1 transition-all duration-300" />
+                    <ArrowRight className="h-5 w-5 text-silver-gray group-hover:translate-x-1 transition-all duration-300" />
                   </div>
                 </div>
               </div>
@@ -1311,7 +1140,7 @@ export default function FurSureLandingPage() {
               fill
               className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/80"></div>
+            <div className="absolute inset-0 bg-navy-blue/60"></div>
           </div>
 
           {/* Call to Action Content */}
@@ -1320,7 +1149,7 @@ export default function FurSureLandingPage() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl mb-4 text-white drop-shadow-lg font-serif">
                 Ready to Take Your Cricket Game to the Next Level?
               </h2>
-              <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+              <p className="text-xl text-light-gray max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
                 Upgrade your equipment, experience, and partnerships with Drakon
                 Sports.
               </p>
@@ -1330,16 +1159,7 @@ export default function FurSureLandingPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 size="lg"
-                className="bg-white shadow-lg px-8 py-4 text-lg font-semibold border-2 border-transparent hover:border-white/20 transition-all duration-300 hover:scale-105"
-                style={{ color: "#722F37" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#722F37";
-                  e.currentTarget.style.color = "white";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "white";
-                  e.currentTarget.style.color = "#722F37";
-                }}
+                className="bg-white text-cricket-red shadow-lg px-8 py-4 text-lg font-semibold border-2 border-white hover:bg-cricket-red hover:text-white transition-all duration-300 hover:scale-105"
                 asChild
               >
                 <Link href="/contact-us">Shop Now</Link>
@@ -1347,8 +1167,7 @@ export default function FurSureLandingPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 bg-transparent"
-                style={{ borderColor: "#C0C0C0" }}
+                className="border-2 border-cricket-red text-white hover:bg-cricket-red backdrop-blur-sm px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 bg-transparent"
                 asChild
               >
                 <Link href="/contact-us">Contact Us</Link>

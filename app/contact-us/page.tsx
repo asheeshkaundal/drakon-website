@@ -44,7 +44,7 @@ export default function ContactUsPage() {
               <div>
                 <h1
                   className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl font-serif animate-fade-in-up opacity-0 animation-delay-500 drop-shadow-xl leading-tight mb-4"
-                  style={{ color: "#722F37" }}
+                  style={{ color: "#1a2332" }}
                 >
                   Get In Touch
                 </h1>
@@ -60,16 +60,16 @@ export default function ContactUsPage() {
                 {/* Sales & Communication Office Card */}
                 <Card
                   className="p-6 border-l-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/80 backdrop-blur-sm"
-                  style={{ borderLeftColor: "#CD853F" }}
+                  style={{ borderLeftColor: "#4a9b9b" }}
                 >
                   <div className="flex items-start space-x-4">
                     <div
                       className="p-3 rounded-full transition-all duration-300 hover:scale-110"
-                      style={{ backgroundColor: "#CD853F20" }}
+                      style={{ backgroundColor: "#4a9b9b20" }}
                     >
                       <Pin
                         className="h-6 w-6 transition-all duration-300"
-                        style={{ color: "#CD853F" }}
+                        style={{ color: "#4a9b9b" }}
                       />
                     </div>
                     <div>
@@ -90,16 +90,16 @@ export default function ContactUsPage() {
                 {/* Head Office Card */}
                 <Card
                   className="p-6 border-l-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/80 backdrop-blur-sm"
-                  style={{ borderLeftColor: "#722F37" }}
+                  style={{ borderLeftColor: "#c41e3a" }}
                 >
                   <div className="flex items-start space-x-4">
                     <div
                       className="p-3 rounded-full transition-all duration-300 hover:scale-110"
-                      style={{ backgroundColor: "#722F3720" }}
+                      style={{ backgroundColor: "#c41e3a20" }}
                     >
                       <Pin
                         className="h-6 w-6 transition-all duration-300"
-                        style={{ color: "#722F37" }}
+                        style={{ color: "#c41e3a" }}
                       />
                     </div>
                     <div>
@@ -120,16 +120,16 @@ export default function ContactUsPage() {
                 {/* Contact Info Card */}
                 <Card
                   className="p-6 border-l-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/80 backdrop-blur-sm"
-                  style={{ borderLeftColor: "#C0C0C0" }}
+                  style={{ borderLeftColor: "#8a9ba8" }}
                 >
                   <div className="flex items-start space-x-4">
                     <div
                       className="p-3 rounded-full transition-all duration-300 hover:scale-110"
-                      style={{ backgroundColor: "#C0C0C020" }}
+                      style={{ backgroundColor: "#8a9ba820" }}
                     >
                       <Phone
                         className="h-6 w-6 transition-all duration-300"
-                        style={{ color: "#C0C0C0" }}
+                        style={{ color: "#8a9ba8" }}
                       />
                     </div>
                     <div>
@@ -164,7 +164,7 @@ export default function ContactUsPage() {
 
                 {/* Location Overlay */}
                 <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm p-4 rounded-lg shadow-lg max-w-xs">
-                  <h4 className="font-bold mb-2" style={{ color: "#722F37" }}>
+                  <h4 className="font-bold mb-2" style={{ color: "#1a2332" }}>
                     Our Locations:
                   </h4>
                   <div className="text-sm text-gray-700 space-y-2">
@@ -212,7 +212,7 @@ export default function ContactUsPage() {
             <div className="text-center mb-12">
               <h2
                 className="text-3xl font-bold tracking-tighter sm:text-4xl font-serif animate-fade-in-up opacity-0 animation-delay-300 mb-4"
-                style={{ color: "#722F37" }}
+                style={{ color: "#1a2332" }}
               >
                 Request a Demo
               </h2>
@@ -235,7 +235,7 @@ export default function ContactUsPage() {
                     id="fullName"
                     placeholder="Enter your name.."
                     className="border-gray-300 focus:ring-2 focus:border-transparent transition-all duration-300 hover:shadow-md focus:scale-[1.02]"
-                    style={{ "--tw-ring-color": "#CD853F" } as any}
+                    style={{ "--tw-ring-color": "#4a9b9b" } as any}
                   />
                 </div>
                 <div className="space-y-2">
@@ -249,7 +249,7 @@ export default function ContactUsPage() {
                     id="jobPosition"
                     placeholder="Enter your job position.."
                     className="border-gray-300 focus:ring-2 focus:border-transparent transition-all duration-300 hover:shadow-md focus:scale-[1.02]"
-                    style={{ "--tw-ring-color": "#CD853F" } as any}
+                    style={{ "--tw-ring-color": "#4a9b9b" } as any}
                   />
                 </div>
                 <div className="space-y-2">
@@ -261,7 +261,7 @@ export default function ContactUsPage() {
                     type="email"
                     placeholder="Enter your email.."
                     className="border-gray-300 focus:ring-2 focus:border-transparent transition-all duration-300 hover:shadow-md focus:scale-[1.02]"
-                    style={{ "--tw-ring-color": "#CD853F" } as any}
+                    style={{ "--tw-ring-color": "#4a9b9b" } as any}
                   />
                 </div>
                 <div className="space-y-2">
@@ -273,7 +273,7 @@ export default function ContactUsPage() {
                     type="tel"
                     placeholder="Enter your phone number.."
                     className="border-gray-300 focus:ring-2 focus:border-transparent transition-all duration-300 hover:shadow-md focus:scale-[1.02]"
-                    style={{ "--tw-ring-color": "#CD853F" } as any}
+                    style={{ "--tw-ring-color": "#4a9b9b" } as any}
                   />
                 </div>
                 <div className="space-y-2 md:col-span-2">
@@ -288,7 +288,7 @@ export default function ContactUsPage() {
                     placeholder="How can we help you?"
                     rows={5}
                     className="border-gray-300 focus:ring-2 focus:border-transparent transition-all duration-300 hover:shadow-md focus:scale-[1.01]"
-                    style={{ "--tw-ring-color": "#CD853F" } as any}
+                    style={{ "--tw-ring-color": "#4a9b9b" } as any}
                   />
                 </div>
                 <div className="md:col-span-2 flex justify-start">
@@ -296,13 +296,13 @@ export default function ContactUsPage() {
                     type="submit"
                     size="lg"
                     className="px-8 py-4 text-lg font-semibold text-white rounded-lg transition-all duration-300 hover:scale-105 shadow-2xl border-2 border-transparent hover:border-white/20 hover:shadow-xl animate-fade-in-up opacity-0 animation-delay-900"
-                    style={{ backgroundColor: "#722F37" }}
+                    style={{ backgroundColor: "#c41e3a" }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = "#8B0000";
+                      e.currentTarget.style.backgroundColor = "#1a2332";
                       e.currentTarget.style.transform = "scale(1.05)";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = "#722F37";
+                      e.currentTarget.style.backgroundColor = "#c41e3a";
                       e.currentTarget.style.transform = "scale(1)";
                     }}
                   >
