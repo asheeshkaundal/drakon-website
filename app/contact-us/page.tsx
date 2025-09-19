@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Map, Pin, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +20,110 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
 export default function ContactUsPage() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    companyName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  const validateForm = () => {
+    const errors: string[] = [];
+
+    if (!formData.fullName.trim()) {
+      errors.push("Full Name is required");
+    }
+
+    if (!formData.email.trim()) {
+      errors.push("Email Address is required");
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        errors.push("Please enter a valid email address");
+      }
+    }
+
+    if (!formData.phone.trim()) {
+      errors.push("Phone Number is required");
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validate form
+    const errors = validateForm();
+    if (errors.length > 0) {
+      setSubmitStatus({
+        type: "error",
+        message: errors.join(", "),
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: "success",
+          message: result.message || "Your message has been sent successfully!",
+        });
+
+        // Reset form
+        setFormData({
+          fullName: "",
+          companyName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: result.error || "Failed to send message. Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus({
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
@@ -223,7 +328,23 @@ export default function ContactUsPage() {
             </div>
 
             <div className="bg-gray-50 p-8 rounded-2xl shadow-sm animate-fade-in-up opacity-0 animation-delay-700">
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Status Message */}
+              {submitStatus.type && (
+                <div
+                  className={`mb-6 p-4 rounded-lg ${
+                    submitStatus.type === "success"
+                      ? "bg-green-50 text-green-800 border border-green-200"
+                      : "bg-red-50 text-red-800 border border-red-200"
+                  }`}
+                >
+                  {submitStatus.message}
+                </div>
+              )}
+
+              <form
+                onSubmit={handleSubmit}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
                 <div className="space-y-2">
                   <Label
                     htmlFor="fullName"
@@ -233,21 +354,26 @@ export default function ContactUsPage() {
                   </Label>
                   <Input
                     id="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
                     placeholder="Enter your name.."
+                    required
                     className="border-gray-300 focus:ring-2 focus:border-transparent transition-all duration-300 hover:shadow-md focus:scale-[1.02]"
                     style={{ "--tw-ring-color": "#4a9b9b" } as any}
                   />
                 </div>
                 <div className="space-y-2">
                   <Label
-                    htmlFor="jobPosition"
+                    htmlFor="companyName"
                     className="text-gray-700 font-medium"
                   >
-                    Job Position*
+                    Company Name
                   </Label>
                   <Input
-                    id="jobPosition"
-                    placeholder="Enter your job position.."
+                    id="companyName"
+                    value={formData.companyName}
+                    onChange={handleInputChange}
+                    placeholder="Enter your company name.."
                     className="border-gray-300 focus:ring-2 focus:border-transparent transition-all duration-300 hover:shadow-md focus:scale-[1.02]"
                     style={{ "--tw-ring-color": "#4a9b9b" } as any}
                   />
@@ -259,7 +385,10 @@ export default function ContactUsPage() {
                   <Input
                     id="email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     placeholder="Enter your email.."
+                    required
                     className="border-gray-300 focus:ring-2 focus:border-transparent transition-all duration-300 hover:shadow-md focus:scale-[1.02]"
                     style={{ "--tw-ring-color": "#4a9b9b" } as any}
                   />
@@ -271,7 +400,10 @@ export default function ContactUsPage() {
                   <Input
                     id="phone"
                     type="tel"
+                    value={formData.phone}
+                    onChange={handleInputChange}
                     placeholder="Enter your phone number.."
+                    required
                     className="border-gray-300 focus:ring-2 focus:border-transparent transition-all duration-300 hover:shadow-md focus:scale-[1.02]"
                     style={{ "--tw-ring-color": "#4a9b9b" } as any}
                   />
@@ -285,6 +417,8 @@ export default function ContactUsPage() {
                   </Label>
                   <Textarea
                     id="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     placeholder="How can we help you?"
                     rows={5}
                     className="border-gray-300 focus:ring-2 focus:border-transparent transition-all duration-300 hover:shadow-md focus:scale-[1.01]"
@@ -294,19 +428,26 @@ export default function ContactUsPage() {
                 <div className="md:col-span-2 flex justify-start">
                   <Button
                     type="submit"
+                    disabled={isSubmitting}
                     size="lg"
-                    className="px-8 py-4 text-lg font-semibold text-white rounded-lg transition-all duration-300 hover:scale-105 shadow-2xl border-2 border-transparent hover:border-white/20 hover:shadow-xl animate-fade-in-up opacity-0 animation-delay-900"
-                    style={{ backgroundColor: "#c41e3a" }}
+                    className="px-8 py-4 text-lg font-semibold text-white rounded-lg transition-all duration-300 hover:scale-105 shadow-2xl border-2 border-transparent hover:border-white/20 hover:shadow-xl animate-fade-in-up opacity-0 animation-delay-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    style={{
+                      backgroundColor: isSubmitting ? "#6b7280" : "#c41e3a",
+                    }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = "#1a2332";
-                      e.currentTarget.style.transform = "scale(1.05)";
+                      if (!isSubmitting) {
+                        e.currentTarget.style.backgroundColor = "#1a2332";
+                        e.currentTarget.style.transform = "scale(1.05)";
+                      }
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = "#c41e3a";
-                      e.currentTarget.style.transform = "scale(1)";
+                      if (!isSubmitting) {
+                        e.currentTarget.style.backgroundColor = "#c41e3a";
+                        e.currentTarget.style.transform = "scale(1)";
+                      }
                     }}
                   >
-                    Request a Demo →
+                    {isSubmitting ? "Sending..." : "Request a Demo →"}
                   </Button>
                 </div>
               </form>
