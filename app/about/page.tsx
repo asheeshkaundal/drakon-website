@@ -5,8 +5,60 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { useEffect, useState } from "react";
 
 export default function AboutPage() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById("cricket-solutions");
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const sectionHeight = section.offsetHeight;
+
+        // Calculate scroll progress (0 to 1)
+        // More aggressive calculation to ensure full completion
+        const sectionTop = rect.top;
+        const sectionBottom = rect.bottom;
+
+        let progress = 0;
+
+        // Start progress when section enters viewport from bottom
+        if (sectionTop < windowHeight) {
+          // Calculate based on how much section has scrolled past viewport top
+          progress = Math.max(
+            0,
+            (windowHeight - sectionTop) / (rect.height * 0.8)
+          );
+        }
+
+        // Ensure progress reaches 1 when section is mostly scrolled past
+        if (sectionBottom < windowHeight * 0.5) {
+          progress = 1;
+        }
+
+        progress = Math.max(0, Math.min(1, progress));
+
+        setScrollProgress(progress);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Determine current color based on scroll progress
+  const getCurrentColor = () => {
+    if (scrollProgress < 0.2) return "bg-teal-blue";
+    if (scrollProgress < 0.4) return "bg-silver-gray";
+    if (scrollProgress < 0.6) return "bg-cricket-red";
+    if (scrollProgress < 0.8) return "bg-wicket-green";
+    return "bg-navy-blue";
+  };
   return (
     <>
       <style jsx>{`
@@ -116,109 +168,161 @@ export default function AboutPage() {
           </section>
 
           {/* Mission & Values Section */}
-          <section className="w-full py-16 md:py-24 lg:py-32 bg-gradient-to-br from-gray-50 via-white to-gray-50/50 relative overflow-hidden">
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute top-20 left-10 w-32 h-32 bg-teal-blue rounded-full blur-3xl"></div>
-              <div className="absolute bottom-20 right-10 w-40 h-40 bg-navy-blue rounded-full blur-3xl"></div>
-              <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-silver-gray rounded-full blur-2xl"></div>
-            </div>
-
+          <section className="w-full py-16 md:py-24 lg:py-32 bg-white relative overflow-hidden">
             <div className="container px-4 md:px-6 relative z-10">
-              <div className="max-w-5xl mx-auto">
-                <div className="text-center mb-16">
-                  <div className="inline-block rounded-full bg-gradient-to-r from-teal-blue/20 to-navy-blue/20 px-6 py-3 text-sm font-semibold text-navy-blue mb-6 border border-teal-blue/30">
-                    OUR FOUNDATION
-                  </div>
-                  <h2 className="text-4xl font-bold tracking-tighter sm:text-5xl lg:text-6xl text-gray-900 font-serif mb-6 leading-tight">
-                    Mission & Core Values
-                  </h2>
-                  <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    We exist to elevate athletic performance through discretion,
-                    precision, and excellence. Our commitment drives every
-                    interaction and defines our legacy.
-                  </p>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
-                  {/* Discretion */}
-                  <div className="group text-center p-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative overflow-hidden">
-                    {/* Background glow */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-teal-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                    <div className="relative z-10">
-                      <div className="w-20 h-20 bg-gradient-to-br from-teal-blue to-navy-blue rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                        <span className="text-3xl font-bold text-white tracking-wider">
-                          D
-                        </span>
-                      </div>
-                      <h3 className="text-2xl font-bold mb-4 text-gray-900 font-serif group-hover:text-navy-blue transition-colors duration-300">
-                        Discretion
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
-                        Privacy and exclusivity are paramount. We provide a
-                        sanctuary where elite athletes can train and compete
-                        away from public scrutiny, ensuring complete
-                        confidentiality.
-                      </p>
+              <div className="max-w-7xl mx-auto">
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                  {/* Left side - Image */}
+                  <div className="relative">
+                    <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-8 overflow-hidden group">
+                      <Image
+                        src="/professional-athletes.jpg"
+                        alt="Professional athletes representing our values"
+                        width={600}
+                        height={500}
+                        className="rounded-2xl shadow-2xl w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      {/* Overlay gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
                     </div>
                   </div>
 
-                  {/* Precision */}
-                  <div className="group text-center p-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative overflow-hidden">
-                    {/* Background glow */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-silver-gray/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                    <div className="relative z-10">
-                      <div className="w-20 h-20 bg-gradient-to-br from-silver-gray to-silver-gray/80 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                        <span className="text-3xl font-bold text-white tracking-wider">
-                          P
-                        </span>
+                  {/* Right side - Values */}
+                  <div className="space-y-8">
+                    <div>
+                      <div className="inline-block rounded-full bg-gradient-to-r from-gray-100 to-gray-200 px-6 py-3 text-sm font-semibold text-gray-700 mb-6 border border-gray-200">
+                        Our values.
                       </div>
-                      <h3 className="text-2xl font-bold mb-4 text-gray-900 font-serif group-hover:text-navy-blue transition-colors duration-300">
-                        Precision
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
-                        Every detail matters in the pursuit of excellence. From
-                        training methodologies to equipment selection, we ensure
-                        precision in every aspect of athletic development.
-                      </p>
+                      <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-8 leading-tight">
+                        Our values.
+                      </h2>
                     </div>
-                  </div>
 
-                  {/* Excellence */}
-                  <div className="group text-center p-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative overflow-hidden">
-                    {/* Background glow */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-cricket-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                    <div className="relative z-10">
-                      <div className="w-20 h-20 bg-gradient-to-br from-cricket-red to-cricket-red/80 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                        <span className="text-3xl font-bold text-white tracking-wider">
-                          E
-                        </span>
+                    <div className="space-y-8">
+                      {/* Create community */}
+                      <div className="flex items-start space-x-6 group">
+                        <div className="flex-shrink-0">
+                          <div className="w-16 h-16 bg-white border-2 border-gray-200 rounded-2xl flex items-center justify-center group-hover:border-teal-blue transition-colors duration-300">
+                            <svg
+                              className="w-8 h-8 text-gray-700 group-hover:text-teal-blue transition-colors duration-300"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-teal-blue transition-colors duration-300">
+                            Create community
+                          </h3>
+                          <p className="text-gray-600 leading-relaxed">
+                            We care deeply about improving cricket excellence in
+                            communities across the globe, fostering connections
+                            that transcend boundaries.
+                          </p>
+                        </div>
                       </div>
-                      <h3 className="text-2xl font-bold mb-4 text-gray-900 font-serif group-hover:text-navy-blue transition-colors duration-300">
-                        Excellence
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
-                        We settle for nothing less than excellence. Our
-                        unwavering commitment is to help athletes achieve their
-                        highest potential and transcend their limitations.
-                      </p>
-                    </div>
-                  </div>
-                </div>
 
-                {/* Additional mission statement */}
-                <div className="mt-16 text-center">
-                  <div className="max-w-4xl mx-auto p-8 bg-gradient-to-r from-navy-blue/5 to-teal-blue/5 rounded-2xl border border-teal-blue/20">
-                    <p className="text-lg text-gray-700 leading-relaxed italic font-medium">
-                      "At drakon sports, we believe that true champions are
-                      forged not just through talent, but through an unwavering
-                      commitment to excellence, supported by an environment that
-                      respects their privacy and honors their dedication."
-                    </p>
-                    <div className="mt-4 w-16 h-1 bg-gradient-to-r from-teal-blue to-navy-blue mx-auto rounded-full"></div>
+                      {/* Embrace Diversity */}
+                      <div className="flex items-start space-x-6 group">
+                        <div className="flex-shrink-0">
+                          <div className="w-16 h-16 bg-white border-2 border-gray-200 rounded-2xl flex items-center justify-center group-hover:border-navy-blue transition-colors duration-300">
+                            <svg
+                              className="w-8 h-8 text-gray-700 group-hover:text-navy-blue transition-colors duration-300"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-navy-blue transition-colors duration-300">
+                            Embrace Diversity
+                          </h3>
+                          <p className="text-gray-600 leading-relaxed">
+                            We seek the missing perspective and leverage our
+                            diverse backgrounds to create inclusive cricket
+                            experiences for all.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Drive impact */}
+                      <div className="flex items-start space-x-6 group">
+                        <div className="flex-shrink-0">
+                          <div className="w-16 h-16 bg-white border-2 border-gray-200 rounded-2xl flex items-center justify-center group-hover:border-cricket-red transition-colors duration-300">
+                            <svg
+                              className="w-8 h-8 text-gray-700 group-hover:text-cricket-red transition-colors duration-300"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M13 10V3L4 14h7v7l9-11h-7z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-cricket-red transition-colors duration-300">
+                            Drive impact
+                          </h3>
+                          <p className="text-gray-600 leading-relaxed">
+                            We focus on results that bring our mission within
+                            reach, for everyone seeking cricket excellence and
+                            sporting achievement.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Bring others along */}
+                      <div className="flex items-start space-x-6 group">
+                        <div className="flex-shrink-0">
+                          <div className="w-16 h-16 bg-white border-2 border-gray-200 rounded-2xl flex items-center justify-center group-hover:border-wicket-green transition-colors duration-300">
+                            <svg
+                              className="w-8 h-8 text-gray-700 group-hover:text-wicket-green transition-colors duration-300"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-wicket-green transition-colors duration-300">
+                            Bring others along
+                          </h3>
+                          <p className="text-gray-600 leading-relaxed">
+                            We welcome all ideas, and aren't afraid to learn
+                            from a misstep. Together, we elevate the standards
+                            of cricket excellence.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -226,245 +330,189 @@ export default function AboutPage() {
           </section>
 
           {/* Our Business Services Section */}
-          <section className="w-full py-16 md:py-24 bg-white relative overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-5">
-              <div
-                className="absolute top-0 left-0 w-full h-full"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%234a9b9b' fill-opacity='0.3'%3E%3Cpath d='M20 20c0 11 9 20 20 20v-20H20z'/%3E%3C/g%3E%3C/svg%3E")`,
-                }}
-              ></div>
-            </div>
-
+          <section
+            id="cricket-solutions"
+            className="w-full py-12 md:py-16 bg-gray-50 relative overflow-hidden"
+          >
             <div className="container px-4 md:px-6 relative z-10">
-              <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-16">
-                  <div className="inline-block rounded-full bg-gradient-to-r from-primary-100 to-primary-200 px-6 py-3 text-sm font-semibold text-primary-700 mb-6 border border-primary-200/50">
+              <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-12">
+                  <div className="inline-block rounded-full bg-gradient-to-r from-primary-100 to-primary-200 px-6 py-3 text-sm font-semibold text-primary-700 mb-4 border border-primary-200/50">
                     CRICKET EXCELLENCE
                   </div>
-                  <h2 className="text-4xl font-bold tracking-tighter sm:text-5xl text-gray-900 font-serif mb-6">
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 font-serif mb-4">
                     COMPREHENSIVE CRICKET SOLUTIONS
                   </h2>
-                  <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                    Comprehensive Cricket Excellence Solutions - Every elite
-                    athlete deserves the finest. At drakon sports, we deliver
-                    comprehensive service capabilities that transform cricket
-                    experiences. From sourcing premium materials to delivering
-                    luxury solutions globally, we craft excellence that makes an
-                    impact.
+                  <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Every elite athlete deserves the finest. At drakon sports,
+                    we deliver comprehensive service capabilities that transform
+                    cricket experiences globally.
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                  {/* Service 1 - Import */}
-                  <div className="bg-gradient-to-br from-white to-gray-50/50 rounded-2xl p-8 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-teal-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="relative z-10">
-                      <div className="w-16 h-16 bg-gradient-to-br from-teal-blue to-navy-blue rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                        <span className="text-2xl font-bold text-white">1</span>
+                {/* Timeline with alternating cards */}
+                <div className="relative">
+                  {/* Central vertical line with gradient sections */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200"></div>
+
+                  {/* Animated progress line that changes color on scroll */}
+                  <div
+                    className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-teal-blue via-navy-blue to-cricket-red transition-all duration-300 ease-out"
+                    style={{
+                      height: `${scrollProgress * 100}%`,
+                      top: "0%",
+                    }}
+                  ></div>
+
+                  {/* Progress indicator that moves on scroll */}
+                  <div
+                    className={`absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full shadow-lg border-2 border-white transition-all duration-300 ease-out ${getCurrentColor()}`}
+                    style={{
+                      top: `${scrollProgress * 90 + 5}%`,
+                    }}
+                  ></div>
+
+                  <div className="space-y-4 relative">
+                    {/* Service 1 - Import (Left) */}
+                    <div className="flex items-center relative z-10">
+                      <div className="w-5/12 pr-4">
+                        <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:z-20">
+                          <div className="absolute inset-0 bg-gradient-to-br from-teal-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <div className="relative z-10">
+                            {/* Image placeholder */}
+                            <div className="w-full h-24 bg-gradient-to-r from-teal-blue/10 to-teal-blue/20 rounded-lg mb-3 flex items-center justify-center border border-teal-blue/20">
+                              <span className="text-teal-blue/50 text-sm font-medium">
+                                Import Image
+                              </span>
+                            </div>
+                            <h3 className="text-lg font-bold mb-2 font-serif text-teal-blue">
+                              IMPORT
+                            </h3>
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                              Sourcing the world's finest cricket materials and
+                              equipment from premium global suppliers.
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="text-xl font-bold mb-4 text-gray-900 font-serif">
-                        IMPORT
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        Sourcing the world's finest cricket materials and
-                        equipment from premium global suppliers.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Service 2 - Export */}
-                  <div className="bg-gradient-to-br from-white to-gray-50/50 rounded-2xl p-8 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-silver-gray/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="relative z-10">
-                      <div className="w-16 h-16 bg-gradient-to-br from-silver-gray to-silver-gray/80 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                        <span className="text-2xl font-bold text-white">2</span>
+                      <div className="w-2/12 flex justify-center">
+                        <div className="w-3 h-3 bg-teal-blue rounded-full border-2 border-white shadow-md relative z-20"></div>
                       </div>
-                      <h3 className="text-xl font-bold mb-4 text-gray-900 font-serif">
-                        EXPORT
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        Delivering luxury cricket experiences globally to elite
-                        institutions and discerning clients.
-                      </p>
+                      <div className="w-5/12 pl-4"></div>
                     </div>
-                  </div>
 
-                  {/* Service 3 - Wholesale */}
-                  <div className="bg-gradient-to-br from-white to-gray-50/50 rounded-2xl p-8 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-cricket-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="relative z-10">
-                      <div className="w-16 h-16 bg-gradient-to-br from-cricket-red to-cricket-red/80 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                        <span className="text-2xl font-bold text-white">3</span>
+                    {/* Service 2 - Export (Right) */}
+                    <div className="flex items-center relative z-10 -mt-6">
+                      <div className="w-5/12 pr-4"></div>
+                      <div className="w-2/12 flex justify-center">
+                        <div className="w-3 h-3 bg-silver-gray rounded-full border-2 border-white shadow-md relative z-20"></div>
                       </div>
-                      <h3 className="text-xl font-bold mb-4 text-gray-900 font-serif">
-                        WHOLESALE BUSINESS
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        Premium bulk solutions for elite institutions seeking
-                        comprehensive cricket excellence.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Service 4 - Retail */}
-                  <div className="bg-gradient-to-br from-white to-gray-50/50 rounded-2xl p-8 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-wicket-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="relative z-10">
-                      <div className="w-16 h-16 bg-gradient-to-br from-wicket-green to-wicket-green/80 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                        <span className="text-2xl font-bold text-white">4</span>
+                      <div className="w-5/12 pl-4">
+                        <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:z-20">
+                          <div className="absolute inset-0 bg-gradient-to-br from-silver-gray/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <div className="relative z-10">
+                            {/* Image placeholder */}
+                            <div className="w-full h-24 bg-gradient-to-r from-silver-gray/10 to-silver-gray/20 rounded-lg mb-3 flex items-center justify-center border border-silver-gray/20">
+                              <span className="text-silver-gray/50 text-sm font-medium">
+                                Export Image
+                              </span>
+                            </div>
+                            <h3 className="text-lg font-bold mb-2 font-serif text-silver-gray">
+                              EXPORT
+                            </h3>
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                              Delivering luxury cricket experiences globally to
+                              elite institutions and discerning clients.
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="text-xl font-bold mb-4 text-gray-900 font-serif">
-                        RETAIL BUSINESS
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        Exclusive direct-to-connoisseur sales for those who
-                        demand nothing but the finest.
-                      </p>
                     </div>
-                  </div>
 
-                  {/* Service 5 - Manufacturer/Trader/Service Provider */}
-                  <div className="bg-gradient-to-br from-white to-gray-50/50 rounded-2xl p-8 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 md:col-span-2 lg:col-span-1">
-                    <div className="absolute inset-0 bg-gradient-to-br from-navy-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="relative z-10">
-                      <div className="w-16 h-16 bg-gradient-to-br from-navy-blue to-navy-blue/80 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                        <span className="text-2xl font-bold text-white">5</span>
+                    {/* Service 3 - Wholesale (Left) */}
+                    <div className="flex items-center relative z-10 -mt-6">
+                      <div className="w-5/12 pr-4">
+                        <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:z-20">
+                          <div className="absolute inset-0 bg-gradient-to-br from-cricket-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <div className="relative z-10">
+                            {/* Image placeholder */}
+                            <div className="w-full h-24 bg-gradient-to-r from-cricket-red/10 to-cricket-red/20 rounded-lg mb-3 flex items-center justify-center border border-cricket-red/20">
+                              <span className="text-cricket-red/50 text-sm font-medium">
+                                Wholesale Image
+                              </span>
+                            </div>
+                            <h3 className="text-lg font-bold mb-2 font-serif text-cricket-red">
+                              WHOLESALE BUSINESS
+                            </h3>
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                              Premium bulk solutions for elite institutions
+                              seeking comprehensive cricket excellence.
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="text-xl font-bold mb-4 text-gray-900 font-serif">
-                        MANUFACTURER/TRADER/SERVICE PROVIDER
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        End-to-end luxury cricket solutions combining
-                        manufacturing excellence with premium service delivery.
-                      </p>
+                      <div className="w-2/12 flex justify-center">
+                        <div className="w-3 h-3 bg-cricket-red rounded-full border-2 border-white shadow-md relative z-20"></div>
+                      </div>
+                      <div className="w-5/12 pl-4"></div>
+                    </div>
+
+                    {/* Service 4 - Retail (Right) */}
+                    <div className="flex items-center relative z-10 -mt-6">
+                      <div className="w-5/12 pr-4"></div>
+                      <div className="w-2/12 flex justify-center">
+                        <div className="w-3 h-3 bg-wicket-green rounded-full border-2 border-white shadow-md relative z-20"></div>
+                      </div>
+                      <div className="w-5/12 pl-4">
+                        <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:z-20">
+                          <div className="absolute inset-0 bg-gradient-to-br from-wicket-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <div className="relative z-10">
+                            {/* Image placeholder */}
+                            <div className="w-full h-24 bg-gradient-to-r from-wicket-green/10 to-wicket-green/20 rounded-lg mb-3 flex items-center justify-center border border-wicket-green/20">
+                              <span className="text-wicket-green/50 text-sm font-medium">
+                                Retail Image
+                              </span>
+                            </div>
+                            <h3 className="text-lg font-bold mb-2 font-serif text-wicket-green">
+                              RETAIL BUSINESS
+                            </h3>
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                              Exclusive direct-to-connoisseur sales for those
+                              who demand nothing but the finest.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Service 5 - Service Provider (Left) */}
+                    <div className="flex items-center relative z-10 -mt-6">
+                      <div className="w-5/12 pr-4">
+                        <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:z-20">
+                          <div className="absolute inset-0 bg-gradient-to-br from-navy-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <div className="relative z-10">
+                            {/* Image placeholder */}
+                            <div className="w-full h-24 bg-gradient-to-r from-navy-blue/10 to-navy-blue/20 rounded-lg mb-3 flex items-center justify-center border border-navy-blue/20">
+                              <span className="text-navy-blue/50 text-sm font-medium">
+                                Service Image
+                              </span>
+                            </div>
+                            <h3 className="text-lg font-bold mb-2 font-serif text-navy-blue">
+                              SERVICE PROVIDER
+                            </h3>
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                              End-to-end luxury cricket solutions with premium
+                              service delivery and comprehensive support.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-2/12 flex justify-center">
+                        <div className="w-3 h-3 bg-navy-blue rounded-full border-2 border-white shadow-md relative z-20"></div>
+                      </div>
+                      <div className="w-5/12 pl-4"></div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Our Elite Services Section */}
-          <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
-            <div className="container px-4 md:px-6">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 mb-4 font-serif">
-                  EXCLUSIVE CRICKET EXPERIENCES
-                </h2>
-                <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                  Comprehensive cricket solutions tailored for champions and
-                  enthusiasts alike
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {/* Bespoke Bat Creation */}
-                <div className="group bg-white border-2 border-gray-200 p-8 hover:border-teal-blue transition-all duration-300 hover:-translate-y-2">
-                  <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <div className="w-8 h-8 flex items-center justify-center bg-teal-blue">
-                      <span className="text-white font-bold text-lg">🏏</span>
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    Bespoke Bat Creation
-                  </h3>
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    Handcrafted cricket bats tailored to your exact
-                    specifications, playing style, and preferences by master
-                    craftsmen.
-                  </p>
-                  <Button
-                    variant="outline"
-                    className="w-full bg-transparent hover:bg-teal-blue hover:text-white border-teal-blue text-teal-blue transition-all duration-300"
-                    asChild
-                  >
-                    <Link href="/contact-us">
-                      Learn More
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    </Link>
-                  </Button>
-                </div>
-
-                {/* Stadium Bookings */}
-                <div className="group bg-white border-2 border-gray-200 p-8 hover:border-silver-gray transition-all duration-300 hover:-translate-y-2">
-                  <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <div className="w-8 h-8 flex items-center justify-center bg-silver-gray">
-                      <span className="text-white font-bold text-lg">🏟️</span>
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    Stadium Bookings
-                  </h3>
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    Exclusive access to premium cricket facilities and stadiums
-                    for training, matches, and special events worldwide.
-                  </p>
-                  <Button
-                    variant="outline"
-                    className="w-full bg-transparent hover:bg-silver-gray hover:text-white border-silver-gray text-navy-blue transition-all duration-300"
-                    asChild
-                  >
-                    <Link href="/contact-us">
-                      Learn More
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    </Link>
-                  </Button>
-                </div>
-
-                {/* Exclusive Experiences */}
-                <div className="group bg-white border-2 border-gray-200 p-8 hover:border-cricket-red transition-all duration-300 hover:-translate-y-2">
-                  <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <div className="w-8 h-8 flex items-center justify-center bg-cricket-red">
-                      <span className="text-white font-bold text-lg">⭐</span>
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    Exclusive Experiences
-                  </h3>
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    VIP cricket experiences including private coaching with
-                    legends, exclusive tournaments, and behind-the-scenes
-                    access.
-                  </p>
-                  <Button
-                    variant="outline"
-                    className="w-full bg-transparent hover:bg-cricket-red hover:text-white border-cricket-red text-cricket-red transition-all duration-300"
-                    asChild
-                  >
-                    <Link href="/contact-us">
-                      Learn More
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    </Link>
-                  </Button>
-                </div>
-
-                {/* Global Partnerships */}
-                <div className="group bg-white border-2 border-gray-200 p-8 hover:border-wicket-green transition-all duration-300 hover:-translate-y-2">
-                  <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <div className="w-8 h-8 flex items-center justify-center bg-wicket-green">
-                      <span className="text-white font-bold text-lg">🌍</span>
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    Global Partnerships
-                  </h3>
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    Strategic partnerships with international cricket brands,
-                    academies, and professional teams for unmatched
-                    opportunities.
-                  </p>
-                  <Button
-                    variant="outline"
-                    className="w-full bg-transparent hover:bg-wicket-green hover:text-white border-wicket-green text-wicket-green transition-all duration-300"
-                    asChild
-                  >
-                    <Link href="/contact-us">
-                      Learn More
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    </Link>
-                  </Button>
                 </div>
               </div>
             </div>
