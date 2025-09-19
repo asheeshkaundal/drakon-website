@@ -18,24 +18,31 @@ export default function AboutPage() {
         const windowHeight = window.innerHeight;
         const sectionHeight = section.offsetHeight;
 
-        // Calculate scroll progress (0 to 1)
-        // More aggressive calculation to ensure full completion
+        // Calculate scroll progress (0 to 1) - Natural progression
         const sectionTop = rect.top;
         const sectionBottom = rect.bottom;
 
         let progress = 0;
 
-        // Start progress when section enters viewport from bottom
-        if (sectionTop < windowHeight) {
-          // Calculate based on how much section has scrolled past viewport top
-          progress = Math.max(
-            0,
-            (windowHeight - sectionTop) / (rect.height * 0.8)
-          );
+        // Start progress when section enters viewport
+        if (sectionTop < windowHeight && sectionBottom > 0) {
+          // Calculate based on section visibility in viewport
+          const visibleHeight =
+            Math.min(windowHeight, sectionBottom) - Math.max(0, sectionTop);
+          const sectionInViewport = visibleHeight / windowHeight;
+
+          // Natural progression based on scroll through section
+          if (sectionTop <= 0) {
+            // Section top has passed viewport top
+            progress = Math.min(1, (windowHeight - sectionTop) / rect.height);
+          } else {
+            // Section is entering from bottom
+            progress = sectionInViewport * 0.3; // Start slowly
+          }
         }
 
         // Ensure progress reaches 1 when section is mostly scrolled past
-        if (sectionBottom < windowHeight * 0.5) {
+        if (sectionBottom < windowHeight * 0.3) {
           progress = 1;
         }
 
@@ -144,7 +151,7 @@ export default function AboutPage() {
                 >
                   <div className="relative bg-gradient-to-br from-teal-blue/10 to-navy-blue/20 rounded-2xl p-8 overflow-hidden group hover:scale-105 transition-transform duration-500">
                     <Image
-                      src="/professional-athletes-training-together-in-modern-.jpg"
+                      src="/about1.png"
                       alt="Elite athletes training together"
                       width={600}
                       height={400}
@@ -380,8 +387,10 @@ export default function AboutPage() {
                           <div className="absolute inset-0 bg-gradient-to-br from-teal-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           <div className="relative z-10">
                             {/* Image placeholder */}
-                            <div className="w-full h-24 bg-gradient-to-r from-teal-blue/10 to-teal-blue/20 rounded-lg mb-3 flex items-center justify-center border border-teal-blue/20">
-                              <span className="text-teal-blue/50 text-sm font-medium">
+                            <div className="w-full h-24 bg-gradient-to-r from-gray-100 to-gray-200 mb-3 flex items-center justify-center border border-gray-200 relative overflow-hidden">
+                              {/* Sharp edge accent */}
+                              <div className="absolute left-0 top-0 w-1 h-full bg-teal-blue"></div>
+                              <span className="text-gray-500 text-sm font-medium">
                                 Import Image
                               </span>
                             </div>
@@ -412,8 +421,10 @@ export default function AboutPage() {
                           <div className="absolute inset-0 bg-gradient-to-br from-silver-gray/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           <div className="relative z-10">
                             {/* Image placeholder */}
-                            <div className="w-full h-24 bg-gradient-to-r from-silver-gray/10 to-silver-gray/20 rounded-lg mb-3 flex items-center justify-center border border-silver-gray/20">
-                              <span className="text-silver-gray/50 text-sm font-medium">
+                            <div className="w-full h-24 bg-gradient-to-r from-gray-100 to-gray-200 mb-3 flex items-center justify-center border border-gray-200 relative overflow-hidden">
+                              {/* Sharp edge accent */}
+                              <div className="absolute left-0 top-0 w-1 h-full bg-silver-gray"></div>
+                              <span className="text-gray-500 text-sm font-medium">
                                 Export Image
                               </span>
                             </div>
@@ -436,8 +447,10 @@ export default function AboutPage() {
                           <div className="absolute inset-0 bg-gradient-to-br from-cricket-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           <div className="relative z-10">
                             {/* Image placeholder */}
-                            <div className="w-full h-24 bg-gradient-to-r from-cricket-red/10 to-cricket-red/20 rounded-lg mb-3 flex items-center justify-center border border-cricket-red/20">
-                              <span className="text-cricket-red/50 text-sm font-medium">
+                            <div className="w-full h-24 bg-gradient-to-r from-gray-100 to-gray-200 mb-3 flex items-center justify-center border border-gray-200 relative overflow-hidden">
+                              {/* Sharp edge accent */}
+                              <div className="absolute left-0 top-0 w-1 h-full bg-cricket-red"></div>
+                              <span className="text-gray-500 text-sm font-medium">
                                 Wholesale Image
                               </span>
                             </div>
@@ -468,8 +481,10 @@ export default function AboutPage() {
                           <div className="absolute inset-0 bg-gradient-to-br from-wicket-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           <div className="relative z-10">
                             {/* Image placeholder */}
-                            <div className="w-full h-24 bg-gradient-to-r from-wicket-green/10 to-wicket-green/20 rounded-lg mb-3 flex items-center justify-center border border-wicket-green/20">
-                              <span className="text-wicket-green/50 text-sm font-medium">
+                            <div className="w-full h-24 bg-gradient-to-r from-gray-100 to-gray-200 mb-3 flex items-center justify-center border border-gray-200 relative overflow-hidden">
+                              {/* Sharp edge accent */}
+                              <div className="absolute left-0 top-0 w-1 h-full bg-wicket-green"></div>
+                              <span className="text-gray-500 text-sm font-medium">
                                 Retail Image
                               </span>
                             </div>
@@ -492,8 +507,10 @@ export default function AboutPage() {
                           <div className="absolute inset-0 bg-gradient-to-br from-navy-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           <div className="relative z-10">
                             {/* Image placeholder */}
-                            <div className="w-full h-24 bg-gradient-to-r from-navy-blue/10 to-navy-blue/20 rounded-lg mb-3 flex items-center justify-center border border-navy-blue/20">
-                              <span className="text-navy-blue/50 text-sm font-medium">
+                            <div className="w-full h-24 bg-gradient-to-r from-gray-100 to-gray-200 mb-3 flex items-center justify-center border border-gray-200 relative overflow-hidden">
+                              {/* Sharp edge accent */}
+                              <div className="absolute left-0 top-0 w-1 h-full bg-navy-blue"></div>
+                              <span className="text-gray-500 text-sm font-medium">
                                 Service Image
                               </span>
                             </div>

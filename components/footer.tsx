@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Twitter, Linkedin } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -24,23 +24,15 @@ export const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <Link
-                href="https://facebook.com"
+                href="https://www.instagram.com/drakonsports/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-cricket-red hover:bg-red-700 border border-cricket-red flex items-center justify-center transition-colors cursor-pointer"
               >
-                <Facebook className="w-4 h-4 text-white" />
+                <Instagram className="w-4 h-4 text-white" />
               </Link>
               <Link
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 bg-cricket-red hover:bg-red-700 border border-cricket-red flex items-center justify-center transition-colors cursor-pointer"
-              >
-                <Twitter className="w-4 h-4 text-white" />
-              </Link>
-              <Link
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/drakon-sports-304575221/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-cricket-red hover:bg-red-700 border border-cricket-red flex items-center justify-center transition-colors cursor-pointer"
