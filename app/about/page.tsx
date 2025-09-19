@@ -383,25 +383,70 @@ export default function AboutPage() {
                     {/* Service 1 - Import (Left) */}
                     <div className="flex items-center relative z-10">
                       <div className="w-5/12 pr-4">
-                        <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:z-20">
-                          <div className="absolute inset-0 bg-gradient-to-br from-teal-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          <div className="relative z-10">
-                            {/* Image placeholder */}
-                            <div className="w-full h-24 bg-gradient-to-r from-gray-100 to-gray-200 mb-3 flex items-center justify-center border border-gray-200 relative overflow-hidden">
-                              {/* Sharp edge accent */}
-                              <div className="absolute left-0 top-0 w-1 h-full bg-teal-blue"></div>
-                              <span className="text-gray-500 text-sm font-medium">
-                                Import Image
-                              </span>
+                        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg border border-gray-100 group hover:shadow-xl transition-all duration-300 hover:z-20 bg-white">
+                          {/* Content */}
+                          <div className="relative h-full flex flex-col p-5 z-10">
+                            {/* Icon Section */}
+                            <div className="flex items-start mb-3">
+                              <div className="w-14 h-14 bg-teal-blue/10 rounded-xl flex items-center justify-center mr-3 flex-shrink-0">
+                                <svg
+                                  className="w-7 h-7 text-teal-blue"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"
+                                  />
+                                </svg>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h3 className="text-lg font-bold font-serif text-teal-blue mb-1 leading-tight">
+                                  IMPORT
+                                </h3>
+                                <p className="text-teal-blue/70 text-xs font-medium leading-tight">
+                                  Global Sourcing Excellence
+                                </p>
+                              </div>
                             </div>
-                            <h3 className="text-lg font-bold mb-2 font-serif text-teal-blue">
-                              IMPORT
-                            </h3>
-                            <p className="text-gray-600 text-sm leading-relaxed">
-                              Sourcing the world's finest cricket materials and
-                              equipment from premium global suppliers.
-                            </p>
+
+                            {/* Details Section */}
+                            <div className="flex-1 flex flex-col justify-between">
+                              <p className="text-gray-600 text-xs leading-relaxed mb-3">
+                                Sourcing the world's finest cricket materials
+                                and equipment from premium global suppliers. We
+                                establish partnerships with elite manufacturers.
+                              </p>
+
+                              {/* Features */}
+                              <div className="space-y-1.5">
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-teal-blue rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Premium Global Network
+                                  </span>
+                                </div>
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-teal-blue rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Elite Manufacturer Partnerships
+                                  </span>
+                                </div>
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-teal-blue rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Quality Assurance Standards
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
                           </div>
+
+                          {/* Accent Border */}
+                          <div className="absolute left-0 top-0 w-1 h-full bg-teal-blue"></div>
                         </div>
                       </div>
                       <div className="w-2/12 flex justify-center">
@@ -414,28 +459,74 @@ export default function AboutPage() {
                     <div className="flex items-center relative z-10 -mt-6">
                       <div className="w-5/12 pr-4"></div>
                       <div className="w-2/12 flex justify-center">
-                        <div className="w-3 h-3 bg-silver-gray rounded-full border-2 border-white shadow-md relative z-20"></div>
+                        <div className="w-3 h-3 bg-cricket-red rounded-full border-2 border-white shadow-md relative z-20"></div>
                       </div>
                       <div className="w-5/12 pl-4">
-                        <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:z-20">
-                          <div className="absolute inset-0 bg-gradient-to-br from-silver-gray/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          <div className="relative z-10">
-                            {/* Image placeholder */}
-                            <div className="w-full h-24 bg-gradient-to-r from-gray-100 to-gray-200 mb-3 flex items-center justify-center border border-gray-200 relative overflow-hidden">
-                              {/* Sharp edge accent */}
-                              <div className="absolute left-0 top-0 w-1 h-full bg-silver-gray"></div>
-                              <span className="text-gray-500 text-sm font-medium">
-                                Export Image
-                              </span>
+                        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg border border-gray-100 group hover:shadow-xl transition-all duration-300 hover:z-20 bg-white">
+                          {/* Content */}
+                          <div className="relative h-full flex flex-col p-5 z-10">
+                            {/* Icon Section */}
+                            <div className="flex items-start mb-3">
+                              <div className="w-14 h-14 bg-cricket-red/10 rounded-xl flex items-center justify-center mr-3 flex-shrink-0">
+                                <svg
+                                  className="w-7 h-7 text-cricket-red"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                                  />
+                                </svg>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h3 className="text-lg font-bold font-serif text-cricket-red mb-1 leading-tight">
+                                  EXPORT
+                                </h3>
+                                <p className="text-cricket-red/70 text-xs font-medium leading-tight">
+                                  Global Distribution Network
+                                </p>
+                              </div>
                             </div>
-                            <h3 className="text-lg font-bold mb-2 font-serif text-silver-gray">
-                              EXPORT
-                            </h3>
-                            <p className="text-gray-600 text-sm leading-relaxed">
-                              Delivering luxury cricket experiences globally to
-                              elite institutions and discerning clients.
-                            </p>
+
+                            {/* Details Section */}
+                            <div className="flex-1 flex flex-col justify-between">
+                              <p className="text-gray-600 text-xs leading-relaxed mb-3">
+                                Delivering luxury cricket experiences globally
+                                to elite institutions and discerning clients.
+                                Our international network ensures premium
+                                service delivery worldwide.
+                              </p>
+
+                              {/* Features */}
+                              <div className="space-y-1.5">
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-cricket-red rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Elite Global Reach
+                                  </span>
+                                </div>
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-cricket-red rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    International Network
+                                  </span>
+                                </div>
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-cricket-red rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Premium Service Delivery
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
                           </div>
+
+                          {/* Accent Border */}
+                          <div className="absolute left-0 top-0 w-1 h-full bg-cricket-red"></div>
                         </div>
                       </div>
                     </div>
@@ -443,29 +534,75 @@ export default function AboutPage() {
                     {/* Service 3 - Wholesale (Left) */}
                     <div className="flex items-center relative z-10 -mt-6">
                       <div className="w-5/12 pr-4">
-                        <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:z-20">
-                          <div className="absolute inset-0 bg-gradient-to-br from-cricket-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          <div className="relative z-10">
-                            {/* Image placeholder */}
-                            <div className="w-full h-24 bg-gradient-to-r from-gray-100 to-gray-200 mb-3 flex items-center justify-center border border-gray-200 relative overflow-hidden">
-                              {/* Sharp edge accent */}
-                              <div className="absolute left-0 top-0 w-1 h-full bg-cricket-red"></div>
-                              <span className="text-gray-500 text-sm font-medium">
-                                Wholesale Image
-                              </span>
+                        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg border border-gray-100 group hover:shadow-xl transition-all duration-300 hover:z-20 bg-white">
+                          {/* Content */}
+                          <div className="relative h-full flex flex-col p-5 z-10">
+                            {/* Icon Section */}
+                            <div className="flex items-start mb-3">
+                              <div className="w-14 h-14 bg-silver-gray/10 rounded-xl flex items-center justify-center mr-3 flex-shrink-0">
+                                <svg
+                                  className="w-7 h-7 text-silver-gray"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                                  />
+                                </svg>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h3 className="text-lg font-bold font-serif text-silver-gray mb-1 leading-tight">
+                                  WHOLESALE
+                                </h3>
+                                <p className="text-silver-gray/70 text-xs font-medium leading-tight">
+                                  Bulk Premium Solutions
+                                </p>
+                              </div>
                             </div>
-                            <h3 className="text-lg font-bold mb-2 font-serif text-cricket-red">
-                              WHOLESALE BUSINESS
-                            </h3>
-                            <p className="text-gray-600 text-sm leading-relaxed">
-                              Premium bulk solutions for elite institutions
-                              seeking comprehensive cricket excellence.
-                            </p>
+
+                            {/* Details Section */}
+                            <div className="flex-1 flex flex-col justify-between">
+                              <p className="text-gray-600 text-xs leading-relaxed mb-3">
+                                Premium bulk solutions for elite institutions
+                                seeking comprehensive cricket excellence.
+                                Tailored packages for academies, clubs, and
+                                professional teams.
+                              </p>
+
+                              {/* Features */}
+                              <div className="space-y-1.5">
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-silver-gray rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Institutional Excellence
+                                  </span>
+                                </div>
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-silver-gray rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Tailored Packages
+                                  </span>
+                                </div>
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-silver-gray rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Professional Team Solutions
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
                           </div>
+
+                          {/* Accent Border */}
+                          <div className="absolute left-0 top-0 w-1 h-full bg-silver-gray"></div>
                         </div>
                       </div>
                       <div className="w-2/12 flex justify-center">
-                        <div className="w-3 h-3 bg-cricket-red rounded-full border-2 border-white shadow-md relative z-20"></div>
+                        <div className="w-3 h-3 bg-silver-gray rounded-full border-2 border-white shadow-md relative z-20"></div>
                       </div>
                       <div className="w-5/12 pl-4"></div>
                     </div>
@@ -477,25 +614,71 @@ export default function AboutPage() {
                         <div className="w-3 h-3 bg-wicket-green rounded-full border-2 border-white shadow-md relative z-20"></div>
                       </div>
                       <div className="w-5/12 pl-4">
-                        <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:z-20">
-                          <div className="absolute inset-0 bg-gradient-to-br from-wicket-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          <div className="relative z-10">
-                            {/* Image placeholder */}
-                            <div className="w-full h-24 bg-gradient-to-r from-gray-100 to-gray-200 mb-3 flex items-center justify-center border border-gray-200 relative overflow-hidden">
-                              {/* Sharp edge accent */}
-                              <div className="absolute left-0 top-0 w-1 h-full bg-wicket-green"></div>
-                              <span className="text-gray-500 text-sm font-medium">
-                                Retail Image
-                              </span>
+                        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg border border-gray-100 group hover:shadow-xl transition-all duration-300 hover:z-20 bg-white">
+                          {/* Content */}
+                          <div className="relative h-full flex flex-col p-5 z-10">
+                            {/* Icon Section */}
+                            <div className="flex items-start mb-3">
+                              <div className="w-14 h-14 bg-wicket-green/10 rounded-xl flex items-center justify-center mr-3 flex-shrink-0">
+                                <svg
+                                  className="w-7 h-7 text-wicket-green"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z"
+                                  />
+                                </svg>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h3 className="text-lg font-bold font-serif text-wicket-green mb-1 leading-tight">
+                                  RETAIL
+                                </h3>
+                                <p className="text-wicket-green/70 text-xs font-medium leading-tight">
+                                  Direct Connoisseur Sales
+                                </p>
+                              </div>
                             </div>
-                            <h3 className="text-lg font-bold mb-2 font-serif text-wicket-green">
-                              RETAIL BUSINESS
-                            </h3>
-                            <p className="text-gray-600 text-sm leading-relaxed">
-                              Exclusive direct-to-connoisseur sales for those
-                              who demand nothing but the finest.
-                            </p>
+
+                            {/* Details Section */}
+                            <div className="flex-1 flex flex-col justify-between">
+                              <p className="text-gray-600 text-xs leading-relaxed mb-3">
+                                Exclusive direct-to-connoisseur sales for those
+                                who demand nothing but the finest. Personal
+                                consultation and bespoke cricket solutions for
+                                discerning customers.
+                              </p>
+
+                              {/* Features */}
+                              <div className="space-y-1.5">
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-wicket-green rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Bespoke Excellence
+                                  </span>
+                                </div>
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-wicket-green rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Personal Consultation
+                                  </span>
+                                </div>
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-wicket-green rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Exclusive Access
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
                           </div>
+
+                          {/* Accent Border */}
+                          <div className="absolute left-0 top-0 w-1 h-full bg-wicket-green"></div>
                         </div>
                       </div>
                     </div>
@@ -503,25 +686,77 @@ export default function AboutPage() {
                     {/* Service 5 - Service Provider (Left) */}
                     <div className="flex items-center relative z-10 -mt-6">
                       <div className="w-5/12 pr-4">
-                        <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:z-20">
-                          <div className="absolute inset-0 bg-gradient-to-br from-navy-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          <div className="relative z-10">
-                            {/* Image placeholder */}
-                            <div className="w-full h-24 bg-gradient-to-r from-gray-100 to-gray-200 mb-3 flex items-center justify-center border border-gray-200 relative overflow-hidden">
-                              {/* Sharp edge accent */}
-                              <div className="absolute left-0 top-0 w-1 h-full bg-navy-blue"></div>
-                              <span className="text-gray-500 text-sm font-medium">
-                                Service Image
-                              </span>
+                        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg border border-gray-100 group hover:shadow-xl transition-all duration-300 hover:z-20 bg-white">
+                          {/* Content */}
+                          <div className="relative h-full flex flex-col p-5 z-10">
+                            {/* Icon Section */}
+                            <div className="flex items-start mb-3">
+                              <div className="w-14 h-14 bg-navy-blue/10 rounded-xl flex items-center justify-center mr-3 flex-shrink-0">
+                                <svg
+                                  className="w-7 h-7 text-navy-blue"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                                  />
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                  />
+                                </svg>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h3 className="text-lg font-bold font-serif text-navy-blue mb-1 leading-tight">
+                                  SERVICE PROVIDER
+                                </h3>
+                                <p className="text-navy-blue/70 text-xs font-medium leading-tight">
+                                  End-to-End Solutions
+                                </p>
+                              </div>
                             </div>
-                            <h3 className="text-lg font-bold mb-2 font-serif text-navy-blue">
-                              SERVICE PROVIDER
-                            </h3>
-                            <p className="text-gray-600 text-sm leading-relaxed">
-                              End-to-end luxury cricket solutions with premium
-                              service delivery and comprehensive support.
-                            </p>
+
+                            {/* Details Section */}
+                            <div className="flex-1 flex flex-col justify-between">
+                              <p className="text-gray-600 text-xs leading-relaxed mb-3">
+                                End-to-end luxury cricket solutions with premium
+                                service delivery and comprehensive support. From
+                                consultation to implementation, we deliver
+                                complete cricket excellence.
+                              </p>
+
+                              {/* Features */}
+                              <div className="space-y-1.5">
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-navy-blue rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Complete Service Solutions
+                                  </span>
+                                </div>
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-navy-blue rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Consultation to Implementation
+                                  </span>
+                                </div>
+                                <div className="flex items-center text-xs text-gray-500">
+                                  <div className="w-1.5 h-1.5 bg-navy-blue rounded-full mr-2 flex-shrink-0"></div>
+                                  <span className="leading-tight">
+                                    Comprehensive Support
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
                           </div>
+
+                          {/* Accent Border */}
+                          <div className="absolute left-0 top-0 w-1 h-full bg-navy-blue"></div>
                         </div>
                       </div>
                       <div className="w-2/12 flex justify-center">
