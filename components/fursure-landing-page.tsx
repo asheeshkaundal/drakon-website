@@ -467,7 +467,7 @@ export default function FurSureLandingPage() {
               <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
                 <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
-                    src="/cricket-stadium-experience.jpg"
+                    src="/hero-slideshow/cricket-stadium-experience.jpg"
                     alt="Stadium Experiences"
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
