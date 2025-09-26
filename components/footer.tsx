@@ -13,9 +13,9 @@ export const Footer = () => {
               <Image
                 src="/newlogo.png"
                 alt="Drakon Sports Logo"
-                width={120}
-                height={48}
-                className="h-12 w-auto object-contain"
+                width={180}
+                height={72}
+                className="h-18 w-auto object-contain"
               />
             </div>
             <p className="text-silver-gray text-sm leading-relaxed max-w-xs">
@@ -32,7 +32,7 @@ export const Footer = () => {
                 <Instagram className="w-4 h-4 text-white" />
               </Link>
               <Link
-                href="https://www.linkedin.com/in/drakon-sports-304575221/"
+                href="https://www.linkedin.com/in/asheesh-kaundal-304575221/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-cricket-red hover:bg-red-700 border border-cricket-red flex items-center justify-center transition-colors cursor-pointer"

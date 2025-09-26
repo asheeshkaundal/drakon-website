@@ -90,31 +90,31 @@ export default function FurSureLandingPage() {
             ))}
             <div className="absolute inset-0 bg-navy-blue/70"></div>
           </div>{" "}
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows - Hidden on very small screens, positioned safely on mobile */}
           <button
             onClick={prevImage}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 p-3 rounded-full bg-black/30 backdrop-blur-sm border border-white/30 text-white hover:bg-black/50 transition-all duration-300 group"
+            className="hidden sm:block absolute left-1 sm:left-2 md:left-4 top-1/2 transform -translate-y-1/2 z-20 p-1.5 sm:p-2 md:p-3 rounded-full bg-black/50 backdrop-blur-sm border border-white/30 text-white hover:bg-black/70 transition-all duration-300 group touch-manipulation"
             aria-label="Previous image"
           >
-            <ChevronLeft className="h-6 w-6 group-hover:scale-110 transition-transform text-teal-blue" />
+            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 group-hover:scale-110 transition-transform text-teal-blue" />
           </button>
           <button
             onClick={nextImage}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 p-3 rounded-full bg-black/30 backdrop-blur-sm border border-white/30 text-white hover:bg-black/50 transition-all duration-300 group"
+            className="hidden sm:block absolute right-1 sm:right-2 md:right-4 top-1/2 transform -translate-y-1/2 z-20 p-1.5 sm:p-2 md:p-3 rounded-full bg-black/50 backdrop-blur-sm border border-white/30 text-white hover:bg-black/70 transition-all duration-300 group touch-manipulation"
             aria-label="Next image"
           >
-            <ChevronRight className="h-6 w-6 group-hover:scale-110 transition-transform text-teal-blue" />
+            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 group-hover:scale-110 transition-transform text-teal-blue" />
           </button>
           {/* Slide Indicators */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
+          <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-1.5 md:space-x-2">
             {heroImages.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                   index === currentImageIndex
-                    ? "bg-teal-blue scale-125 shadow-lg"
-                    : "bg-silver-gray/60 hover:scale-110"
+                    ? "bg-teal-blue scale-110 md:scale-125 shadow-lg"
+                    : "bg-silver-gray/60 hover:scale-105 md:hover:scale-110"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
@@ -141,7 +141,7 @@ export default function FurSureLandingPage() {
 
               {/* Subtitle */}
               <div className="mb-10">
-                <p className="text-lg md:text-xl text-teal-blue max-w-2xl mx-auto leading-relaxed animate-fade-in-up opacity-0 animation-delay-700 drop-shadow-lg">
+                <p className="text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed animate-fade-in-up opacity-0 animation-delay-700 drop-shadow-lg">
                   DRAKON SPORTS PRIVATE LIMITED is not just a brand. It is a
                   private gateway into the rarest, most luxurious expressions of
                   the gentleman's game.
@@ -297,7 +297,7 @@ export default function FurSureLandingPage() {
                 </h2>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-wicket-green rounded-full flex items-center justify-center mt-0.5">
+                    <div className="flex-shrink-0 w-6 h-6 bg-teal-blue rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
@@ -310,7 +310,7 @@ export default function FurSureLandingPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-wicket-green rounded-full flex items-center justify-center mt-0.5">
+                    <div className="flex-shrink-0 w-6 h-6 bg-teal-blue rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
@@ -323,7 +323,7 @@ export default function FurSureLandingPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-wicket-green rounded-full flex items-center justify-center mt-0.5">
+                    <div className="flex-shrink-0 w-6 h-6 bg-teal-blue rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
@@ -336,7 +336,7 @@ export default function FurSureLandingPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-wicket-green rounded-full flex items-center justify-center mt-0.5">
+                    <div className="flex-shrink-0 w-6 h-6 bg-teal-blue rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
@@ -349,7 +349,7 @@ export default function FurSureLandingPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-wicket-green rounded-full flex items-center justify-center mt-0.5">
+                    <div className="flex-shrink-0 w-6 h-6 bg-teal-blue rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
@@ -427,7 +427,7 @@ export default function FurSureLandingPage() {
                     <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
                       Premium Bats
                     </h3>
-                    <p className="text-sm font-light opacity-90 italic text-teal-blue">
+                    <p className="text-sm font-light opacity-90 italic text-white">
                       Handcrafted Excellence
                     </p>
                   </div>
@@ -453,7 +453,7 @@ export default function FurSureLandingPage() {
                     <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
                       Custom Gear
                     </h3>
-                    <p className="text-sm font-light opacity-90 italic text-teal-blue">
+                    <p className="text-sm font-light opacity-90 italic text-white">
                       Personalized Equipment
                     </p>
                   </div>
@@ -479,7 +479,7 @@ export default function FurSureLandingPage() {
                     <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
                       Stadium Experiences
                     </h3>
-                    <p className="text-sm font-light opacity-90 italic text-teal-blue">
+                    <p className="text-sm font-light opacity-90 italic text-white">
                       Elite Events
                     </p>
                   </div>
@@ -505,7 +505,7 @@ export default function FurSureLandingPage() {
                     <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
                       Legacy Items
                     </h3>
-                    <p className="text-sm font-light opacity-90 italic text-teal-blue">
+                    <p className="text-sm font-light opacity-90 italic text-white">
                       Collector's Edition
                     </p>
                   </div>
@@ -531,7 +531,7 @@ export default function FurSureLandingPage() {
                     <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
                       Accessories
                     </h3>
-                    <p className="text-sm font-light opacity-90 italic text-teal-blue">
+                    <p className="text-sm font-light opacity-90 italic text-white">
                       Essential Gear
                     </p>
                   </div>
@@ -557,7 +557,7 @@ export default function FurSureLandingPage() {
                     <h3 className="text-xl font-bold mb-1 tracking-wide font-serif">
                       Exclusive Kits
                     </h3>
-                    <p className="text-sm font-light opacity-90 italic text-teal-blue">
+                    <p className="text-sm font-light opacity-90 italic text-white">
                       Team Uniforms
                     </p>
                   </div>
@@ -634,7 +634,7 @@ export default function FurSureLandingPage() {
                   </p>
 
                   <div className="pt-4">
-                    <div className="flex items-center gap-4 text-sm text-silver-gray">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-silver-gray">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-cricket-red transform rotate-45"></div>
                         <span>4+ Years of Excellence</span>
@@ -651,14 +651,16 @@ export default function FurSureLandingPage() {
                   </div>
                 </div>
 
-                <div className="mt-8">
-                  <Button
-                    size="lg"
-                    className="bg-cricket-red text-white shadow-lg px-8 py-3 font-semibold transition-all duration-300 hover:scale-105 hover:bg-red-700"
-                  >
-                    Learn More About Us
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                <div className="mt-8 flex justify-center">
+                  <Link href="/about">
+                    <Button
+                      size="lg"
+                      className="bg-cricket-red text-white shadow-lg px-8 py-3 font-semibold transition-all duration-300 hover:scale-105 hover:bg-red-700"
+                    >
+                      Learn More About Us
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -1022,7 +1024,7 @@ export default function FurSureLandingPage() {
                     <h3 className="text-xl font-bold text-white group-hover:text-primary-300 transition-colors">
                       US Cricket Store
                     </h3>
-                    <p className="text-primary-400 font-medium">
+                    <p className="text-white font-medium">
                       Premium Retail Partner
                     </p>
                   </div>
@@ -1102,25 +1104,33 @@ export default function FurSureLandingPage() {
 
             {/* Global Presence */}
             <div className="text-center">
-              <div className="inline-flex items-center gap-6 bg-gray-800/30 backdrop-blur-sm border border-gray-600/50 px-8 py-4">
-                <div className="flex items-center gap-2">
+              <div className="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-6 bg-gray-800/30 backdrop-blur-sm border border-gray-600/50 px-4 sm:px-8 py-4">
+                <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
                   <MapPin className="w-4 h-4 text-green-400 animate-pulse" />
-                  <span className="text-white font-medium">North America</span>
+                  <span className="text-white font-medium text-sm sm:text-base">
+                    North America
+                  </span>
                 </div>
-                <div className="w-1 h-6 bg-gray-600"></div>
-                <div className="flex items-center gap-2">
+                <div className="hidden sm:block w-1 h-6 bg-gray-600"></div>
+                <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
                   <MapPin className="w-4 h-4 text-blue-400 animate-pulse animation-delay-500" />
-                  <span className="text-white font-medium">Europe</span>
+                  <span className="text-white font-medium text-sm sm:text-base">
+                    Europe
+                  </span>
                 </div>
-                <div className="w-1 h-6 bg-gray-600"></div>
-                <div className="flex items-center gap-2">
+                <div className="hidden sm:block w-1 h-6 bg-gray-600"></div>
+                <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
                   <MapPin className="w-4 h-4 text-yellow-400 animate-pulse animation-delay-1000" />
-                  <span className="text-white font-medium">Asia Pacific</span>
+                  <span className="text-white font-medium text-sm sm:text-base">
+                    Asia Pacific
+                  </span>
                 </div>
-                <div className="w-1 h-6 bg-gray-600"></div>
-                <div className="flex items-center gap-2">
+                <div className="hidden sm:block w-1 h-6 bg-gray-600"></div>
+                <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
                   <MapPin className="w-4 h-4 text-red-400 animate-pulse animation-delay-1500" />
-                  <span className="text-white font-medium">Australia</span>
+                  <span className="text-white font-medium text-sm sm:text-base">
+                    Australia
+                  </span>
                 </div>
               </div>
               <p className="text-gray-400 mt-4 text-sm">
