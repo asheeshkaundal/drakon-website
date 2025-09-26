@@ -131,7 +131,7 @@ export default function ContactUsPage() {
       {/* Main Content with Top Padding for Fixed Header */}
       <div className="pt-20">
         {/* Get In Touch Section */}
-        <section className="relative container mx-auto px-6 py-16 overflow-hidden">
+        <section className="relative container mx-auto px-4 sm:px-6 py-16 overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -143,17 +143,17 @@ export default function ContactUsPage() {
             <div className="absolute inset-0 bg-gradient-to-br from-gray-50/80 to-white/90"></div>
           </div>
 
-          <div className="relative z-10 grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+          <div className="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto items-start">
             {/* Left Side - Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
               <div>
                 <h1
-                  className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl font-serif animate-fade-in-up opacity-0 animation-delay-500 drop-shadow-xl leading-tight mb-4"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter font-serif animate-fade-in-up opacity-0 animation-delay-500 drop-shadow-xl leading-tight mb-4"
                   style={{ color: "#1a2332" }}
                 >
                   Get In Touch
                 </h1>
-                <p className="text-lg md:text-xl text-gray-600 leading-relaxed animate-fade-in-up opacity-0 animation-delay-700 max-w-2xl">
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed animate-fade-in-up opacity-0 animation-delay-700 max-w-2xl mx-auto lg:mx-0">
                   Introducing Drakon, the design system tailored for
                   entrepreneurs who crave taking it easy. Say goodbye to lengthy
                   design processes and hello to efficiency.
@@ -161,27 +161,27 @@ export default function ContactUsPage() {
               </div>
 
               {/* Contact Info Cards */}
-              <div className="space-y-6 animate-fade-in-up opacity-0 animation-delay-900">
+              <div className="space-y-4 sm:space-y-6 animate-fade-in-up opacity-0 animation-delay-900 max-w-2xl mx-auto lg:mx-0">
                 {/* Sales & Communication Office Card */}
                 <Card
-                  className="p-6 border-l-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/80 backdrop-blur-sm"
+                  className="p-4 sm:p-6 border-l-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/80 backdrop-blur-sm"
                   style={{ borderLeftColor: "#4a9b9b" }}
                 >
-                  <div className="flex items-start space-x-4">
+                  <div className="flex items-start space-x-3 sm:space-x-4 text-center sm:text-left">
                     <div
-                      className="p-3 rounded-full transition-all duration-300 hover:scale-110"
+                      className="p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 flex-shrink-0"
                       style={{ backgroundColor: "#4a9b9b20" }}
                     >
                       <Pin
-                        className="h-6 w-6 transition-all duration-300"
+                        className="h-5 w-5 sm:h-6 sm:w-6 transition-all duration-300"
                         style={{ color: "#4a9b9b" }}
                       />
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
                         Sales & Communication Office
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-sm sm:text-base text-gray-600">
                         FF-69, First Floor, SS Omnia
                         <br />
                         Sector-86, Gurugram
@@ -194,24 +194,24 @@ export default function ContactUsPage() {
 
                 {/* Head Office Card */}
                 <Card
-                  className="p-6 border-l-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/80 backdrop-blur-sm"
+                  className="p-4 sm:p-6 border-l-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/80 backdrop-blur-sm"
                   style={{ borderLeftColor: "#c41e3a" }}
                 >
-                  <div className="flex items-start space-x-4">
+                  <div className="flex items-start space-x-3 sm:space-x-4 text-center sm:text-left">
                     <div
-                      className="p-3 rounded-full transition-all duration-300 hover:scale-110"
+                      className="p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 flex-shrink-0"
                       style={{ backgroundColor: "#c41e3a20" }}
                     >
                       <Pin
-                        className="h-6 w-6 transition-all duration-300"
+                        className="h-5 w-5 sm:h-6 sm:w-6 transition-all duration-300"
                         style={{ color: "#c41e3a" }}
                       />
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
                         Head Office
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-sm sm:text-base text-gray-600">
                         Drakon Sports, 619
                         <br />
                         Jawalamukhi, Kangra
@@ -224,24 +224,24 @@ export default function ContactUsPage() {
 
                 {/* Contact Info Card */}
                 <Card
-                  className="p-6 border-l-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/80 backdrop-blur-sm"
+                  className="p-4 sm:p-6 border-l-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/80 backdrop-blur-sm"
                   style={{ borderLeftColor: "#8a9ba8" }}
                 >
-                  <div className="flex items-start space-x-4">
+                  <div className="flex items-start space-x-3 sm:space-x-4 text-center sm:text-left">
                     <div
-                      className="p-3 rounded-full transition-all duration-300 hover:scale-110"
+                      className="p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 flex-shrink-0"
                       style={{ backgroundColor: "#8a9ba820" }}
                     >
                       <Phone
-                        className="h-6 w-6 transition-all duration-300"
+                        className="h-5 w-5 sm:h-6 sm:w-6 transition-all duration-300"
                         style={{ color: "#8a9ba8" }}
                       />
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
                         Contact Information
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-sm sm:text-base text-gray-600">
                         +91-8888813841
                         <br />
                         asheesh.kaundal@drakonsports.com
