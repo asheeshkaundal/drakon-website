@@ -15,7 +15,7 @@ export const Footer = () => {
                 alt="Drakon Sports Logo"
                 width={180}
                 height={72}
-                className="h-18 w-auto object-contain"
+                className="h-[120px] w-auto object-contain"
               />
             </div>
             <p className="text-silver-gray text-sm leading-relaxed max-w-xs">
