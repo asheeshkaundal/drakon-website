@@ -2,13 +2,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronUp } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { useEffect, useState } from "react";
 
 export default function AboutPage() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,6 +51,9 @@ export default function AboutPage() {
 
         setScrollProgress(progress);
       }
+
+      // Show scroll to top button after scrolling down
+      setShowScrollToTop(window.scrollY > 400);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -65,6 +69,13 @@ export default function AboutPage() {
     if (scrollProgress < 0.6) return "bg-cricket-red";
     if (scrollProgress < 0.8) return "bg-wicket-green";
     return "bg-navy-blue";
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
   return (
     <>
@@ -132,12 +143,12 @@ export default function AboutPage() {
                     className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed max-w-lg animate-fade-in"
                     style={{ animationDelay: "0.3s" }}
                   >
-                    drakon sports was founded by passionate athletes and
+                    DRAKON SPORTS was founded by passionate athletes and
                     visionary entrepreneurs. Their shared dream was to create a
                     private sanctuary of sporting excellence accessible to the
                     elite. United by their belief in the transformational power
                     of precision athletics, they embarked on a journey to build
-                    'drakon sports.' With relentless dedication, they gathered a
+                    'DRAKON SPORTS.' With relentless dedication, they gathered a
                     team of experts and launched this exclusive platform,
                     creating a global community of elite athletes, all connected
                     by the desire to explore, compete, and excel at the highest
@@ -350,7 +361,7 @@ export default function AboutPage() {
                     COMPREHENSIVE CRICKET SOLUTIONS
                   </h2>
                   <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
-                    Every elite athlete deserves the finest. At drakon sports,
+                    Every elite athlete deserves the finest. At DRAKON SPORTS,
                     we deliver comprehensive service capabilities that transform
                     cricket experiences globally.
                   </p>
@@ -1030,6 +1041,17 @@ export default function AboutPage() {
         {/* Footer */}
         <Footer />
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-teal-blue text-white p-4 rounded-full shadow-lg hover:bg-teal-blue/80 hover:scale-110 transition-all duration-300 z-50 focus:outline-none focus:ring-2 focus:ring-teal-blue/50 hover:opacity-90"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp className="h-6 w-6" />
+        </button>
+      )}
     </>
   );
 }

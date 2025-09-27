@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Map, Pin, Phone, Mail } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Map, Pin, Phone, Mail, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -33,6 +33,18 @@ export default function ContactUsPage() {
     type: "success" | "error" | null;
     message: string;
   }>({ type: null, message: "" });
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollToTop(window.scrollY > 400);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -124,6 +136,13 @@ export default function ContactUsPage() {
       setIsSubmitting(false);
     }
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
@@ -212,7 +231,7 @@ export default function ContactUsPage() {
                         Head Office
                       </h3>
                       <p className="text-sm sm:text-base text-gray-600">
-                        Drakon Sports, 619
+                        DRAKON SPORTS, 619
                         <br />
                         Jawalamukhi, Kangra
                         <br />
@@ -285,7 +304,7 @@ export default function ContactUsPage() {
                     <div className="mt-3">
                       <strong>Head Office:</strong>
                       <br />
-                      Drakon Sports, 619
+                      DRAKON SPORTS, 619
                       <br />
                       Jawalamukhi, Kangra
                       <br />
@@ -457,6 +476,17 @@ export default function ContactUsPage() {
       </section>
 
       <Footer />
+
+      {/* Scroll to Top Button */}
+      {showScrollToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-teal-blue text-white p-4 rounded-full shadow-lg hover:bg-teal-blue/80 hover:scale-110 transition-all duration-300 z-50 focus:outline-none focus:ring-2 focus:ring-teal-blue/50 hover:opacity-90"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp className="h-6 w-6" />
+        </button>
+      )}
     </div>
   );
 }

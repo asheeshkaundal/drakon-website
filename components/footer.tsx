@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram, Linkedin } from "lucide-react";
+import { Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -38,6 +38,22 @@ export const Footer = () => {
                 className="w-8 h-8 bg-cricket-red hover:bg-red-700 border border-cricket-red flex items-center justify-center transition-colors cursor-pointer"
               >
                 <Linkedin className="w-4 h-4 text-white" />
+              </Link>
+              <Link
+                href="https://www.youtube.com/@DrakonSports"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 bg-cricket-red hover:bg-red-700 border border-cricket-red flex items-center justify-center transition-colors cursor-pointer"
+              >
+                <Youtube className="w-4 h-4 text-white" />
+              </Link>
+              <Link
+                href="https://twitter.com/drakonsports"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 bg-cricket-red hover:bg-red-700 border border-cricket-red flex items-center justify-center transition-colors cursor-pointer"
+              >
+                <Twitter className="w-4 h-4 text-white" />
               </Link>
             </div>
           </div>
@@ -152,15 +168,13 @@ export const Footer = () => {
               <li className="text-silver-gray">Phone: +91-8888813841</li>
               <li className="text-silver-gray">
                 <div>Sales & Communication:</div>
-                <div className="ml-2">FF-69, First Floor, SS Omnia</div>
-                <div className="ml-2">
-                  Sector-86, Gurugram, Haryana - 122004
-                </div>
+                <div>FF-69, First Floor, SS Omnia</div>
+                <div>Sector-86, Gurugram, Haryana - 122004</div>
               </li>
               <li className="text-silver-gray mt-2">
                 <div>Head Office:</div>
-                <div className="ml-2">Drakon Sports, 619</div>
-                <div className="ml-2">Jawalamukhi, Kangra, HP - 176031</div>
+                <div>DRAKON SPORTS, 619</div>
+                <div>Jawalamukhi, Kangra, HP - 176031</div>
               </li>
             </ul>
             <div className="space-y-2 text-sm">
@@ -190,7 +204,7 @@ export const Footer = () => {
         <div className="border-t border-navy-blue/20 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-silver-gray">
-              © 2024 Drakon Sports Private Limited. All rights reserved.
+              © 2025 DRAKON SPORTS Private Limited. All rights reserved.
             </div>
             <div className="flex items-center space-x-6 text-sm text-silver-gray">
               <span className="flex items-center space-x-2">

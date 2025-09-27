@@ -9,7 +9,7 @@ export const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50">
-      <div className="bg-white/60 border-b border-gray-200/20 px-3 md:px-4 py-1 sm:py-2 flex items-center justify-between backdrop-blur-lg w-full h-20 sm:h-24 md:h-28 transition-all duration-300">
+      <div className="bg-white border-b border-gray-200/20 px-3 md:px-4 py-1 sm:py-2 flex items-center justify-between w-full h-16 sm:h-18 md:h-20 transition-all duration-300">
         <Link
           href="/"
           className="flex items-center justify-start"
@@ -20,7 +20,7 @@ export const Navbar = () => {
             alt="Drakon Sports Logo"
             width={180}
             height={128}
-            className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain"
+            className="h-12 sm:h-14 md:h-16 w-auto object-contain"
           />
         </Link>
 
@@ -60,7 +60,7 @@ export const Navbar = () => {
 
           {/* Dropdown Menu */}
           {isMenuOpen && (
-            <div className="absolute right-0 top-16 sm:top-20 md:top-24 w-48 bg-white/95 backdrop-blur-lg border border-gray-200/50 rounded-lg shadow-lg py-2 z-50">
+            <div className="absolute right-0 top-14 sm:top-16 md:top-18 w-48 bg-white border border-gray-200/50 rounded-lg shadow-lg py-2 z-50">
               <Link
                 href="/about"
                 className="block px-4 py-3 text-navy-blue hover:text-teal-blue hover:bg-teal-blue/5 transition-colors duration-200 font-medium"

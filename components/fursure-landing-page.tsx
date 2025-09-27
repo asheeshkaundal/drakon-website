@@ -11,6 +11,7 @@ import {
   ChevronLeft,
   ChevronRight,
   MapPin,
+  ChevronUp,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState, useEffect } from "react";
@@ -43,6 +44,7 @@ export default function FurSureLandingPage() {
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
@@ -61,6 +63,23 @@ export default function FurSureLandingPage() {
     const interval = setInterval(nextImage, 2000);
     return () => clearInterval(interval);
   }, []);
+
+  // Scroll to top functionality
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollToTop(window.scrollY > 400);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div className="flex flex-col min-h-[100dvh] bg-light-gray text-navy-blue">
@@ -88,7 +107,6 @@ export default function FurSureLandingPage() {
                 />
               </div>
             ))}
-            <div className="absolute inset-0 bg-navy-blue/70"></div>
           </div>{" "}
           {/* Navigation Arrows - Hidden on very small screens, positioned safely on mobile */}
           <button
@@ -187,9 +205,63 @@ export default function FurSureLandingPage() {
                 manufacturers
               </p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 max-w-7xl mx-auto">
+              {/* DSC */}
+              <div className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+                <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
+                  <Image
+                    src="/dsc.jpeg"
+                    alt="DSC Logo"
+                    width={64}
+                    height={64}
+                    className="object-contain"
+                  />
+                </div>
+                <span className="text-charcoal text-sm font-medium text-center">
+                  Cricket Bats
+                </span>
+                {/* Tooltip */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 hidden lg:group-hover:block z-50 w-64 bg-white text-black text-sm p-4 rounded-lg shadow-xl border-2 border-gray-300">
+                  <div className="font-semibold mb-2 text-teal-blue">
+                    DSC CRICKET BATS
+                  </div>
+                  <div className="text-xs leading-relaxed">
+                    Premium cricket bats designed for exceptional performance,
+                    power, and precision on the field.
+                  </div>
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-b-white"></div>
+                </div>
+              </div>
+
+              {/* SG */}
+              <div className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+                <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
+                  <Image
+                    src="/sg.jpeg"
+                    alt="SG Logo"
+                    width={64}
+                    height={64}
+                    className="object-contain"
+                  />
+                </div>
+                <span className="text-charcoal text-sm font-medium text-center">
+                  Premium Gear
+                </span>
+                {/* Tooltip */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 hidden lg:group-hover:block z-50 w-64 bg-white text-black text-sm p-4 rounded-lg shadow-xl border-2 border-gray-300">
+                  <div className="font-semibold mb-2 text-teal-blue">
+                    SG PREMIUM GEAR
+                  </div>
+                  <div className="text-xs leading-relaxed">
+                    High-quality cricket equipment and gear designed for
+                    professional performance and durability.
+                  </div>
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-b-white"></div>
+                </div>
+              </div>
+
               {/* MRF */}
-              <div className="group flex flex-col items-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+              <div className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
                 <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
                   <Image
                     src="/mrf.jpeg"
@@ -199,13 +271,25 @@ export default function FurSureLandingPage() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-charcoal text-sm font-medium">
+                <span className="text-charcoal text-sm font-medium text-center">
                   Premium Bats
                 </span>
+                {/* Tooltip */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 hidden lg:group-hover:block z-50 w-64 bg-white text-black text-sm p-4 rounded-lg shadow-xl border-2 border-gray-300">
+                  <div className="font-semibold mb-2 text-teal-blue">
+                    MRF PREMIUM BATS
+                  </div>
+                  <div className="text-xs leading-relaxed">
+                    Discover our range of Premium MRF cricket bats, crafted for
+                    power, precision, and durability. Perfect for professionals
+                    and enthusiasts who want top-notch performance on the field.
+                  </div>
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-b-white"></div>
+                </div>
               </div>
 
               {/* SS */}
-              <div className="group flex flex-col items-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+              <div className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
                 <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
                   <Image
                     src="/ss.jpeg"
@@ -215,13 +299,25 @@ export default function FurSureLandingPage() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-charcoal text-sm font-medium">
+                <span className="text-charcoal text-sm font-medium text-center">
                   Equipment
                 </span>
+                {/* Tooltip */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 hidden lg:group-hover:block z-50 w-64 bg-white text-black text-sm p-4 rounded-lg shadow-xl border-2 border-gray-300">
+                  <div className="font-semibold mb-2 text-teal-blue">
+                    SS EQUIPMENTS
+                  </div>
+                  <div className="text-xs leading-relaxed">
+                    Explore our wide range of SS cricket equipment, including
+                    gloves, pads, and accessories—engineered for comfort,
+                    protection, and superior performance on the pitch.
+                  </div>
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-b-white"></div>
+                </div>
               </div>
 
               {/* Adidas */}
-              <div className="group flex flex-col items-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+              <div className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
                 <div className="w-16 h-16 bg-black flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
                   <Image
                     src="/adidasnew.jpeg"
@@ -231,13 +327,25 @@ export default function FurSureLandingPage() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-charcoal text-sm font-medium">
+                <span className="text-charcoal text-sm font-medium text-center">
                   Apparel
                 </span>
+                {/* Tooltip */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 hidden lg:group-hover:block z-50 w-64 bg-white text-black text-sm p-4 rounded-lg shadow-xl border-2 border-gray-300">
+                  <div className="font-semibold mb-2 text-teal-blue">
+                    ADIDAS APPAREL
+                  </div>
+                  <div className="text-xs leading-relaxed">
+                    Step onto the field in style with our premium cricket
+                    apparel, designed for comfort, performance, and a
+                    professional look.
+                  </div>
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-b-white"></div>
+                </div>
               </div>
 
               {/* Gray-Nicolls */}
-              <div className="group flex flex-col items-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+              <div className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
                 <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
                   <Image
                     src="/grayn.jpeg"
@@ -247,13 +355,25 @@ export default function FurSureLandingPage() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-charcoal text-sm font-medium">
+                <span className="text-charcoal text-sm font-medium text-center">
                   Heritage
                 </span>
+                {/* Tooltip */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 hidden lg:group-hover:block z-50 w-64 bg-white text-black text-sm p-4 rounded-lg shadow-xl border-2 border-gray-300">
+                  <div className="font-semibold mb-2 text-teal-blue">
+                    HERITAGE COLLECTION
+                  </div>
+                  <div className="text-xs leading-relaxed">
+                    Celebrate the legacy of cricket with our Heritage
+                    collection, blending tradition with timeless quality and
+                    craftsmanship.
+                  </div>
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-b-white"></div>
+                </div>
               </div>
 
               {/* Kookaburra */}
-              <div className="group flex flex-col items-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+              <div className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
                 <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
                   <Image
                     src="/kooko.jpeg"
@@ -263,13 +383,24 @@ export default function FurSureLandingPage() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-charcoal text-sm font-medium">
+                <span className="text-charcoal text-sm font-medium text-center">
                   Balls & Gear
                 </span>
+                {/* Tooltip */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 hidden lg:group-hover:block z-50 w-64 bg-white text-black text-sm p-4 rounded-lg shadow-xl border-2 border-gray-300">
+                  <div className="font-semibold mb-2 text-teal-blue">
+                    BALLS AND GEAR
+                  </div>
+                  <div className="text-xs leading-relaxed">
+                    From practice sessions to big matches, our cricket balls and
+                    training gear deliver reliability and precision every time.
+                  </div>
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-b-white"></div>
+                </div>
               </div>
 
               {/* New Balance */}
-              <div className="group flex flex-col items-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
+              <div className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue">
                 <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
                   <Image
                     src="/nbnew.jpeg"
@@ -279,9 +410,21 @@ export default function FurSureLandingPage() {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-charcoal text-sm font-medium">
+                <span className="text-charcoal text-sm font-medium text-center">
                   Footwear
                 </span>
+                {/* Tooltip */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 hidden lg:group-hover:block z-50 w-64 bg-white text-black text-sm p-4 rounded-lg shadow-xl border-2 border-gray-300">
+                  <div className="font-semibold mb-2 text-teal-blue">
+                    FOOTWEAR
+                  </div>
+                  <div className="text-xs leading-relaxed">
+                    Experience unmatched grip and comfort with our cricket
+                    footwear, built to support speed, agility, and endurance on
+                    the pitch.
+                  </div>
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-b-white"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -297,66 +440,66 @@ export default function FurSureLandingPage() {
                 </h2>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-teal-blue rounded-full flex items-center justify-center mt-0.5">
+                    <div className="flex-shrink-0 w-6 h-6 bg-navy-blue rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-navy-blue mb-1">
+                      <h3 className="font-semibold text-charcoal mb-1">
                         Premium Quality Materials
                       </h3>
-                      <p className="text-silver-gray">
+                      <p className="text-gray-600">
                         Designed for durability and comfort
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-teal-blue rounded-full flex items-center justify-center mt-0.5">
+                    <div className="flex-shrink-0 w-6 h-6 bg-navy-blue rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-navy-blue mb-1">
+                      <h3 className="font-semibold text-charcoal mb-1">
                         Performance-Driven Design
                       </h3>
-                      <p className="text-silver-gray">
+                      <p className="text-gray-600">
                         Crafted for serious athletes and casual players alike
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-teal-blue rounded-full flex items-center justify-center mt-0.5">
+                    <div className="flex-shrink-0 w-6 h-6 bg-navy-blue rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-navy-blue mb-1">
+                      <h3 className="font-semibold text-charcoal mb-1">
                         Custom Solutions
                       </h3>
-                      <p className="text-silver-gray">
+                      <p className="text-gray-600">
                         Team kits, personalized gear & bulk orders
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-teal-blue rounded-full flex items-center justify-center mt-0.5">
+                    <div className="flex-shrink-0 w-6 h-6 bg-navy-blue rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-navy-blue mb-1">
+                      <h3 className="font-semibold text-charcoal mb-1">
                         Sustainable Manufacturing
                       </h3>
-                      <p className="text-silver-gray">
+                      <p className="text-gray-600">
                         We care about your performance and the planet
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 hover:bg-light-gray p-3 rounded-lg transition-colors duration-200">
-                    <div className="flex-shrink-0 w-6 h-6 bg-teal-blue rounded-full flex items-center justify-center mt-0.5">
+                    <div className="flex-shrink-0 w-6 h-6 bg-navy-blue rounded-full flex items-center justify-center mt-0.5">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-navy-blue mb-1">
+                      <h3 className="font-semibold text-charcoal mb-1">
                         Trusted by Champions
                       </h3>
-                      <p className="text-silver-gray">
+                      <p className="text-gray-600">
                         Endorsed by professionals and rising stars
                       </p>
                     </div>
@@ -611,7 +754,7 @@ export default function FurSureLandingPage() {
                 <div className="space-y-6 text-charcoal leading-relaxed">
                   <p className="text-lg">
                     Founded in 2020 with a vision to revolutionize the cricket
-                    equipment industry, Drakon Sports emerged from a simple
+                    equipment industry, DRAKON SPORTS emerged from a simple
                     belief: every cricketer deserves access to world-class gear
                     that matches their passion and dedication.
                   </p>
@@ -1189,6 +1332,17 @@ export default function FurSureLandingPage() {
         {/* Footer */}
         <Footer />
       </main>
+
+      {/* Scroll to Top Button */}
+      {showScrollToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-50 bg-teal-blue hover:bg-teal-blue/80 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-teal-blue focus:ring-opacity-50"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp className="h-6 w-6" />
+        </button>
+      )}
     </div>
   );
 }
