@@ -139,7 +139,7 @@ export default function FurSureLandingPage() {
             ))}
           </div>
           {/* Hero Content */}
-          <div className="relative z-10 container px-5 md:px-6 text-center text-white flex flex-col items-center justify-center h-full pt-20">
+          <div className="relative z-10 container px-5 md:px-6 text-center text-white flex flex-col items-center justify-center h-full pt-8">
             <div className="max-w-3xl mx-auto pt-4 pb-8 space-y-6">
               {/* Animated badge */}
               <div className="inline-block animate-fade-in-up opacity-0 animation-delay-300 mb-6">
