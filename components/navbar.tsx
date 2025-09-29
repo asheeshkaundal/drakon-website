@@ -7,6 +7,7 @@ import {
   Twitter,
   Facebook,
   Linkedin,
+  Youtube,
   Search,
   Globe,
   ChevronDown,
@@ -38,7 +39,7 @@ export const Navbar = () => {
             {/* Left side - Social Links */}
             <div className="flex items-center space-x-4">
               <Link
-                href="https://instagram.com"
+                href="https://www.instagram.com/drakonsports/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-teal-blue transition-colors duration-200"
@@ -47,31 +48,31 @@ export const Navbar = () => {
                 <Instagram className="h-4 w-4" />
               </Link>
               <Link
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-teal-blue transition-colors duration-200"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-4 w-4" />
-              </Link>
-              <Link
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-teal-blue transition-colors duration-200"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-4 w-4" />
-              </Link>
-              <Link
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/asheesh-kaundal-304575221/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-teal-blue transition-colors duration-200"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-4 w-4" />
+              </Link>
+              <Link
+                href="https://www.youtube.com/@DrakonSports"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-teal-blue transition-colors duration-200"
+                aria-label="YouTube"
+              >
+                <Youtube className="h-4 w-4" />
+              </Link>
+              <Link
+                href="https://twitter.com/drakonsports"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-teal-blue transition-colors duration-200"
+                aria-label="Twitter"
+              >
+                <Twitter className="h-4 w-4" />
               </Link>
             </div>
 
