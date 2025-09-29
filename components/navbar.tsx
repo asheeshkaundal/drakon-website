@@ -137,7 +137,7 @@ export const Navbar = () => {
               alt="Drakon Sports Logo"
               width={240}
               height={170}
-              className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain"
+              className="h-28 sm:h-32 md:h-36 lg:h-40 xl:h-44 w-auto object-contain"
             />
           </Link>
 
