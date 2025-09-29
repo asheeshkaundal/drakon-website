@@ -161,20 +161,24 @@ export const Navbar = () => {
               {/* Region Dropdown Menu */}
               {isRegionOpen && (
                 <div className="absolute right-0 top-full mt-2 w-48 bg-white/95 backdrop-blur-md border border-gray-200/50 rounded-lg shadow-lg py-2 z-50">
-                  {["Australia", "Europe", "North America", "Asia Pacific"].map(
-                    (region) => (
-                      <button
-                        key={region}
-                        onClick={() => {
-                          setSelectedRegion(region);
-                          setIsRegionOpen(false);
-                        }}
-                        className="w-full text-left px-4 py-2 text-sm text-navy-blue hover:text-teal-blue hover:bg-teal-blue/5 transition-colors duration-200"
-                      >
-                        {region}
-                      </button>
-                    )
-                  )}
+                  {[
+                    "India",
+                    "Australia",
+                    "Europe",
+                    "North America",
+                    "Asia Pacific",
+                  ].map((region) => (
+                    <button
+                      key={region}
+                      onClick={() => {
+                        setSelectedRegion(region);
+                        setIsRegionOpen(false);
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm text-navy-blue hover:text-teal-blue hover:bg-teal-blue/5 transition-colors duration-200"
+                    >
+                      {region}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
