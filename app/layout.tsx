@@ -61,8 +61,37 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Drakon Sports Private Limited",
+    url: "https://drakonsports.com",
+    logo: "https://drakonsports.com/newlogo.png",
+    description:
+      "Premium cricket equipment, bespoke gear, and exclusive cricket experiences",
+    sameAs: [
+      "https://www.instagram.com/drakonsports/",
+      "https://www.linkedin.com/in/asheesh-kaundal-304575221/",
+      "https://www.youtube.com/@DrakonSports",
+      "https://twitter.com/drakonsports",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "Customer Service",
+      email: "asheesh.kaundal@drakonsports.com",
+    },
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
