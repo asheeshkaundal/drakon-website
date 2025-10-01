@@ -43,24 +43,79 @@ export default function FurSureLandingPage() {
     },
   ];
 
+  // Hero content that rotates with images
+  const heroContent = [
+    {
+      badge: "Where the Elite Play Their Own Game",
+      heading: "Discretion. Precision. Excellence.",
+      description:
+        "DRAKON SPORTS PRIVATE LIMITED is not just a brand. It is a private gateway into the rarest, most luxurious expressions of the gentleman's game.",
+    },
+    {
+      badge: "MRF PREMIUM BATS",
+      heading: "Power. Precision. Performance.",
+      description:
+        "Discover our range of Premium MRF cricket bats, crafted for power, precision, and durability. Perfect for professionals and enthusiasts who want top-notch performance on the field.",
+    },
+    {
+      badge: "SS EQUIPMENTS",
+      heading: "Comfort. Protection. Excellence.",
+      description:
+        "Explore our wide range of SS cricket equipment, including gloves, pads, and accessories—engineered for comfort, protection, and superior performance on the pitch.",
+    },
+    {
+      badge: "ADIDAS APPAREL",
+      heading: "Style. Performance. Professionalism.",
+      description:
+        "Step onto the field in style with our premium cricket apparel, designed for comfort, performance, and a professional look.",
+    },
+    {
+      badge: "HERITAGE COLLECTION",
+      heading: "Tradition. Quality. Legacy.",
+      description:
+        "Celebrate the legacy of cricket with our Heritage collection, blending tradition with timeless quality and craftsmanship.",
+    },
+    {
+      badge: "BALLS AND GEAR",
+      heading: "Reliability. Precision. Every Time.",
+      description:
+        "From practice sessions to big matches, our cricket balls and training gear deliver reliability and precision every time.",
+    },
+    {
+      badge: "FOOTWEAR",
+      heading: "Grip. Comfort. Endurance.",
+      description:
+        "Experience unmatched grip and comfort with our cricket footwear, built to support speed, agility, and endurance on the pitch.",
+    },
+  ];
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const nextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
-    );
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
+      );
+      setIsTransitioning(false);
+    }, 300);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? heroImages.length - 1 : prevIndex - 1
-    );
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === 0 ? heroImages.length - 1 : prevIndex - 1
+      );
+      setIsTransitioning(false);
+    }, 300);
   };
 
-  // Auto-advance slideshow every 5 seconds
+  // Auto-advance slideshow every 5 seconds for optimal viewing experience
   useEffect(() => {
-    const interval = setInterval(nextImage, 2000);
+    const interval = setInterval(nextImage, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -141,28 +196,53 @@ export default function FurSureLandingPage() {
           {/* Hero Content */}
           <div className="relative z-10 container px-5 md:px-6 text-center text-white flex flex-col items-center justify-center h-full pt-8">
             <div className="max-w-3xl mx-auto pt-4 pb-8 space-y-6">
-              {/* Animated badge */}
-              <div className="inline-block animate-fade-in-up opacity-0 animation-delay-300 mb-6">
-                <div className="inline-block bg-black/30 backdrop-blur-sm border border-white/30 px-4 py-2 text-base font-medium text-white shadow-lg">
-                  <span className="animate-pulse drop-shadow-lg">
-                    Where the Elite Play Their Own Game
+              {/* Animated badge with rotating content */}
+              <div
+                className={`inline-block mb-6 transition-opacity duration-500 ${
+                  isTransitioning ? "opacity-0" : "opacity-100"
+                }`}
+              >
+                <div className="inline-block bg-black/70 backdrop-blur-md border-2 border-white/50 px-5 py-2.5 text-base font-medium text-white shadow-2xl">
+                  <span className="drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] font-semibold">
+                    {heroContent[currentImageIndex % heroContent.length].badge}
                   </span>
                 </div>
               </div>
 
-              {/* Main heading with animation */}
-              <div className="mb-8">
-                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-white font-serif animate-fade-in-up opacity-0 animation-delay-500 drop-shadow-2xl leading-tight">
-                  Discretion. Precision. Excellence.
+              {/* Main heading with animation and rotating content */}
+              <div
+                className={`mb-8 transition-opacity duration-500 ${
+                  isTransitioning ? "opacity-0" : "opacity-100"
+                }`}
+              >
+                <h1
+                  className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-white font-serif leading-tight"
+                  style={{
+                    textShadow:
+                      "0 4px 12px rgba(0,0,0,0.9), 0 2px 6px rgba(0,0,0,0.8)",
+                  }}
+                >
+                  {heroContent[currentImageIndex % heroContent.length].heading}
                 </h1>
               </div>
 
-              {/* Subtitle */}
-              <div className="mb-10">
-                <p className="text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed animate-fade-in-up opacity-0 animation-delay-700 drop-shadow-lg">
-                  DRAKON SPORTS PRIVATE LIMITED is not just a brand. It is a
-                  private gateway into the rarest, most luxurious expressions of
-                  the gentleman's game.
+              {/* Subtitle with rotating content */}
+              <div
+                className={`mb-10 transition-opacity duration-500 ${
+                  isTransitioning ? "opacity-0" : "opacity-100"
+                }`}
+              >
+                <p
+                  className="text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed font-medium"
+                  style={{
+                    textShadow:
+                      "0 3px 10px rgba(0,0,0,0.9), 0 2px 6px rgba(0,0,0,0.7)",
+                  }}
+                >
+                  {
+                    heroContent[currentImageIndex % heroContent.length]
+                      .description
+                  }
                 </p>
               </div>
 
