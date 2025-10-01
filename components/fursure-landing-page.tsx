@@ -171,15 +171,17 @@ export default function FurSureLandingPage() {
                 <Button
                   size="lg"
                   className="bg-teal-blue text-white shadow-2xl px-8 py-4 text-lg font-semibold border-2 border-transparent hover:border-white/20 transition-all duration-300 hover:scale-105 hover:bg-teal-blue/80"
+                  asChild
                 >
-                  Explore Collection
+                  <Link href="/coming-soon">Explore Collection</Link>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 bg-transparent hover:text-navy-blue hover:bg-white"
+                  asChild
                 >
-                  Custom Orders
+                  <Link href="/coming-soon">Custom Orders</Link>
                 </Button>
                 <Button
                   size="lg"
@@ -1315,7 +1317,7 @@ export default function FurSureLandingPage() {
                 className="bg-white text-cricket-red shadow-lg px-8 py-4 text-lg font-semibold border-2 border-white hover:bg-cricket-red hover:text-white transition-all duration-300 hover:scale-105"
                 asChild
               >
-                <Link href="/contact-us">Shop Now</Link>
+                <Link href="/coming-soon">Shop Now</Link>
               </Button>
               <Button
                 size="lg"

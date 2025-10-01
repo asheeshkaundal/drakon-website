@@ -86,6 +86,9 @@
   * {
     @apply border-border;
   }
+  html {
+    font-size: 18px; /* Increased from default 16px */
+  }
   body {
     @apply bg-background text-foreground;
   }
