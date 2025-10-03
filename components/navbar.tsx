@@ -4,7 +4,6 @@ import {
   Menu,
   X,
   Instagram,
-  Twitter,
   Facebook,
   Linkedin,
   Youtube,
@@ -14,6 +13,18 @@ import {
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
+
+// Custom X (formerly Twitter) Icon Component
+const XIcon = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    className={className}
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,7 +65,7 @@ export const Navbar = () => {
                   <Instagram className="h-4 w-4" />
                 </Link>
                 <Link
-                  href="https://www.linkedin.com/in/asheesh-kaundal-304575221/"
+                  href="https://www.linkedin.com/company/drakon-sports/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-teal-blue transition-colors duration-200"
@@ -76,16 +87,17 @@ export const Navbar = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-teal-blue transition-colors duration-200"
-                  aria-label="Twitter"
+                  aria-label="X (formerly Twitter)"
                 >
-                  <Twitter className="h-4 w-4" />
+                  <XIcon className="h-4 w-4" />
                 </Link>
               </div>
 
               {/* Centered Text */}
               <div className="flex-1 text-center text-xs sm:text-sm px-4">
                 <span>
-                  💥 50% OFF! THE BEST SALE OF THE SEASON IS LIVE. SHOP NOW! 💥
+                  💥Up to 50% OFF! THE BEST SALE OF THE SEASON IS LIVE. SHOP
+                  NOW! 💥
                 </span>
               </div>
 
@@ -347,9 +359,9 @@ export const Navbar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-navy-blue hover:text-teal-blue transition-colors duration-200"
-                    aria-label="Twitter"
+                    aria-label="X (formerly Twitter)"
                   >
-                    <Twitter className="h-5 w-5" />
+                    <XIcon className="h-5 w-5" />
                   </Link>
                 </div>
               </div>

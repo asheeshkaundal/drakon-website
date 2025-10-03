@@ -46,43 +46,26 @@ export default function FurSureLandingPage() {
   // Hero content that rotates with images
   const heroContent = [
     {
-      badge: "Where the Elite Play Their Own Game",
       heading: "Discretion. Precision. Excellence.",
       description:
         "DRAKON SPORTS PRIVATE LIMITED is not just a brand. It is a private gateway into the rarest, most luxurious expressions of the gentleman's game.",
     },
     {
-      badge: "MRF PREMIUM BATS",
       heading: "Power. Precision. Performance.",
       description:
         "Discover our range of Premium MRF cricket bats, crafted for power, precision, and durability. Perfect for professionals and enthusiasts who want top-notch performance on the field.",
     },
     {
-      badge: "SS EQUIPMENTS",
       heading: "Comfort. Protection. Excellence.",
       description:
         "Explore our wide range of SS cricket equipment, including gloves, pads, and accessories—engineered for comfort, protection, and superior performance on the pitch.",
     },
     {
-      badge: "ADIDAS APPAREL",
       heading: "Style. Performance. Professionalism.",
       description:
         "Step onto the field in style with our premium cricket apparel, designed for comfort, performance, and a professional look.",
     },
     {
-      badge: "HERITAGE COLLECTION",
-      heading: "Tradition. Quality. Legacy.",
-      description:
-        "Celebrate the legacy of cricket with our Heritage collection, blending tradition with timeless quality and craftsmanship.",
-    },
-    {
-      badge: "BALLS AND GEAR",
-      heading: "Reliability. Precision. Every Time.",
-      description:
-        "From practice sessions to big matches, our cricket balls and training gear deliver reliability and precision every time.",
-    },
-    {
-      badge: "FOOTWEAR",
       heading: "Grip. Comfort. Endurance.",
       description:
         "Experience unmatched grip and comfort with our cricket footwear, built to support speed, agility, and endurance on the pitch.",
@@ -196,19 +179,6 @@ export default function FurSureLandingPage() {
           {/* Hero Content */}
           <div className="relative z-10 container px-5 md:px-6 text-center text-white flex flex-col items-center justify-center h-full pt-8">
             <div className="max-w-3xl mx-auto pt-4 pb-8 space-y-6">
-              {/* Animated badge with rotating content */}
-              <div
-                className={`inline-block mb-6 transition-opacity duration-500 ${
-                  isTransitioning ? "opacity-0" : "opacity-100"
-                }`}
-              >
-                <div className="inline-block bg-black/70 backdrop-blur-md border-2 border-white/50 px-5 py-2.5 text-base font-medium text-white shadow-2xl">
-                  <span className="drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] font-semibold">
-                    {heroContent[currentImageIndex % heroContent.length].badge}
-                  </span>
-                </div>
-              </div>
-
               {/* Main heading with animation and rotating content */}
               <div
                 className={`mb-8 transition-opacity duration-500 ${
