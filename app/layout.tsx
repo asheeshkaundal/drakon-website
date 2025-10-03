@@ -73,7 +73,7 @@ export default function RootLayout({
       "https://www.instagram.com/drakonsports/",
       "https://www.linkedin.com/in/asheesh-kaundal-304575221/",
       "https://www.youtube.com/@DrakonSports",
-      "https://twitter.com/drakonsports",
+      "https://x.com/drakon_sports",
     ],
     contactPoint: {
       "@type": "ContactPoint",

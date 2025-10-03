@@ -72,7 +72,7 @@ export const Navbar = () => {
                   <Youtube className="h-4 w-4" />
                 </Link>
                 <Link
-                  href="https://twitter.com/drakonsports"
+                  href="https://x.com/drakon_sports"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-teal-blue transition-colors duration-200"
@@ -343,7 +343,7 @@ export const Navbar = () => {
                     <Youtube className="h-5 w-5" />
                   </Link>
                   <Link
-                    href="https://twitter.com/drakonsports"
+                    href="https://x.com/drakon_sports"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-navy-blue hover:text-teal-blue transition-colors duration-200"

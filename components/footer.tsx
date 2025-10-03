@@ -48,7 +48,7 @@ export const Footer = () => {
                 <Youtube className="w-4 h-4 text-white" />
               </Link>
               <Link
-                href="https://twitter.com/drakonsports"
+                href="https://x.com/drakon_sports"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-cricket-red hover:bg-red-700 border border-cricket-red flex items-center justify-center transition-colors cursor-pointer"
