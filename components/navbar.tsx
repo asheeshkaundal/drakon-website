@@ -71,7 +71,32 @@ export const Navbar = () => {
         >
           <div className="bg-navy-blue text-white px-4 md:px-6 py-2">
             <div className="flex items-center justify-between max-w-7xl mx-auto">
-              {/* Left side - Social Links */}
+              {/* Left side - Close button */}
+              <button
+                onClick={() => setIsBannerVisible(false)}
+                className="hover:text-teal-blue transition-colors duration-200 p-1"
+                aria-label="Close banner"
+              >
+                <X className="h-4 w-4" />
+              </button>
+
+              {/* Centered Text Carousel */}
+              <div className="flex-1 text-center text-xs sm:text-sm px-4 relative h-6 flex items-center justify-center">
+                {promotionalTexts.map((text, index) => (
+                  <span
+                    key={index}
+                    className={`absolute inset-0 flex items-center justify-center font-bold transition-all duration-1000 ease-in-out ${
+                      index === currentTextIndex
+                        ? "opacity-100 transform translate-y-0"
+                        : "opacity-0 transform translate-y-2"
+                    }`}
+                  >
+                    {text}
+                  </span>
+                ))}
+              </div>
+
+              {/* Right side - Social Links */}
               <div className="hidden sm:flex items-center space-x-4">
                 <Link
                   href="https://www.instagram.com/drakonsports/"
@@ -110,31 +135,6 @@ export const Navbar = () => {
                   <XIcon className="h-4 w-4" />
                 </Link>
               </div>
-
-              {/* Centered Text Carousel */}
-              <div className="flex-1 text-center text-xs sm:text-sm px-4 relative h-6 flex items-center justify-center">
-                {promotionalTexts.map((text, index) => (
-                  <span
-                    key={index}
-                    className={`absolute inset-0 flex items-center justify-center font-bold transition-all duration-1000 ease-in-out ${
-                      index === currentTextIndex
-                        ? "opacity-100 transform translate-y-0"
-                        : "opacity-0 transform translate-y-2"
-                    }`}
-                  >
-                    {text}
-                  </span>
-                ))}
-              </div>
-
-              {/* Right side - Close button */}
-              <button
-                onClick={() => setIsBannerVisible(false)}
-                className="hover:text-teal-blue transition-colors duration-200 p-1"
-                aria-label="Close banner"
-              >
-                <X className="h-4 w-4" />
-              </button>
             </div>
           </div>
         </header>
