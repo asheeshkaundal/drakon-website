@@ -10,6 +10,7 @@ import {
   Search,
   Globe,
   ChevronDown,
+  ShoppingCart,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
@@ -33,6 +34,8 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isBannerVisible, setIsBannerVisible] = useState(true);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const promotionalTexts = [
     "💥Up to 50% OFF! THE BEST SALE OF THE SEASON IS LIVE. SHOP NOW! 💥",
@@ -173,6 +176,7 @@ export const Navbar = () => {
               <Button
                 variant="ghost"
                 size="sm"
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
                 className="p-2 hover:bg-gray-100 text-navy-blue hover:text-teal-blue transition-colors duration-200"
                 aria-label="Search"
               >
@@ -196,8 +200,22 @@ export const Navbar = () => {
               />
             </Link>
 
-            {/* Right Navigation - Region Dropdown + Mobile Menu */}
+            {/* Right Navigation - Cart + Region Dropdown + Mobile Menu */}
             <div className="flex items-center gap-2 ml-auto">
+              {/* Cart Button - Desktop only */}
+              <Button
+                variant="ghost"
+                size="sm"
+                className="hidden md:flex p-2 hover:bg-gray-100 text-navy-blue hover:text-teal-blue transition-colors duration-200 relative"
+                aria-label="Shopping Cart"
+              >
+                <ShoppingCart className="h-4 w-4" />
+                {/* Optional cart item count badge */}
+                <span className="absolute -top-1 -right-1 bg-cricket-red text-white text-xs rounded-full h-4 w-4 flex items-center justify-center text-[10px] font-bold">
+                  0
+                </span>
+              </Button>
+
               {/* Region Dropdown - Desktop only */}
               <div className="hidden md:block relative">
                 <button
@@ -257,6 +275,82 @@ export const Navbar = () => {
         </div>
       </nav>
 
+      {/* Search Area */}
+      {isSearchOpen && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black/50 z-30 flex items-start justify-center pt-20">
+          <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl mx-4 p-6 animate-in slide-in-from-top-4 duration-300">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-navy-blue">
+                Search Products
+              </h3>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsSearchOpen(false)}
+                className="p-2 hover:bg-gray-100"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
+
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search for cricket bats, gear, accessories..."
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-blue focus:border-teal-blue outline-none text-navy-blue"
+                autoFocus
+              />
+            </div>
+
+            <div className="mt-4 flex gap-2">
+              <Button
+                onClick={() => {
+                  // Handle search logic here
+                  console.log("Searching for:", searchQuery);
+                  setIsSearchOpen(false);
+                }}
+                className="bg-teal-blue hover:bg-teal-blue/80 text-white"
+              >
+                Search
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSearchQuery("");
+                  setIsSearchOpen(false);
+                }}
+              >
+                Cancel
+              </Button>
+            </div>
+
+            {/* Quick Search Suggestions */}
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <p className="text-sm text-gray-600 mb-2">Popular searches:</p>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Cricket Bats",
+                  "Protective Gear",
+                  "Team Uniforms",
+                  "Custom Orders",
+                ].map((suggestion) => (
+                  <button
+                    key={suggestion}
+                    onClick={() => setSearchQuery(suggestion)}
+                    className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-navy-blue transition-colors"
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Mobile Full Screen Menu Overlay */}
       {isMenuOpen && (
         <>
@@ -301,10 +395,25 @@ export const Navbar = () => {
               </Link>
               <button
                 className="w-full text-left flex items-center px-6 py-3 text-navy-blue hover:text-teal-blue hover:bg-teal-blue/5 transition-colors duration-200 font-medium border-b border-gray-100"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  setIsSearchOpen(true);
+                  setIsMenuOpen(false);
+                }}
               >
                 <Search className="h-5 w-5 mr-3" />
                 Search
+              </button>
+              <button
+                className="w-full text-left flex items-center justify-between px-6 py-3 text-navy-blue hover:text-teal-blue hover:bg-teal-blue/5 transition-colors duration-200 font-medium border-b border-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <div className="flex items-center">
+                  <ShoppingCart className="h-5 w-5 mr-3" />
+                  Shopping Cart
+                </div>
+                <span className="bg-cricket-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center text-[10px] font-bold">
+                  0
+                </span>
               </button>
 
               {/* Region Selector */}
