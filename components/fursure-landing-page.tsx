@@ -231,7 +231,9 @@ export default function FurSureLandingPage() {
                   className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 bg-transparent hover:text-navy-blue hover:bg-white"
                   asChild
                 >
-                  <Link href="/coming-soon">Custom Orders</Link>
+                  <Link href="https://www.drakonsports.com/custom-orders">
+                    Custom Orders
+                  </Link>
                 </Button>
                 <Button
                   size="lg"

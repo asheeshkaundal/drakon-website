@@ -32,6 +32,12 @@ export const Navbar = () => {
   const [selectedRegion, setSelectedRegion] = useState("Region");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isBannerVisible, setIsBannerVisible] = useState(true);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+
+  const promotionalTexts = [
+    "💥Up to 50% OFF! THE BEST SALE OF THE SEASON IS LIVE. SHOP NOW! 💥",
+    "Own the Pitch. Rule with Drakon.",
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +47,18 @@ export const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isBannerVisible) {
+      const interval = setInterval(() => {
+        setCurrentTextIndex((prevIndex) =>
+          prevIndex === promotionalTexts.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 3000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isBannerVisible, promotionalTexts.length]);
 
   return (
     <>
@@ -93,12 +111,20 @@ export const Navbar = () => {
                 </Link>
               </div>
 
-              {/* Centered Text */}
-              <div className="flex-1 text-center text-xs sm:text-sm px-4">
-                <span>
-                  💥Up to 50% OFF! THE BEST SALE OF THE SEASON IS LIVE. SHOP
-                  NOW! 💥
-                </span>
+              {/* Centered Text Carousel */}
+              <div className="flex-1 text-center text-xs sm:text-sm px-4 relative h-6 flex items-center justify-center">
+                {promotionalTexts.map((text, index) => (
+                  <span
+                    key={index}
+                    className={`absolute inset-0 flex items-center justify-center font-bold transition-all duration-1000 ease-in-out ${
+                      index === currentTextIndex
+                        ? "opacity-100 transform translate-y-0"
+                        : "opacity-0 transform translate-y-2"
+                    }`}
+                  >
+                    {text}
+                  </span>
+                ))}
               </div>
 
               {/* Right side - Close button */}
@@ -122,10 +148,10 @@ export const Navbar = () => {
       >
         <div
           className={`px-4 md:px-6 lg:px-8 transition-all duration-300 ${
-            isScrolled ? "py-1.5" : "py-2"
+            isScrolled ? "py-1" : "py-1.5"
           }`}
         >
-          <div className="flex items-center justify-between w-full h-[70px] md:h-[80px]">
+          <div className="flex items-center justify-between w-full h-[50px] md:h-[60px]">
             {/* Left Navigation - Desktop */}
             <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
               <Link
@@ -163,7 +189,7 @@ export const Navbar = () => {
                 alt="Drakon Sports Logo"
                 width={320}
                 height={220}
-                className="w-auto object-contain h-[90px] md:h-[110px] lg:h-[120px]"
+                className="w-auto object-contain h-[105px] md:h-[125px] lg:h-[135px]"
                 priority
               />
             </Link>
@@ -371,7 +397,7 @@ export const Navbar = () => {
       )}
 
       {/* Spacer for fixed navbar - matches navbar height only */}
-      <div className="h-[74px] md:h-[84px]"></div>
+      <div className="h-[54px] md:h-[64px]"></div>
     </>
   );
 };
