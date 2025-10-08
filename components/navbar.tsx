@@ -37,6 +37,8 @@ export const Navbar = () => {
   const promotionalTexts = [
     "💥Up to 50% OFF! THE BEST SALE OF THE SEASON IS LIVE. SHOP NOW! 💥",
     "Own the Pitch. Rule with Drakon.",
+    "Where Every Ball Tells a Story of Glory",
+    "Elevate Your Game with Drakon's Elite Gear",
   ];
 
   useEffect(() => {
