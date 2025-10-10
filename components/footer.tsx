@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram, Linkedin, Youtube } from "lucide-react";
+import { Instagram, Linkedin, Youtube, Facebook } from "lucide-react";
 
 // Custom X (formerly Twitter) Icon Component
 const XIcon = ({ className }: { className?: string }) => (
@@ -36,6 +36,14 @@ export const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <Link
+                href="https://www.facebook.com/share/1GtMBPEXRB/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 bg-cricket-red hover:bg-red-700 border border-cricket-red flex items-center justify-center transition-colors cursor-pointer"
+              >
+                <Facebook className="w-4 h-4 text-white" />
+              </Link>
+              <Link
                 href="https://www.instagram.com/drakonsports/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -44,7 +52,7 @@ export const Footer = () => {
                 <Instagram className="w-4 h-4 text-white" />
               </Link>
               <Link
-                href="https://www.linkedin.com/in/asheesh-kaundal-304575221/"
+                href="https://www.linkedin.com/company/drakon-sports/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-cricket-red hover:bg-red-700 border border-cricket-red flex items-center justify-center transition-colors cursor-pointer"

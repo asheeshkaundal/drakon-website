@@ -104,6 +104,15 @@ export const Navbar = () => {
               {/* Right side - Social Links */}
               <div className="hidden sm:flex items-center space-x-4">
                 <Link
+                  href="https://www.facebook.com/share/1GtMBPEXRB/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-teal-blue transition-colors duration-200"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="h-4 w-4" />
+                </Link>
+                <Link
                   href="https://www.instagram.com/drakonsports/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -157,27 +166,37 @@ export const Navbar = () => {
           }`}
         >
           <div className="flex items-center justify-between w-full h-[50px] md:h-[60px]">
-            {/* Left Navigation - Desktop */}
-            <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+            {/* Left Navigation - Desktop and Mobile Search */}
+            <div className="flex items-center space-x-1 lg:space-x-2">
+              {/* Mobile search button (mobile-only, left side) */}
+              <Button
+                variant="ghost"
+                onClick={() => setIsSearchOpen(true)}
+                className="md:hidden p-2 hover:bg-gray-100 text-navy-blue hover:text-teal-blue transition-colors duration-200"
+                aria-label="Open search"
+              >
+                <Search className="h-5 w-5" />
+              </Button>
+
               <Link
                 href="/about"
-                className="text-sm px-3 py-2 font-medium text-navy-blue hover:text-teal-blue transition-colors duration-200"
+                className="hidden md:block text-sm px-3 py-2 font-medium text-navy-blue hover:text-teal-blue transition-colors duration-200"
               >
                 About Us
               </Link>
-              <div className="w-px h-5 bg-gray-300"></div>
+              <div className="hidden md:block w-px h-5 bg-gray-300"></div>
               <Link
                 href="/contact-us"
-                className="text-sm px-3 py-2 font-medium text-navy-blue hover:text-teal-blue transition-colors duration-200"
+                className="hidden md:block text-sm px-3 py-2 font-medium text-navy-blue hover:text-teal-blue transition-colors duration-200"
               >
                 Contact Us
               </Link>
-              <div className="w-px h-5 bg-gray-300"></div>
+              <div className="hidden md:block w-px h-5 bg-gray-300"></div>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-2 hover:bg-gray-100 text-navy-blue hover:text-teal-blue transition-colors duration-200"
+                className="hidden md:flex p-2 hover:bg-gray-100 text-navy-blue hover:text-teal-blue transition-colors duration-200"
                 aria-label="Search"
               >
                 <Search className="h-4 w-4" />
@@ -202,11 +221,11 @@ export const Navbar = () => {
 
             {/* Right Navigation - Cart + Region Dropdown + Mobile Menu */}
             <div className="flex items-center gap-2 ml-auto">
-              {/* Cart Button - Desktop only */}
+              {/* Cart Button - Always visible */}
               <Button
                 variant="ghost"
                 size="sm"
-                className="hidden md:flex p-2 hover:bg-gray-100 text-navy-blue hover:text-teal-blue transition-colors duration-200 relative"
+                className="p-2 hover:bg-gray-100 text-navy-blue hover:text-teal-blue transition-colors duration-200 relative"
                 aria-label="Shopping Cart"
               >
                 <ShoppingCart className="h-4 w-4" />
@@ -393,28 +412,6 @@ export const Navbar = () => {
               >
                 Contact Us
               </Link>
-              <button
-                className="w-full text-left flex items-center px-6 py-3 text-navy-blue hover:text-teal-blue hover:bg-teal-blue/5 transition-colors duration-200 font-medium border-b border-gray-100"
-                onClick={() => {
-                  setIsSearchOpen(true);
-                  setIsMenuOpen(false);
-                }}
-              >
-                <Search className="h-5 w-5 mr-3" />
-                Search
-              </button>
-              <button
-                className="w-full text-left flex items-center justify-between px-6 py-3 text-navy-blue hover:text-teal-blue hover:bg-teal-blue/5 transition-colors duration-200 font-medium border-b border-gray-100"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <div className="flex items-center">
-                  <ShoppingCart className="h-5 w-5 mr-3" />
-                  Shopping Cart
-                </div>
-                <span className="bg-cricket-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center text-[10px] font-bold">
-                  0
-                </span>
-              </button>
 
               {/* Region Selector */}
               <div className="border-b border-gray-100">
@@ -465,6 +462,15 @@ export const Navbar = () => {
                 </p>
                 <div className="flex items-center space-x-4">
                   <Link
+                    href="https://www.facebook.com/share/1GtMBPEXRB/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-navy-blue hover:text-teal-blue transition-colors duration-200"
+                    aria-label="Facebook"
+                  >
+                    <Facebook className="h-5 w-5" />
+                  </Link>
+                  <Link
                     href="https://www.instagram.com/drakonsports/"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -474,7 +480,7 @@ export const Navbar = () => {
                     <Instagram className="h-5 w-5" />
                   </Link>
                   <Link
-                    href="https://www.linkedin.com/in/asheesh-kaundal-304575221/"
+                    href="https://www.linkedin.com/company/drakon-sports/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-navy-blue hover:text-teal-blue transition-colors duration-200"
