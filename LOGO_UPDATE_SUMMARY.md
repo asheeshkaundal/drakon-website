@@ -5,16 +5,19 @@
 ### ✅ All Logo References Updated to `newlogo.png`
 
 #### 1. **Navbar** (`components/navbar.tsx`)
+
 - Already using `/newlogo.png` ✓
 - Location: Centered logo in main navigation
 - Size: `h-[110px] md:h-[135px] lg:h-[135px]`
 
 #### 2. **Footer** (`components/footer.tsx`)
+
 - **Updated**: Changed from `/footer logo final.png` to `/newlogo.png`
 - Location: Brand section (top-left of footer)
 - Size: `h-[180px]`
 
 #### 3. **Favicon & Browser Tab** (`app/layout.tsx`)
+
 - Already configured to use `/newlogo.png` ✓
 - Includes multiple sizes for different devices:
   - 16x16 (standard favicon)
@@ -23,10 +26,12 @@
   - Default shortcut icon
 
 #### 4. **App Icon** (`app/icon.png`)
+
 - **Updated**: Copied `newlogo.png` to `app/icon.png`
 - Used by Next.js for app icons and PWA
 
 #### 5. **Schema.org Metadata** (`app/layout.tsx`)
+
 - Already configured with logo URL: `https://drakonsports.com/newlogo.png` ✓
 - This helps Google and other search engines identify your brand logo
 
@@ -54,7 +59,7 @@ The logo will now appear in Google search results because:
 1. **Website Header**: Visit the homepage and check the centered logo in the navbar
 2. **Website Footer**: Scroll to the bottom and verify the logo in the footer
 3. **Browser Tab**: Check the favicon in your browser tab (may need hard refresh: Ctrl+F5)
-4. **Google Search**: 
+4. **Google Search**:
    - Google needs time to recrawl your site (usually 1-2 weeks)
    - Use Google Search Console to request re-indexing
    - Check "https://search.google.com/search-console" for faster updates
