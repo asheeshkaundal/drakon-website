@@ -35,11 +35,20 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Drakon Sports",
+    images: [
+      {
+        url: "/newlogo.png",
+        width: 1200,
+        height: 630,
+        alt: "Drakon Sports Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Drakon Sports - Premium Cricket Equipment",
     description: "Premium cricket equipment and exclusive experiences",
+    images: ["/newlogo.png"],
   },
   robots: {
     index: true,
