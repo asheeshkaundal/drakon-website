@@ -575,32 +575,32 @@ export default function FurSureLandingPage() {
               </div>
               <div className="grid grid-cols-2 gap-4 animate-fade-in-right">
                 <Image
-                  src="/premium-cricket-equipment.jpg"
+                  src="/cricket-bat-home -page.jpg"
                   alt="Premium Cricket Equipment"
                   width={300}
-                  height={200}
-                  className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300"
+                  height={300}
+                  className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300 aspect-square w-full h-full"
                 />
                 <Image
-                  src="/custom-team-uniforms.jpg"
+                  src="/your-name-jersey.jpg"
                   alt="Custom Team Uniforms"
                   width={300}
-                  height={200}
-                  className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300"
+                  height={300}
+                  className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300 aspect-square w-full h-full"
                 />
                 <Image
                   src="/sustainable-manufacturing.jpg"
                   alt="Sustainable Manufacturing"
                   width={300}
-                  height={200}
-                  className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300"
+                  height={300}
+                  className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300 aspect-square w-full h-full"
                 />
                 <Image
-                  src="/professional-athletes.jpg"
+                  src="/drakon-gloves.jpg"
                   alt="Professional Athletes"
                   width={300}
-                  height={200}
-                  className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300"
+                  height={300}
+                  className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300 aspect-square w-full h-full"
                 />
               </div>
             </div>

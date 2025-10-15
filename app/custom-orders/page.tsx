@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Footer } from "@/components/footer";
+import { Navbar } from "@/components/navbar";
 
 export default function CustomOrderPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,12 +40,8 @@ export default function CustomOrderPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header Placeholder */}
-      <div className="bg-gray-200 h-20 flex items-center justify-center border-b-4 border-red-600">
-        <p className="text-gray-600 font-semibold">
-          Header Component Placeholder
-        </p>
-      </div>
+      {/* Header */}
+      <Navbar />
 
       {/* Hero Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
@@ -262,12 +260,8 @@ export default function CustomOrderPage() {
         </div>
       </div>
 
-      {/* Footer Placeholder */}
-      <div className="bg-gray-800 h-64 flex items-center justify-center">
-        <p className="text-gray-300 font-semibold">
-          Footer Component Placeholder
-        </p>
-      </div>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

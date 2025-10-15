@@ -323,7 +323,7 @@ export default function ContactUsPage() {
         {/* Background Pattern */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/premium-cricket-equipment.jpg"
+            src="/cricket bat home page.jpg"
             alt="Premium Cricket Equipment Background"
             fill
             className="object-cover object-center opacity-5"
