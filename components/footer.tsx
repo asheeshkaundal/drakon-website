@@ -23,7 +23,7 @@ export const Footer = () => {
           <div className="space-y-4">
             <div className="mb-4">
               <Image
-                src="/footer logo final.png"
+                src="/newlogo.png"
                 alt="Drakon Sports Logo"
                 width={180}
                 height={72}
