@@ -589,7 +589,7 @@ export default function FurSureLandingPage() {
                   className="border-2 border-light-silver object-cover hover:scale-105 transition-transform duration-300 aspect-square w-full h-full"
                 />
                 <Image
-                  src="/sustainable-manufacturing.jpg"
+                  src="/merge-home.jpg"
                   alt="Sustainable Manufacturing"
                   width={300}
                   height={300}

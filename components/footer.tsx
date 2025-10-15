@@ -21,14 +21,17 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
-            <div className="mb-4">
+            <div className="mb-4 relative inline-block">
               <Image
-                src="/footer logo final.png"
+                src="/footer-logo-final.png"
                 alt="Drakon Sports Logo"
                 width={180}
                 height={72}
                 className="h-[180px] w-auto object-contain"
               />
+              <span className="absolute bottom-8 -right-2 text-white text-xs font-semibold">
+                ™
+              </span>
             </div>
             <p className="text-silver-gray text-sm leading-relaxed max-w-xs">
               Your gateway into the rarest, most luxurious expressions of
