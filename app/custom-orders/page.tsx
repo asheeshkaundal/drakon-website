@@ -63,9 +63,6 @@ export default function CustomOrderPage() {
             tailored to your needs.
           </p>
           <div className="flex flex-wrap gap-4">
-            <button className="bg-white text-black px-8 py-4 font-bold hover:bg-gray-100 transition">
-              To the product overview
-            </button>
             <button className="bg-transparent border-2 border-white text-white px-8 py-4 font-bold hover:bg-white hover:text-red-600 transition">
               View our designs
             </button>
