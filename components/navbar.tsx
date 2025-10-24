@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -14,6 +16,7 @@ import {
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
+import { useCart } from "@/lib/cart-context";
 
 // Custom X (formerly Twitter) Icon Component
 const XIcon = ({ className }: { className?: string }) => (
@@ -28,6 +31,7 @@ const XIcon = ({ className }: { className?: string }) => (
 );
 
 export const Navbar = () => {
+  const { cartCount } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isRegionOpen, setIsRegionOpen] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("Region");
@@ -229,10 +233,12 @@ export const Navbar = () => {
                 aria-label="Shopping Cart"
               >
                 <ShoppingCart className="h-4 w-4" />
-                {/* Optional cart item count badge */}
-                <span className="absolute -top-1 -right-1 bg-cricket-red text-white text-xs rounded-full h-4 w-4 flex items-center justify-center text-[10px] font-bold">
-                  0
-                </span>
+                {/* Cart item count badge */}
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-cricket-red text-white text-xs rounded-full h-4 w-4 flex items-center justify-center text-[10px] font-bold">
+                    {cartCount}
+                  </span>
+                )}
               </Button>
 
               {/* Region Dropdown - Desktop only */}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { CartProvider } from "@/lib/cart-context";
 import "./globals.css";
 
 const inter = Inter({
@@ -104,8 +105,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        {children}
-        <Analytics />
+        <CartProvider>
+          {children}
+          <Analytics />
+        </CartProvider>
       </body>
     </html>
   );

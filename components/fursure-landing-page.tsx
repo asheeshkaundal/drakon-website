@@ -612,17 +612,20 @@ export default function FurSureLandingPage() {
           <div className="container px-4 md:px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-navy-blue mb-4 font-serif">
-                Our Premium Collection
+                Our Premium Ball Collection
               </h2>
               <p className="text-xl text-silver-gray max-w-2xl mx-auto">
-                Discover our curated selection of elite cricket equipment and
+                Discover our curated selection of elite cricket balls and
                 experiences
               </p>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
               {/* Premium Bats */}
-              <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
+              <Link
+                href="/premium-balls"
+                className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg"
+              >
                 <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src="/premium-cricket-bat.jpg"
@@ -645,10 +648,13 @@ export default function FurSureLandingPage() {
                   {/* Accent Corner */}
                   <div className="absolute top-3 right-3 w-2 h-2 bg-teal-blue transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-              </div>
+              </Link>
 
               {/* Custom Gear */}
-              <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
+              <Link
+                href="/custom-orders"
+                className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg"
+              >
                 <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src="/custom-cricket-gear-equipment.jpg"
@@ -671,10 +677,13 @@ export default function FurSureLandingPage() {
                   {/* Accent Corner */}
                   <div className="absolute top-3 right-3 w-2 h-2 bg-silver-gray transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-              </div>
+              </Link>
 
               {/* Stadium Experiences */}
-              <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
+              <Link
+                href="/coming-soon"
+                className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg"
+              >
                 <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src="/hero-slideshow/cricket-stadium-experience.jpg"
@@ -697,10 +706,13 @@ export default function FurSureLandingPage() {
                   {/* Accent Corner */}
                   <div className="absolute top-3 right-3 w-2 h-2 bg-cricket-red transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-              </div>
+              </Link>
 
               {/* Legacy Items */}
-              <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
+              <Link
+                href="/coming-soon"
+                className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg"
+              >
                 <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src="/vintage-cricket-legacy-items.jpg"
@@ -723,10 +735,13 @@ export default function FurSureLandingPage() {
                   {/* Accent Corner */}
                   <div className="absolute top-3 right-3 w-2 h-2 bg-wicket-green transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-              </div>
+              </Link>
 
               {/* Accessories */}
-              <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
+              <Link
+                href="/premium-balls"
+                className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg"
+              >
                 <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src="/cricket-accessories-gloves-pads.jpg"
@@ -749,10 +764,13 @@ export default function FurSureLandingPage() {
                   {/* Accent Corner */}
                   <div className="absolute top-3 right-3 w-2 h-2 bg-light-silver transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-              </div>
+              </Link>
 
               {/* Exclusive Kits */}
-              <div className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg">
+              <Link
+                href="/coming-soon"
+                className="group relative bg-white overflow-hidden transition-all duration-500 hover:scale-105 cursor-pointer shadow-lg hover:shadow-2xl rounded-lg"
+              >
                 <div className="aspect-[3/4] relative overflow-hidden">
                   <Image
                     src="/exclusive-cricket-team-kits-uniforms.jpg"
@@ -775,7 +793,7 @@ export default function FurSureLandingPage() {
                   {/* Accent Corner */}
                   <div className="absolute top-3 right-3 w-2 h-2 bg-cricket-red transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </section>
@@ -847,7 +865,7 @@ export default function FurSureLandingPage() {
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-silver-gray">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-cricket-red transform rotate-45"></div>
-                        <span>4+ Years of Excellence</span>
+                        <span>5+ Years of Excellence</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-teal-blue transform rotate-45"></div>

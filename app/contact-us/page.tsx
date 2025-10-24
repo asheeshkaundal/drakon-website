@@ -275,7 +275,7 @@ export default function ContactUsPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden animate-fade-in-up opacity-0 animation-delay-700 hover:shadow-xl transition-all duration-300">
               <div className="h-full min-h-[500px] relative">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13735.61715077478!2d76.32626685!3d31.89860645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391b155555555555%3A0x1234567890abcdef!2sJawalamukhi%2C%20Himachal%20Pradesh%20176031!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.1573752425447!2d77.0878179!3d28.409688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d229c3e5f6b3d%3A0x5e6c8e4c5e7c8e4c!2sSS%20Omnia%2C%20Sector%2086%2C%20Gurugram%2C%20Haryana%20122004!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0, minHeight: "500px" }}
