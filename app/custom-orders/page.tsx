@@ -44,36 +44,36 @@ export default function CustomOrderPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px] lg:min-h-[600px]">
         {/* Left Content */}
-        <div className="bg-red-600 text-white p-12 lg:p-16 flex flex-col justify-center">
-          <p className="text-sm font-semibold mb-4 tracking-wider">
+        <div className="bg-red-600 text-white p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+          <p className="text-xs sm:text-sm font-semibold mb-3 sm:mb-4 tracking-wider">
             FOR YOU AND YOUR TEAM
           </p>
-          <h1 className="text-6xl lg:text-7xl font-black mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 sm:mb-6 leading-tight">
             CUSTOMISED
             <br />
             CRICKET
             <br />
             EQUIPMENT
           </h1>
-          <p className="text-lg mb-8 max-w-xl">
+          <p className="text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 max-w-xl">
             Design professional-quality cricket equipment for yourself or your
             club. From jerseys to helmets, bats to balls - we create custom gear
             tailored to your needs.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <button className="bg-transparent border-2 border-white text-white px-8 py-4 font-bold hover:bg-white hover:text-red-600 transition">
+          <div className="flex flex-wrap gap-3 sm:gap-4">
+            <button className="bg-transparent border-2 border-white text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold hover:bg-white hover:text-red-600 transition">
               View our designs
             </button>
           </div>
         </div>
 
         {/* Right Image */}
-        <div className="bg-gray-900 flex items-center justify-center p-8 lg:p-16">
-          <div className="relative max-w-2xl">
+        <div className="bg-gray-900 flex items-center justify-center p-6 sm:p-8 lg:p-16">
+          <div className="relative max-w-2xl w-full">
             <img
-              src="https://via.placeholder.com/800x800/1e40af/ffffff?text=Custom+Cricket+Equipment+Front+%26+Back"
+              src="/custom-cricket-gear-equipment.jpg"
               alt="Custom Cricket Equipment"
               className="w-full h-auto rounded-lg shadow-2xl"
             />
@@ -82,60 +82,65 @@ export default function CustomOrderPage() {
       </div>
 
       {/* Features Banner */}
-      <div className="bg-black text-white py-6 overflow-hidden">
-        <div className="flex items-center justify-around text-sm lg:text-base font-bold whitespace-nowrap px-4">
-          <span>PROFESSIONAL QUALITY - 100% MADE IN INDIA</span>
-          <span className="text-yellow-400 mx-4">//</span>
-          <span>ALL PRINTING COSTS INCLUDED</span>
-          <span className="text-yellow-400 mx-4">//</span>
-          <span>FAST PRODUCTION & DELIVERY</span>
+      <div className="bg-black text-white py-4 sm:py-6 overflow-hidden">
+        <div className="flex flex-col sm:flex-row items-center justify-around text-xs sm:text-sm lg:text-base font-bold px-4 gap-2 sm:gap-0">
+          <span className="whitespace-nowrap">
+            PROFESSIONAL QUALITY - 100% MADE IN INDIA
+          </span>
+          <span className="text-yellow-400 mx-2 sm:mx-4 hidden sm:inline">
+            //
+          </span>
+          <span className="whitespace-nowrap">ALL PRINTING COSTS INCLUDED</span>
+          <span className="text-yellow-400 mx-2 sm:mx-4 hidden sm:inline">
+            //
+          </span>
+          <span className="whitespace-nowrap">FAST PRODUCTION & DELIVERY</span>
         </div>
       </div>
 
       {/* Inspiration Section with Carousel */}
-      <div className="py-16 px-4">
+      <div className="py-8 sm:py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <p className="text-center text-sm font-semibold mb-2 tracking-wider">
+          <p className="text-center text-xs sm:text-sm font-semibold mb-2 tracking-wider px-2">
             SIMPLY CLICK ON A DESIGN & CUSTOMISE IT WITHOUT OBLIGATION.
           </p>
-          <h2 className="text-center text-5xl lg:text-6xl font-black mb-12">
+          <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-8 sm:mb-12 px-2 leading-tight">
             NEED SOME INSPIRATION? TAKE A LOOK AT
-            <br />
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
             THESE EQUIPMENT DESIGNS
           </h2>
 
           {/* Carousel */}
-          <div className="relative px-16">
+          <div className="relative px-8 sm:px-12 md:px-16">
             {/* Navigation Buttons */}
             <button
               onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black text-white p-4 rounded-full hover:bg-gray-800 transition shadow-lg"
+              className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-10 bg-black text-white p-2 sm:p-3 md:p-4 rounded-full hover:bg-gray-800 transition shadow-lg"
               aria-label="Previous design"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
 
             <button
               onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black text-white p-4 rounded-full hover:bg-gray-800 transition shadow-lg"
+              className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-10 bg-black text-white p-2 sm:p-3 md:p-4 rounded-full hover:bg-gray-800 transition shadow-lg"
               aria-label="Next design"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
 
             {/* Carousel Items */}
             <div className="overflow-hidden">
-              <div className="flex gap-6">
+              <div className="flex gap-3 sm:gap-4 md:gap-6">
                 {getVisibleDesigns().map((design, index) => (
                   <div
                     key={`${design.id}-${index}`}
                     className={`flex-shrink-0 w-full md:w-1/2 lg:w-1/4 bg-gradient-to-b ${design.color} rounded-lg overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-all duration-300`}
                   >
-                    <div className="aspect-square flex items-center justify-center p-8">
+                    <div className="aspect-square flex items-center justify-center p-4 sm:p-6 md:p-8">
                       <img
-                        src={`https://via.placeholder.com/400x400/${
-                          design.dark ? "e5e7eb/000000" : "1e40af/ffffff"
-                        }?text=${design.name}`}
+                        src="/custom-team-uniforms.jpg"
                         alt={design.name}
                         className="w-full h-full object-contain"
                       />
@@ -146,13 +151,15 @@ export default function CustomOrderPage() {
             </div>
 
             {/* Dots Indicator */}
-            <div className="flex justify-center gap-2 mt-8">
+            <div className="flex justify-center gap-2 mt-6 sm:mt-8">
               {designs.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    currentIndex === index ? "bg-black w-8" : "bg-gray-300"
+                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all ${
+                    currentIndex === index
+                      ? "bg-black w-6 sm:w-8"
+                      : "bg-gray-300"
                   }`}
                   aria-label={`Go to design ${index + 1}`}
                 />
@@ -163,20 +170,21 @@ export default function CustomOrderPage() {
       </div>
 
       {/* Advantages Section */}
-      <div className="bg-gray-50 py-16 px-4">
+      <div className="bg-gray-50 py-8 sm:py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-center text-5xl lg:text-6xl font-black mb-16">
+          <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-8 sm:mb-12 md:mb-16 px-2 leading-tight">
             YOUR ADVANTAGES WITH
-            <br />
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
             CUSTOM CRICKET EQUIPMENT
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
             {/* Advantage 1 */}
             <div className="text-center">
-              <div className="w-32 h-32 mx-auto mb-6 border-4 border-black rounded-full flex items-center justify-center">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-4 sm:mb-6 border-3 sm:border-4 border-black rounded-full flex items-center justify-center">
                 <svg
-                  className="w-16 h-16"
+                  className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -189,10 +197,10 @@ export default function CustomOrderPage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-black mb-4">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-black mb-3 sm:mb-4 px-2">
                 WIDE RANGE OF PRODUCTS
               </h3>
-              <p className="text-gray-700">
+              <p className="text-sm sm:text-base text-gray-700 px-2">
                 You can design a lot more than just jerseys. We also have
                 helmets, bats, balls, pads, gloves and more cricket equipment.
               </p>
@@ -200,9 +208,9 @@ export default function CustomOrderPage() {
 
             {/* Advantage 2 */}
             <div className="text-center">
-              <div className="w-32 h-32 mx-auto mb-6 border-4 border-black rounded-full flex items-center justify-center">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-4 sm:mb-6 border-3 sm:border-4 border-black rounded-full flex items-center justify-center">
                 <svg
-                  className="w-16 h-16"
+                  className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -215,18 +223,20 @@ export default function CustomOrderPage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-black mb-4">FROM 1 PIECE</h3>
-              <p className="text-gray-700">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-black mb-3 sm:mb-4 px-2">
+                FROM 1 PIECE
+              </h3>
+              <p className="text-sm sm:text-base text-gray-700 px-2">
                 We produce almost every item without minimum order quantity and
                 guarantee you your last price for reorders.
               </p>
             </div>
 
             {/* Advantage 3 */}
-            <div className="text-center">
-              <div className="w-32 h-32 mx-auto mb-6 border-4 border-black rounded-full flex items-center justify-center">
+            <div className="text-center sm:col-span-2 md:col-span-1">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-4 sm:mb-6 border-3 sm:border-4 border-black rounded-full flex items-center justify-center">
                 <svg
-                  className="w-16 h-16"
+                  className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -240,8 +250,10 @@ export default function CustomOrderPage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-black mb-4">NO ADDITIONAL COSTS</h3>
-              <p className="text-gray-700">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-black mb-3 sm:mb-4 px-2">
+                NO ADDITIONAL COSTS
+              </h3>
+              <p className="text-sm sm:text-base text-gray-700 px-2">
                 All printing costs are included, no matter how many different
                 elements you include on your equipment.
               </p>
@@ -249,8 +261,8 @@ export default function CustomOrderPage() {
           </div>
 
           {/* Contact Button */}
-          <div className="text-center mt-12">
-            <button className="bg-black text-white px-12 py-4 text-lg font-bold hover:bg-gray-800 transition">
+          <div className="text-center mt-8 sm:mt-10 md:mt-12">
+            <button className="bg-black text-white px-8 sm:px-10 md:px-12 py-3 sm:py-4 text-base sm:text-lg font-bold hover:bg-gray-800 transition">
               Contact Us
             </button>
           </div>
