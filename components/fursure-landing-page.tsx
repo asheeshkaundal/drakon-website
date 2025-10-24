@@ -236,7 +236,7 @@ export default function FurSureLandingPage() {
                   className="bg-teal-blue text-white shadow-2xl px-8 py-4 text-lg font-semibold border-2 border-transparent hover:border-white/20 transition-all duration-300 hover:scale-105 hover:bg-teal-blue/80"
                   asChild
                 >
-                  <Link href="/coming-soon">Explore Collection</Link>
+                  <Link href="/premium-balls">Explore Collection</Link>
                 </Button>
                 <Button
                   size="lg"

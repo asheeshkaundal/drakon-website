@@ -182,6 +182,15 @@ export const Navbar = () => {
                 <Search className="h-5 w-5" />
               </Button>
 
+              {/* Products Button - Desktop only */}
+              <Link
+                href="/premium-balls"
+                className="hidden md:block text-sm px-3 py-2 font-medium text-navy-blue hover:text-teal-blue transition-colors duration-200"
+              >
+                Drakon Store
+              </Link>
+              <div className="hidden md:block w-px h-5 bg-gray-300"></div>
+
               <Link
                 href="/about"
                 className="hidden md:block text-sm px-3 py-2 font-medium text-navy-blue hover:text-teal-blue transition-colors duration-200"
@@ -195,16 +204,6 @@ export const Navbar = () => {
               >
                 Contact Us
               </Link>
-              <div className="hidden md:block w-px h-5 bg-gray-300"></div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="hidden md:flex p-2 hover:bg-gray-100 text-navy-blue hover:text-teal-blue transition-colors duration-200"
-                aria-label="Search"
-              >
-                <Search className="h-4 w-4" />
-              </Button>
             </div>
 
             {/* Centered Logo */}
@@ -223,8 +222,19 @@ export const Navbar = () => {
               />
             </Link>
 
-            {/* Right Navigation - Cart + Region Dropdown + Mobile Menu */}
+            {/* Right Navigation - Search + Cart + Region Dropdown + Mobile Menu */}
             <div className="flex items-center gap-2 ml-auto">
+              {/* Search Button - Desktop only */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="hidden md:flex p-2 hover:bg-gray-100 text-navy-blue hover:text-teal-blue transition-colors duration-200"
+                aria-label="Search"
+              >
+                <Search className="h-4 w-4" />
+              </Button>
+
               {/* Cart Button - Always visible */}
               <Button
                 variant="ghost"
