@@ -217,7 +217,7 @@ export default function PremiumBallsPage() {
                         {ball.price}
                       </span>
                     </div>
-                    
+
                     {/* Quantity Controls or Add to Cart */}
                     {cartItems.find((item) => item.id === ball.id) ? (
                       <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2">
