@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Star, Check, Plus, Minus } from "lucide-react";
+import { ShoppingCart, Star, Check, Plus, Minus, Disc } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
 
 export default function PremiumBallsPage() {
@@ -18,7 +18,8 @@ export default function PremiumBallsPage() {
       id: 1,
       name: "T-20 Red Ball",
       category: "t20",
-      price: "₹2,499",
+      original_Price: 1699,
+      discount_Percentage: 70,
       image: "/T20-RedBack.jpg",
       rating: 5,
       description: "Professional grade red leather ball for test matches",
@@ -32,7 +33,8 @@ export default function PremiumBallsPage() {
       id: 2,
       name: "T-20 White Ball",
       category: "t20",
-      price: "₹2,199",
+      original_Price: 1799,
+      discount_Percentage: 72,
       image: "/T20-WhiteBack.jpg",
       rating: 5,
       description: "Premium white ball for one-day internationals",
@@ -42,7 +44,8 @@ export default function PremiumBallsPage() {
       id: 3,
       name: "Tournament Red Ball",
       category: "tournament",
-      price: "₹1,999",
+      original_Price: 1799,
+      discount_Percentage: 68,
       image: "/Tournament-RedFront.png",
       rating: 4,
       description: "High-performance ball for T20 cricket",
@@ -52,7 +55,8 @@ export default function PremiumBallsPage() {
       id: 4,
       name: "Tournament White Ball",
       category: "tournament",
-      price: "₹899",
+      original_Price: 1899,
+      discount_Percentage: 68,
       image: "/Tournament-WhiteBack.jpg",
       rating: 4,
       description: "Durable practice ball for training sessions",
@@ -62,7 +66,8 @@ export default function PremiumBallsPage() {
       id: 5,
       name: "Practice Red Ball",
       category: "practice",
-      price: "₹499",
+      original_Price: 535,
+      discount_Percentage: 30,
       image: "/Practice-RedFront.png",
       rating: 4,
       description: "Heavy tennis ball for street cricket",
@@ -72,7 +77,8 @@ export default function PremiumBallsPage() {
       id: 6,
       name: "Practice White Ball",
       category: "practice",
-      price: "₹1,299",
+      original_Price: 650,
+      discount_Percentage: 30,
       image: "/Practice-WhiteBack.jpg",
       rating: 4,
       description: "Quality leather ball for regular practice",
@@ -91,7 +97,18 @@ export default function PremiumBallsPage() {
     selectedCategory === "all"
       ? balls
       : balls.filter((ball) => ball.category === selectedCategory);
+  
+  const formatPrice = (value: number) =>
+    new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      maximumFractionDigits: 0,
+    }).format(Math.round(value));
+  
+  const getDiscountedPrice = (original: number, discountPct: number) =>
+    Math.round(original * (1 - (discountPct || 0) / 100));
 
+  
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
@@ -209,13 +226,29 @@ export default function PremiumBallsPage() {
                     ))}
                   </ul>
 
-                  {/* Price & Button */}
+                  {/* Price Section */}
                   <div className="pt-4 border-t space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-cricket-red">
-                        {ball.price}
-                      </span>
+                      <div className="flex items-baseline gap-3">
+                        <span className="text-2xl font-bold text-cricket-red">
+                          {formatPrice(
+                            getDiscountedPrice(ball.original_Price ?? 0, ball.discount_Percentage ?? 0)
+                          )}
+                        </span>
+
+                        <span className="text-sm text-gray-500 line-through">
+                          M.R.P.: {formatPrice(ball.original_Price ?? 0)}
+                        </span>
+
+                        {ball.discount_Percentage > 0 && (
+                          <span className="text-sm font-medium text-green-600">
+                            -{ball.discount_Percentage}%
+                          </span>
+                        )}
+                      </div>
                     </div>
+                  </div>
+
 
                     {/* Quantity Controls or Add to Cart */}
                     {cartItems.find((item) => item.id === ball.id) ? (
@@ -278,8 +311,11 @@ export default function PremiumBallsPage() {
                           addToCart({
                             id: ball.id,
                             name: ball.name,
-                            price: ball.price,
-                            image: ball.image,
+                            price: getDiscountedPrice(
+                              ball.original_Price ?? 0,
+                              ball.discount_Percentage ?? 0
+                            ),
+                            image : ball.image,
                           });
                           setAddedItems((prev) => ({
                             ...prev,
@@ -313,7 +349,6 @@ export default function PremiumBallsPage() {
                     )}
                   </div>
                 </div>
-              </div>
             ))}
           </div>
         </div>
