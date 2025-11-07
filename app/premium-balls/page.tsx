@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -23,11 +24,7 @@ export default function PremiumBallsPage() {
       image: "/T20-RedBack.jpg",
       rating: 5,
       description: "Professional grade red leather ball for test matches",
-      features: [
-        "4-piece construction",
-        "Alum tanned leather",
-        "Hand-stitched",
-      ],
+      features: ["4-piece construction", "Alum tanned leather", "Hand-stitched"],
     },
     {
       id: 2,
@@ -97,18 +94,17 @@ export default function PremiumBallsPage() {
     selectedCategory === "all"
       ? balls
       : balls.filter((ball) => ball.category === selectedCategory);
-  
+
   const formatPrice = (value: number) =>
     new Intl.NumberFormat("en-IN", {
       style: "currency",
       currency: "INR",
       maximumFractionDigits: 0,
     }).format(Math.round(value));
-  
+
   const getDiscountedPrice = (original: number, discountPct: number) =>
     Math.round(original * (1 - (discountPct || 0) / 100));
 
-  
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
@@ -173,60 +169,60 @@ export default function PremiumBallsPage() {
                 key={ball.id}
                 className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
               >
-                {/* Image */}
-                <div className="relative h-64 bg-gray-100 overflow-hidden">
-                  <Image
-                    src={ball.image}
-                    alt={ball.name}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 right-4 bg-cricket-red text-white px-3 py-1 rounded-full text-sm font-bold">
-                    NEW
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  {/* Rating */}
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-4 h-4 ${
-                          i < ball.rating
-                            ? "fill-yellow-400 text-yellow-400"
-                            : "fill-gray-200 text-gray-200"
-                        }`}
-                      />
-                    ))}
-                    <span className="text-sm text-gray-600 ml-2">
-                      ({ball.rating}.0)
-                    </span>
+                {/* Clickable area (navigates to detail) */}
+                <Link
+                  href={`/premium-balls/${ball.id}`}
+                  className="block"
+                >
+                  {/* Image */}
+                  <div className="relative h-64 bg-gray-100 overflow-hidden">
+                    <Image
+                      src={ball.image}
+                      alt={ball.name}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 right-4 bg-cricket-red text-white px-3 py-1 rounded-full text-sm font-bold">
+                      NEW
+                    </div>
                   </div>
 
-                  {/* Name & Price */}
-                  <h3 className="text-xl font-bold text-navy-blue mb-2 group-hover:text-cricket-red transition-colors">
-                    {ball.name}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    {ball.description}
-                  </p>
+                  {/* Primary content */}
+                  <div className="p-6">
+                    {/* Rating */}
+                    <div className="flex items-center gap-1 mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-4 h-4 ${
+                            i < ball.rating
+                              ? "fill-yellow-400 text-yellow-400"
+                              : "fill-gray-200 text-gray-200"
+                          }`}
+                        />
+                      ))}
+                      <span className="text-sm text-gray-600 ml-2">({ball.rating}.0)</span>
+                    </div>
 
-                  {/* Features */}
-                  <ul className="space-y-2 mb-4">
-                    {ball.features.map((feature, index) => (
-                      <li
-                        key={index}
-                        className="flex items-center text-sm text-gray-600"
-                      >
-                        <div className="w-1.5 h-1.5 bg-teal-blue rounded-full mr-2"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                    {/* Name & short */}
+                    <h3 className="text-xl font-bold text-navy-blue mb-2 group-hover:text-cricket-red transition-colors">
+                      {ball.name}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">{ball.description}</p>
 
-                  {/* Price Section */}
+                    <ul className="space-y-2 mb-4">
+                      {ball.features.map((feature, index) => (
+                        <li key={index} className="flex items-center text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 bg-teal-blue rounded-full mr-2"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Link>
+
+                {/* Price + Cart controls (outside Link so buttons don't navigate) */}
+                <div className="p-6 pt-0">
                   <div className="pt-4 border-t space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-baseline gap-3">
@@ -241,114 +237,87 @@ export default function PremiumBallsPage() {
                         </span>
 
                         {ball.discount_Percentage > 0 && (
-                          <span className="text-sm font-medium text-green-600">
-                            -{ball.discount_Percentage}%
-                          </span>
+                          <span className="text-sm font-medium text-green-600">-{ball.discount_Percentage}%</span>
                         )}
                       </div>
                     </div>
                   </div>
 
-
-                    {/* Quantity Controls or Add to Cart */}
-                    {cartItems.find((item) => item.id === ball.id) ? (
-                      <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2">
-                        <span className="text-sm font-medium text-gray-600">
-                          Quantity:
-                        </span>
-                        <div className="flex items-center gap-2">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => {
-                              const currentItem = cartItems.find(
-                                (item) => item.id === ball.id
-                              );
-                              if (currentItem) {
-                                if (currentItem.quantity > 1) {
-                                  updateQuantity(
-                                    ball.id,
-                                    currentItem.quantity - 1
-                                  );
-                                } else {
-                                  removeFromCart(ball.id);
-                                }
+                  {/* Quantity Controls or Add to Cart */}
+                  {cartItems.find((item) => item.id === ball.id) ? (
+                    <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2 mt-3">
+                      <span className="text-sm font-medium text-gray-600">Quantity:</span>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            const currentItem = cartItems.find((item) => item.id === ball.id);
+                            if (currentItem) {
+                              if (currentItem.quantity > 1) {
+                                updateQuantity(ball.id, currentItem.quantity - 1);
+                              } else {
+                                removeFromCart(ball.id);
                               }
-                            }}
-                            className="h-8 w-8 p-0 border-navy-blue text-navy-blue hover:bg-navy-blue hover:text-white"
-                          >
-                            <Minus className="h-4 w-4" />
-                          </Button>
-                          <span className="text-lg font-bold text-navy-blue min-w-[2rem] text-center">
-                            {
-                              cartItems.find((item) => item.id === ball.id)
-                                ?.quantity
                             }
-                          </span>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => {
-                              const currentItem = cartItems.find(
-                                (item) => item.id === ball.id
-                              );
-                              if (currentItem) {
-                                updateQuantity(
-                                  ball.id,
-                                  currentItem.quantity + 1
-                                );
-                              }
-                            }}
-                            className="h-8 w-8 p-0 border-teal-blue text-teal-blue hover:bg-teal-blue hover:text-white"
-                          >
-                            <Plus className="h-4 w-4" />
-                          </Button>
-                        </div>
+                          }}
+                          className="h-8 w-8 p-0 border-navy-blue text-navy-blue hover:bg-navy-blue hover:text-white"
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+
+                        <span className="text-lg font-bold text-navy-blue min-w-[2rem] text-center">
+                          {cartItems.find((item) => item.id === ball.id)?.quantity}
+                        </span>
+
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            const currentItem = cartItems.find((item) => item.id === ball.id);
+                            if (currentItem) {
+                              updateQuantity(ball.id, currentItem.quantity + 1);
+                            }
+                          }}
+                          className="h-8 w-8 p-0 border-teal-blue text-teal-blue hover:bg-teal-blue hover:text-white"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </Button>
                       </div>
-                    ) : (
-                      <Button
-                        onClick={() => {
-                          addToCart({
-                            id: ball.id,
-                            name: ball.name,
-                            price: getDiscountedPrice(
-                              ball.original_Price ?? 0,
-                              ball.discount_Percentage ?? 0
-                            ),
-                            image : ball.image,
-                          });
-                          setAddedItems((prev) => ({
-                            ...prev,
-                            [ball.id]: true,
-                          }));
-                          setTimeout(() => {
-                            setAddedItems((prev) => ({
-                              ...prev,
-                              [ball.id]: false,
-                            }));
-                          }, 2000);
-                        }}
-                        className={`w-full transition-all duration-300 ${
-                          addedItems[ball.id]
-                            ? "bg-green-600 hover:bg-green-700"
-                            : "bg-navy-blue hover:bg-teal-blue"
-                        } text-white`}
-                      >
-                        {addedItems[ball.id] ? (
-                          <>
-                            <Check className="w-4 h-4 mr-2" />
-                            Added!
-                          </>
-                        ) : (
-                          <>
-                            <ShoppingCart className="w-4 h-4 mr-2" />
-                            Add to Cart
-                          </>
-                        )}
-                      </Button>
-                    )}
-                  </div>
+                    </div>
+                  ) : (
+                    <Button
+                      onClick={() => {
+                        addToCart({
+                          id: ball.id,
+                          name: ball.name,
+                          price: getDiscountedPrice(ball.original_Price ?? 0, ball.discount_Percentage ?? 0),
+                          image: ball.image,
+                        });
+                        setAddedItems((prev) => ({ ...prev, [ball.id]: true }));
+                        setTimeout(() => {
+                          setAddedItems((prev) => ({ ...prev, [ball.id]: false }));
+                        }, 2000);
+                      }}
+                      className={`w-full transition-all duration-300 mt-3 ${
+                        addedItems[ball.id] ? "bg-green-600 hover:bg-green-700" : "bg-navy-blue hover:bg-teal-blue"
+                      } text-white`}
+                    >
+                      {addedItems[ball.id] ? (
+                        <>
+                          <Check className="w-4 h-4 mr-2" />
+                          Added!
+                        </>
+                      ) : (
+                        <>
+                          <ShoppingCart className="w-4 h-4 mr-2" />
+                          Add to Cart
+                        </>
+                      )}
+                    </Button>
+                  )}
                 </div>
+              </div>
             ))}
           </div>
         </div>
@@ -364,79 +333,34 @@ export default function PremiumBallsPage() {
             {/* Feature 1 */}
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-cricket-red/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-8 h-8 text-cricket-red"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
+                <svg className="w-8 h-8 text-cricket-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-navy-blue">
-                Match Quality
-              </h3>
-              <p className="text-gray-600">
-                All our balls meet international cricket standards and are used
-                in professional matches
-              </p>
+              <h3 className="text-xl font-bold mb-3 text-navy-blue">Match Quality</h3>
+              <p className="text-gray-600">All our balls meet international cricket standards and are used in professional matches</p>
             </div>
 
             {/* Feature 2 */}
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-teal-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-8 h-8 text-teal-blue"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-                  />
+                <svg className="w-8 h-8 text-teal-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-navy-blue">
-                Premium Materials
-              </h3>
-              <p className="text-gray-600">
-                Crafted from finest leather and cork, ensuring durability and
-                consistent performance
-              </p>
+              <h3 className="text-xl font-bold mb-3 text-navy-blue">Premium Materials</h3>
+              <p className="text-gray-600">Crafted from finest leather and cork, ensuring durability and consistent performance</p>
             </div>
 
             {/* Feature 3 */}
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-wicket-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-8 h-8 text-wicket-green"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
+                <svg className="w-8 h-8 text-wicket-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-navy-blue">
-                Expert Craftsmanship
-              </h3>
-              <p className="text-gray-600">
-                Hand-stitched by experienced craftsmen with decades of
-                ball-making expertise
-              </p>
+              <h3 className="text-xl font-bold mb-3 text-navy-blue">Expert Craftsmanship</h3>
+              <p className="text-gray-600">Hand-stitched by experienced craftsmen with decades of ball-making expertise</p>
             </div>
           </div>
         </div>
