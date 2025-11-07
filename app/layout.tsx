@@ -4,6 +4,33 @@ import { Analytics } from "@vercel/analytics/next";
 import { CartProvider } from "@/lib/cart-context";
 import "./globals.css";
 
+export const metadata = {
+  title: "Drakon Sports - Premium Cricket Equipment & Experiences",
+  description:
+    "Discover premium cricket equipment, bespoke gear, and exclusive cricket experiences with Drakon Sports.",
+
+  openGraph: {
+    title: "Drakon Sports - Premium Cricket Equipment & Experiences",
+    description:
+      "Discover premium cricket equipment, bespoke gear, and exclusive cricket experiences with Drakon Sports.",
+    url: "https://drakonsports.com",
+    siteName: "Drakon Sports",
+    images: [
+      {
+        url: "/footer-logo-final.png", // replace with your image
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    images: ["/footer-logo-final.png"], // replace
+  },
+};
+
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -14,82 +41,7 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Drakon Sports | Premium Cricket Equipment & Custom Gear in India",
-  description:
-    "Leading provider of premium cricket equipment in India. Shop custom-made cricket bats, professional gear, and exclusive cricket experiences. Expert craftsmanship meets performance excellence at Drakon Sports.",
-  keywords: [
-    "cricket equipment India",
-    "premium cricket gear",
-    "custom cricket bats",
-    "cricket bat India",
-    "professional cricket equipment",
-    "cricket accessories",
-    "bespoke cricket gear",
-    "cricket experiences",
-    "Drakon Sports",
-    "cricket ball India",
-  ],
-  authors: [{ name: "Drakon Sports" }],
-  creator: "Drakon Sports",
-  publisher: "Drakon Sports",
-  metadataBase: new URL("https://www.drakonsports.com"),
-  alternates: {
-    canonical: "https://www.drakonsports.com",
-  },
-  openGraph: {
-    title: "Drakon Sports | Premium Cricket Equipment & Custom Gear in India",
-    description:
-      "Leading provider of premium cricket equipment in India. Shop custom-made cricket bats, professional gear, and exclusive cricket experiences.",
-    type: "website",
-    url: "https://www.drakonsports.com",
-    locale: "en_IN",
-    siteName: "Drakon Sports",
-    images: [
-      {
-        url: "/footer-logo-final.png",
-        width: 1200,
-        height: 630,
-        alt: "Drakon Sports - Premium Cricket Equipment India",
-        type: "image/png",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@drakon_sports",
-    creator: "@drakon_sports",
-    title: "Drakon Sports | Premium Cricket Equipment & Custom Gear in India",
-    description:
-      "Leading provider of premium cricket equipment in India. Shop custom-made cricket bats, professional gear, and exclusive experiences.",
-    images: ["/footer-logo-final.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  verification: {
-    google: "your-google-verification-code-here",
-  },
-  icons: {
-    icon: [
-      { url: "/footer-logo-final.png", type: "image/png" },
-      { url: "/footer-logo-final.png", sizes: "32x32", type: "image/png" },
-      { url: "/footer-logo-final.png", sizes: "16x16", type: "image/png" },
-    ],
-    apple: [
-      { url: "/footer-logo-final.png", sizes: "180x180", type: "image/png" },
-    ],
-    shortcut: "/footer-logo-final.png",
-  },
-};
+
 
 export default function RootLayout({
   children,
