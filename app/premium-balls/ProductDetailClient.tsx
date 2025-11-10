@@ -35,8 +35,10 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
   const { addToCart, cartItems, updateQuantity, removeFromCart } = useCart();
   const [added, setAdded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showLimitMessage, setShowLimitMessage] = useState(false);
 
   const carouselImages = ball.images || [ball.image];
+  const MAX_QUANTITY = 50;
 
   // Check if item is in cart and get its quantity
   const cartItem = cartItems.find((item) => item.id === ball.id);
@@ -63,6 +65,15 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
 
   const goToSlide = (index: number) => {
     setCurrentImageIndex(index);
+  };
+
+  const handleIncreaseQuantity = () => {
+    if (itemQuantity >= MAX_QUANTITY) {
+      setShowLimitMessage(true);
+      setTimeout(() => setShowLimitMessage(false), 3000);
+      return;
+    }
+    updateQuantity(ball.id, itemQuantity + 1);
   };
 
   const discountedPrice = Math.round(
@@ -225,6 +236,16 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
               {/* Add to Cart / Quantity Controls */}
               {cartItem ? (
                 <div className="space-y-4">
+                  {/* Limit Warning Message */}
+                  {showLimitMessage && (
+                    <div className="bg-red-50 border-2 border-red-500 text-red-700 px-4 py-3 rounded-lg animate-pulse">
+                      <p className="font-semibold text-sm">
+                        ⚠️ Cannot add more items! Maximum quantity limit is{" "}
+                        {MAX_QUANTITY} per product.
+                      </p>
+                    </div>
+                  )}
+
                   {/* Quantity Controls */}
                   <div className="flex items-center justify-between bg-gray-50 rounded-lg p-4 border-2 border-navy-blue">
                     <span className="text-sm font-semibold text-gray-700">
@@ -251,14 +272,22 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
                       <Button
                         size="sm"
                         variant="outline"
-                        onClick={() => {
-                          updateQuantity(ball.id, itemQuantity + 1);
-                        }}
-                        className="h-10 w-10 p-0 border-2 border-teal-blue text-teal-blue hover:bg-teal-blue hover:text-white transition-all"
+                        onClick={handleIncreaseQuantity}
+                        disabled={itemQuantity >= MAX_QUANTITY}
+                        className={`h-10 w-10 p-0 border-2 transition-all ${
+                          itemQuantity >= MAX_QUANTITY
+                            ? "border-gray-300 text-gray-300 cursor-not-allowed opacity-50"
+                            : "border-teal-blue text-teal-blue hover:bg-teal-blue hover:text-white"
+                        }`}
                       >
                         <Plus className="h-5 w-5" />
                       </Button>
                     </div>
+                  </div>
+
+                  {/* Quantity Indicator */}
+                  <div className="text-xs text-gray-500 text-center">
+                    {itemQuantity} / {MAX_QUANTITY} items
                   </div>
 
                   {/* Subtotal */}
