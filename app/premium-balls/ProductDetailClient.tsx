@@ -1,10 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Star, Check, ArrowLeft } from "lucide-react";
+import {
+  ShoppingCart,
+  Star,
+  Check,
+  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
+  Plus,
+  Minus,
+  Trash2,
+} from "lucide-react";
 import { useCart } from "@/lib/cart-context";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -15,17 +25,22 @@ interface Ball {
   original_Price: number;
   discount_Percentage: number;
   image: string;
+  images?: string[];
   rating: number;
   description: string;
   features: string[];
 }
 
 export default function ProductDetailClient({ ball }: { ball: Ball }) {
-  const { addToCart } = useCart();
+  const { addToCart, cartItems, updateQuantity, removeFromCart } = useCart();
   const [added, setAdded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const carouselImages = ball.image || [ball.image];
+  const carouselImages = ball.images || [ball.image];
+
+  // Check if item is in cart and get its quantity
+  const cartItem = cartItems.find((item) => item.id === ball.id);
+  const itemQuantity = cartItem?.quantity || 0;
 
   // Auto-slide effect
   useEffect(() => {
@@ -64,12 +79,12 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       <main className="container mx-auto px-4 py-8 mt-16">
         {/* Breadcrumb */}
         <div className="mb-8">
-          <Link 
-            href="/premium-balls" 
+          <Link
+            href="/premium-balls"
             className="inline-flex items-center text-navy-blue hover:text-cricket-red transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -158,7 +173,7 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
                 <h1 className="text-3xl font-bold text-navy-blue mb-2">
                   {ball.name}
                 </h1>
-                
+
                 {/* Rating */}
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
@@ -194,9 +209,7 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-green-600">
-                  ✓ In stock
-                </p>
+                <p className="text-sm text-green-600">✓ In stock</p>
               </div>
 
               {/* Features */}
@@ -215,34 +228,98 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
                 </ul>
               </div>
 
-              {/* Add to Cart */}
-              <Button
-                onClick={() => {
-                  addToCart({
-                    id: ball.id,
-                    name: ball.name,
-                    price: discountedPrice,
-                    image: ball.image,
-                  });
-                  setAdded(true);
-                  setTimeout(() => setAdded(false), 2000);
-                }}
-                className={`w-full transition-all duration-300 ${
-                  added ? "bg-green-600 hover:bg-green-700" : "bg-navy-blue hover:bg-teal-blue"
-                } text-white`}
-              >
-                {added ? (
-                  <>
-                    <Check className="w-4 h-4 mr-2" />
-                    Added to Cart!
-                  </>
-                ) : (
-                  <>
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                    Add to Cart
-                  </>
-                )}
-              </Button>
+              {/* Add to Cart / Quantity Controls */}
+              {cartItem ? (
+                <div className="space-y-4">
+                  {/* Quantity Controls */}
+                  <div className="flex items-center justify-between bg-gray-50 rounded-lg p-4 border-2 border-navy-blue">
+                    <span className="text-sm font-semibold text-gray-700">
+                      Quantity:
+                    </span>
+                    <div className="flex items-center gap-3">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          if (itemQuantity > 1) {
+                            updateQuantity(ball.id, itemQuantity - 1);
+                          }
+                        }}
+                        className="h-10 w-10 p-0 border-2 border-navy-blue text-navy-blue hover:bg-navy-blue hover:text-white transition-all"
+                      >
+                        <Minus className="h-5 w-5" />
+                      </Button>
+
+                      <span className="text-2xl font-bold text-navy-blue min-w-[3rem] text-center">
+                        {itemQuantity}
+                      </span>
+
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          updateQuantity(ball.id, itemQuantity + 1);
+                        }}
+                        className="h-10 w-10 p-0 border-2 border-teal-blue text-teal-blue hover:bg-teal-blue hover:text-white transition-all"
+                      >
+                        <Plus className="h-5 w-5" />
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Subtotal */}
+                  <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
+                    <span className="text-sm font-semibold text-gray-700">
+                      Subtotal:
+                    </span>
+                    <span className="text-xl font-bold text-green-600">
+                      {formatPrice(discountedPrice * itemQuantity)}
+                    </span>
+                  </div>
+
+                  {/* Delete Button */}
+                  <Button
+                    onClick={() => {
+                      removeFromCart(ball.id);
+                    }}
+                    variant="outline"
+                    className="w-full border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300"
+                  >
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    Remove from Cart
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  onClick={() => {
+                    addToCart({
+                      id: ball.id,
+                      name: ball.name,
+                      price: discountedPrice,
+                      image: ball.image,
+                    });
+                    setAdded(true);
+                    setTimeout(() => setAdded(false), 2000);
+                  }}
+                  className={`w-full transition-all duration-300 ${
+                    added
+                      ? "bg-green-600 hover:bg-green-700"
+                      : "bg-navy-blue hover:bg-teal-blue"
+                  } text-white`}
+                >
+                  {added ? (
+                    <>
+                      <Check className="w-4 h-4 mr-2" />
+                      Added to Cart!
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      Add to Cart
+                    </>
+                  )}
+                </Button>
+              )}
             </div>
           </div>
         </div>
