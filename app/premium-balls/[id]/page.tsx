@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
-import ProductDetailClient from "../ProductDetailClient";
+import ProductDetailClient from "./AddToCartClient";
 
 interface Props {
   params: { id: string };
 }
 
-// ...existing code...
+
 const balls = [
   { id: 1, name: "T-20 Red Ball", original_Price: 1699, discount_Percentage: 70, image: "/T20-RedBack.jpg", rating: 5, description: "Professional grade red leather ball for test matches", features: ["4-piece construction","Alum tanned leather","Hand-stitched"] },
   { id: 2, name: "T-20 White Ball", original_Price: 1799, discount_Percentage: 72, image: "/T20-WhiteBack.jpg", rating: 5, description: "Premium white ball for one-day internationals", features: ["Enhanced visibility","Consistent seam","Superior grip"] },
