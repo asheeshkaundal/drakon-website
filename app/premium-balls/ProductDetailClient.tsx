@@ -25,7 +25,7 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
   const [added, setAdded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const carouselImages = ball.images || [ball.image];
+  const carouselImages = ball.image || [ball.image];
 
   // Auto-slide effect
   useEffect(() => {
