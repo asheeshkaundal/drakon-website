@@ -194,9 +194,6 @@ export default function PremiumBallsPage() {
                       fill
                       className="object-cover transition-all duration-500 ease-in-out"
                     />
-                    <div className="absolute top-4 right-4 bg-cricket-red text-white px-3 py-1 rounded-full text-sm font-bold">
-                      NEW
-                    </div>
                   </div>
 
                   {/* Primary content */}

@@ -113,9 +113,6 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
               height={900}
               className="object-cover w-full h-[420px] sm:h-[520px] transition-transform duration-300"
             />
-            <div className="absolute top-4 right-4 bg-cricket-red text-white px-3 py-1 rounded-full text-sm font-bold">
-              NEW
-            </div>
           </div>
 
           {/* Thumbnails */}

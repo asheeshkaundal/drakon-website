@@ -104,12 +104,6 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
                   fill
                   className="object-cover transition-opacity duration-500"
                 />
-
-                {/* NEW Badge */}
-                <div className="absolute top-4 right-4 bg-cricket-red text-white px-3 py-1 rounded-full text-sm font-bold z-10">
-                  NEW
-                </div>
-
                 {/* Navigation Arrows */}
                 <button
                   onClick={goToPrevious}
