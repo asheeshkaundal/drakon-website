@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
-import ProductDetailClient from "./AddToCartClient";
+import ProductDetailClient from "../ProductDetailClient";
 
 interface Props {
   params: { id: string };
 }
 
-
+// ...existing code...
 const balls = [
   {
     id: 1,
@@ -15,8 +15,8 @@ const balls = [
     image: "/T20-RedBack.jpg",
     images: [
       "/T20-RedBack.jpg",
-      "/front-t20.jpg",
       "/seam-t20.jpg",
+      "/front-t20.jpg",
       "/t-20 pack.jpg",
     ],
     rating: 5,

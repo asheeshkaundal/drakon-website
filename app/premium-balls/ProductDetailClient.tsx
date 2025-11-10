@@ -35,11 +35,11 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
 
   const carouselImages = ball.images || [ball.image];
 
-  // Auto-slide effect
+  // Auto-slide every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
-    }, 3000); // Change image every 3 seconds
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [carouselImages.length]);
@@ -89,8 +89,8 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
           <div className="grid md:grid-cols-2 gap-8 p-6">
             {/* Left: Image Carousel */}
             <div className="relative">
-              {/* Main Image Container */}
               <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden group">
+                {/* Main Image */}
                 <Image
                   src={carouselImages[currentImageIndex]}
                   alt={`${ball.name} - Image ${currentImageIndex + 1}`}
@@ -106,30 +106,30 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
                 {/* Navigation Arrows */}
                 <button
                   onClick={goToPrevious}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-navy-blue rounded-full p-2 shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 z-10"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-navy-blue rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg z-10"
                   aria-label="Previous image"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-5 h-5" />
                 </button>
 
                 <button
                   onClick={goToNext}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-navy-blue rounded-full p-2 shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 z-10"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-navy-blue rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg z-10"
                   aria-label="Next image"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-5 h-5" />
                 </button>
 
-                {/* Dot Indicators */}
+                {/* Dots Navigation */}
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                   {carouselImages.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => goToSlide(index)}
-                      className={`transition-all duration-300 rounded-full ${
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
                         index === currentImageIndex
-                          ? "bg-cricket-red w-8 h-2"
-                          : "bg-white/60 hover:bg-white/80 w-2 h-2"
+                          ? "bg-cricket-red w-8"
+                          : "bg-white/60 hover:bg-white"
                       }`}
                       aria-label={`Go to image ${index + 1}`}
                     />
@@ -137,16 +137,16 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
                 </div>
               </div>
 
-              {/* Thumbnail Strip */}
-              <div className="flex gap-2 mt-4 overflow-x-auto">
+              {/* Thumbnail Navigation */}
+              <div className="grid grid-cols-4 gap-2 mt-4">
                 {carouselImages.map((img, index) => (
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                    className={`relative h-20 bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                       index === currentImageIndex
-                        ? "border-cricket-red shadow-lg scale-105"
-                        : "border-gray-200 hover:border-gray-400"
+                        ? "border-cricket-red scale-105"
+                        : "border-transparent hover:border-gray-300"
                     }`}
                   >
                     <Image
