@@ -188,7 +188,7 @@ export const Footer = () => {
               <li className="text-silver-gray">
                 Email: asheesh.kaundal@drakonsports.com
               </li>
-              <li className="text-silver-gray">Phone: +91-8888813841</li>
+              <li className="text-silver-gray">Phone: +91-9717124149</li>
               <li className="text-silver-gray">
                 <div>Sales & Communication:</div>
                 <div>FF-69, First Floor, SS Omnia</div>

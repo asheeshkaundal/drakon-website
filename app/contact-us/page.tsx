@@ -261,7 +261,7 @@ export default function ContactUsPage() {
                         Contact Information
                       </h3>
                       <p className="text-sm sm:text-base text-gray-600">
-                        +91-8888813841
+                        +91-9717124149
                         <br />
                         asheesh.kaundal@drakonsports.com
                       </p>
