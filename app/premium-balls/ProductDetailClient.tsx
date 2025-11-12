@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   ShoppingCart,
@@ -33,6 +34,7 @@ interface Ball {
 
 export default function ProductDetailClient({ ball }: { ball: Ball }) {
   const { addToCart, cartItems, updateQuantity, removeFromCart } = useCart();
+  const router = useRouter();
   const [added, setAdded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showLimitMessage, setShowLimitMessage] = useState(false);
@@ -301,18 +303,25 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
                   </div>
 
                   {/* Delete Button */}
-                  <Button
-                    onClick={() => {
-                      removeFromCart(ball.id);
-                    }}
-                    variant="outline"
-                    className="w-full border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300"
-                  >
-                    <Trash2 className="w-4 h-4 mr-2" />
-                    Remove from Cart
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button
+                      onClick={() => {
+                        removeFromCart(ball.id);
+                      }}
+                      variant="outline"
+                      className="flex-1 border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300"
+                    >
+                      <Trash2 className="w-4 h-4 mr-2" />
+                      Remove from Cart
+                    </Button>
+                    <Button
+                      onClick={() => router.push("/checkout")}
+                      className="flex-1 bg-teal-blue hover:bg-teal-blue/90 text-white transition-all duration-300"
+                    >
+                      Checkout
+                    </Button>
+                  </div>
                 </div>
-            
               ) : (
                 <Button
                   onClick={() => {
