@@ -172,9 +172,9 @@ export default function PremiumBallsPage() {
       </section>
 
       {/* Products Grid */}
-      <section className="py-12 sm:py-16">
+      <section className="py-8 sm:py-12">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredBalls.map((ball) => (
               <div
                 key={ball.id}
@@ -185,7 +185,7 @@ export default function PremiumBallsPage() {
                 {/* Clickable area (navigates to detail) */}
                 <Link href={`/premium-balls/${ball.id}`} className="block">
                   {/* Image */}
-                  <div className="relative h-64 bg-gray-100 overflow-hidden">
+                  <div className="relative h-48 bg-gray-100 overflow-hidden">
                     <Image
                       src={
                         hoveredBall === ball.id ? ball.hoverImage : ball.image
@@ -197,39 +197,39 @@ export default function PremiumBallsPage() {
                   </div>
 
                   {/* Primary content */}
-                  <div className="p-6">
+                  <div className="p-4">
                     {/* Rating */}
-                    <div className="flex items-center gap-1 mb-3">
+                    <div className="flex items-center gap-1 mb-2">
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          className={`w-4 h-4 ${
+                          className={`w-3.5 h-3.5 ${
                             i < ball.rating
                               ? "fill-yellow-400 text-yellow-400"
                               : "fill-gray-200 text-gray-200"
                           }`}
                         />
                       ))}
-                      <span className="text-sm text-gray-600 ml-2">
+                      <span className="text-xs text-gray-600 ml-1">
                         ({ball.rating}.0)
                       </span>
                     </div>
 
                     {/* Name & short */}
-                    <h3 className="text-xl font-bold text-navy-blue mb-2 group-hover:text-cricket-red transition-colors">
+                    <h3 className="text-lg font-bold text-navy-blue mb-1.5 group-hover:text-cricket-red transition-colors">
                       {ball.name}
                     </h3>
-                    <p className="text-sm text-gray-600 mb-4">
+                    <p className="text-xs text-gray-600 mb-3 line-clamp-2">
                       {ball.description}
                     </p>
 
-                    <ul className="space-y-2 mb-4">
+                    <ul className="space-y-1.5 mb-3">
                       {ball.features.map((feature, index) => (
                         <li
                           key={index}
-                          className="flex items-center text-sm text-gray-600"
+                          className="flex items-center text-xs text-gray-600"
                         >
-                          <div className="w-1.5 h-1.5 bg-teal-blue rounded-full mr-2"></div>
+                          <div className="w-1 h-1 bg-teal-blue rounded-full mr-2"></div>
                           {feature}
                         </li>
                       ))}
@@ -238,11 +238,11 @@ export default function PremiumBallsPage() {
                 </Link>
 
                 {/* Price + Cart controls (outside Link so buttons don't navigate) */}
-                <div className="p-6 pt-0">
-                  <div className="pt-4 border-t space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-baseline gap-3">
-                        <span className="text-2xl font-bold text-cricket-red">
+                <div className="p-4 pt-0">
+                  <div className="pt-3 border-t space-y-2">
+                    <div className="flex items-center justify-between flex-wrap gap-2">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-xl font-bold text-cricket-red">
                           {formatPrice(
                             getDiscountedPrice(
                               ball.original_Price ?? 0,
@@ -251,12 +251,12 @@ export default function PremiumBallsPage() {
                           )}
                         </span>
 
-                        <span className="text-sm text-gray-500 line-through">
+                        <span className="text-xs text-gray-500 line-through">
                           M.R.P.: {formatPrice(ball.original_Price ?? 0)}
                         </span>
 
                         {ball.discount_Percentage > 0 && (
-                          <span className="text-sm font-medium text-green-600">
+                          <span className="text-xs font-medium text-green-600">
                             -{ball.discount_Percentage}%
                           </span>
                         )}
@@ -266,11 +266,11 @@ export default function PremiumBallsPage() {
 
                   {/* Quantity Controls or Add to Cart */}
                   {cartItems.find((item) => item.id === ball.id) ? (
-                    <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2 mt-3">
-                      <span className="text-sm font-medium text-gray-600">
-                        Quantity:
+                    <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2 mt-2">
+                      <span className="text-xs font-medium text-gray-600">
+                        Qty:
                       </span>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5">
                         <Button
                           size="sm"
                           variant="outline"
@@ -289,12 +289,12 @@ export default function PremiumBallsPage() {
                               }
                             }
                           }}
-                          className="h-8 w-8 p-0 border-navy-blue text-navy-blue hover:bg-navy-blue hover:text-white"
+                          className="h-7 w-7 p-0 border-navy-blue text-navy-blue hover:bg-navy-blue hover:text-white"
                         >
-                          <Minus className="h-4 w-4" />
+                          <Minus className="h-3 w-3" />
                         </Button>
 
-                        <span className="text-lg font-bold text-navy-blue min-w-[2rem] text-center">
+                        <span className="text-base font-bold text-navy-blue min-w-[1.5rem] text-center">
                           {
                             cartItems.find((item) => item.id === ball.id)
                               ?.quantity
@@ -312,9 +312,9 @@ export default function PremiumBallsPage() {
                               updateQuantity(ball.id, currentItem.quantity + 1);
                             }
                           }}
-                          className="h-8 w-8 p-0 border-teal-blue text-teal-blue hover:bg-teal-blue hover:text-white"
+                          className="h-7 w-7 p-0 border-teal-blue text-teal-blue hover:bg-teal-blue hover:text-white"
                         >
-                          <Plus className="h-4 w-4" />
+                          <Plus className="h-3 w-3" />
                         </Button>
                       </div>
                     </div>
@@ -338,7 +338,7 @@ export default function PremiumBallsPage() {
                           }));
                         }, 2000);
                       }}
-                      className={`w-full transition-all duration-300 mt-3 ${
+                      className={`w-full transition-all duration-300 mt-2 text-sm py-2 ${
                         addedItems[ball.id]
                           ? "bg-green-600 hover:bg-green-700"
                           : "bg-navy-blue hover:bg-teal-blue"
@@ -346,12 +346,12 @@ export default function PremiumBallsPage() {
                     >
                       {addedItems[ball.id] ? (
                         <>
-                          <Check className="w-4 h-4 mr-2" />
+                          <Check className="w-3.5 h-3.5 mr-1.5" />
                           Added!
                         </>
                       ) : (
                         <>
-                          <ShoppingCart className="w-4 h-4 mr-2" />
+                          <ShoppingCart className="w-3.5 h-3.5 mr-1.5" />
                           Add to Cart
                         </>
                       )}
