@@ -892,7 +892,7 @@ export default function FurSureLandingPage() {
         </section>
   
   
-        {/* Official Partners & Suppliers Section (enhanced, dynamic carousel + fixed tooltips) */}
+        {/* Official Partners & Suppliers Section (Circular Carousel) */}
         <section className="w-full py-12 md:py-20 lg:py-28 bg-gradient-to-b from-white/80 to-light-gray relative overflow-hidden">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-10">
@@ -906,81 +906,125 @@ export default function FurSureLandingPage() {
 
             <div className="relative">
               <style>{`
-                :root { --partners-duration: 18s; --card-gap: 1.25rem; }
+                :root { 
+                  --circular-duration: 20s; 
+                  --circle-radius: clamp(200px, 40vw, 320px);
+                }
 
-                /* viewport hides horizontal overflow but allows popups vertically */
-                .partners-viewport {
-                  overflow-x: hidden;
-                  overflow-y: visible;
+                .circular-carousel-container {
                   position: relative;
-                }
-
-                /* track: horizontally laid out and animated */
-                .partners-track {
+                  width: 100%;
+                  min-height: clamp(500px, 90vw, 750px);
                   display: flex;
-                  gap: var(--card-gap);
-                  align-items: stretch;
-                  will-change: transform;
-                  animation: partners-scroll var(--partners-duration) linear infinite;
-                  padding: 0.5rem 0;
+                  align-items: center;
+                  justify-content: center;
+                  overflow: visible;
                 }
 
-                /* pause when hovering anywhere over the track or a card */
-                .partners-track:hover,
-                .partners-track :where(.partner-card:hover) {
+                .circular-track {
+                  position: relative;
+                  width: calc(var(--circle-radius) * 2);
+                  height: calc(var(--circle-radius) * 2);
+                  animation: rotate-circle var(--circular-duration) linear infinite;
+                  transform-style: preserve-3d;
+                }
+
+                .circular-track:hover {
                   animation-play-state: paused;
                 }
 
-                @keyframes partners-scroll {
-                  0% { transform: translateX(0); }
-                  100% { transform: translateX(-50%); }
+                @keyframes rotate-circle {
+                  0% { transform: rotate(0deg); }
+                  100% { transform: rotate(360deg); }
                 }
 
-                /* card visual improvements */
-                .partner-card {
-                  transition: transform 280ms cubic-bezier(.2,.9,.3,1), box-shadow 280ms, border-color 280ms;
-                  transform-origin: center;
-                  backface-visibility: hidden;
+                .partner-card-circular {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  width: clamp(120px, 20vw, 160px);
+                  height: clamp(140px, 22vw, 180px);
+                  transform-origin: center center;
+                  transition: transform 280ms cubic-bezier(.2,.9,.3,1), box-shadow 280ms, border-color 280ms, z-index 0s;
                 }
 
-                .partner-card:hover {
-                  transform: perspective(900px) translateY(-8px) scale(1.04);
-                  box-shadow: 0 18px 40px rgba(8,15,30,0.12);
-                  border-color: rgba(6,95,91,0.12);
+                .partner-card-circular:hover {
+                  transform: scale(1.15) !important;
+                  box-shadow: 0 20px 50px rgba(8,15,30,0.2);
+                  border-color: rgba(6,95,91,0.3);
+                  z-index: 100;
                 }
 
-                .partner-card .logo-wrap {
+                .partner-card-inner {
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 1rem;
+                  background: white;
+                  border: 2px solid #e5e7eb;
+                  border-radius: 12px;
+                  transition: all 280ms ease;
+                }
+
+                .partner-card-inner .logo-wrap {
                   transition: transform 360ms ease, filter 360ms ease;
                 }
 
-                .partner-card:hover .logo-wrap {
-                  transform: scale(1.08);
-                  filter: drop-shadow(0 6px 18px rgba(6,95,91,0.08));
+                .partner-card-circular:hover .partner-card-inner {
+                  border-color: rgba(6,95,91,0.4);
                 }
 
-                /* center highlight (visual cue) */
-                .partners-highlight {
+                .partner-card-circular:hover .logo-wrap {
+                  transform: scale(1.1);
+                  filter: drop-shadow(0 6px 18px rgba(6,95,91,0.15));
+                }
+
+                /* Counter-rotate text so it stays upright */
+                .counter-rotate {
+                  animation: counter-rotate var(--circular-duration) linear infinite;
+                }
+
+                @keyframes counter-rotate {
+                  0% { transform: rotate(0deg); }
+                  100% { transform: rotate(-360deg); }
+                }
+
+                /* Center decoration */
+                .circle-center {
                   position: absolute;
-                  left: 50%;
                   top: 50%;
+                  left: 50%;
                   transform: translate(-50%, -50%);
-                  pointer-events: none;
-                  width: calc(45% + 10rem);
-                  height: 120px;
-                  border-radius: 16px;
-                  background: radial-gradient(closest-side, rgba(14,78,74,0.04), transparent 60%);
-                  mix-blend-mode: normal;
-                  z-index: 0;
+                  width: clamp(80px, 15vw, 120px);
+                  height: clamp(80px, 15vw, 120px);
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, #065f5b 0%, #0e9f98 100%);
+                  box-shadow: 0 8px 30px rgba(6,95,91,0.3);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  z-index: 10;
+                }
+
+                .circle-center-text {
+                  color: white;
+                  font-size: clamp(0.7rem, 2vw, 0.9rem);
+                  font-weight: 700;
+                  text-align: center;
+                  line-height: 1.2;
                 }
 
                 /* stop motion for reduced-motion users */
                 @media (prefers-reduced-motion: reduce) {
-                  .partners-track { animation: none !important; }
-                  .partner-card, .partner-card .logo-wrap { transition: none !important; }
+                  .circular-track, .counter-rotate { animation: none !important; }
+                  .partner-card-circular, .partner-card-inner, .logo-wrap { transition: none !important; }
                 }
               `}</style>
 
-              {/* decorative subtle floating shapes behind the track */}
+              {/* decorative subtle floating shapes behind the carousel */}
               <div aria-hidden className="absolute inset-x-0 -top-6 pointer-events-none z-0">
                 <div className="mx-auto max-w-7xl flex justify-center gap-6 opacity-30">
                   <div className="w-28 h-6 rounded-full bg-teal-blue/8 blur-sm"></div>
@@ -989,9 +1033,8 @@ export default function FurSureLandingPage() {
                 </div>
               </div>
 
-              <div className="partners-viewport relative z-10">
-                <div className="partners-track" role="list" aria-label="Partner logos carousel">
-                  {/* FIRST LOOP - card markup kept consistent with fixed tooltip handlers */}
+              <div className="circular-carousel-container relative z-10">
+                <div className="circular-track" role="list" aria-label="Partner logos carousel">
                   {[
                     {
                       img: "/dsc.jpeg",
@@ -1049,11 +1092,22 @@ export default function FurSureLandingPage() {
                       text:
                         "Experience unmatched grip and comfort with our cricket footwear for speed, agility and endurance.",
                     },
-                  ].map((p, i) => (
-                    <div key={`p-${i}`} className="flex-shrink-0 w-56 md:w-64 lg:w-72">
+                  ].map((p, i, arr) => {
+                    const angle = (360 / arr.length) * i;
+                    const radius = 'var(--circle-radius)';
+                    
+                    return (
                       <div
-                        className="partner-card partner-card-inner group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver rounded-lg h-full"
+                        key={`p-${i}`}
+                        className="partner-card-circular"
                         role="listitem"
+                        style={{
+                          transform: `
+                            translate(-50%, -50%) 
+                            rotate(${angle}deg) 
+                            translateY(calc(-1 * ${radius}))
+                          `,
+                        }}
                         onMouseEnter={(e) => {
                           const el = e.currentTarget as HTMLElement;
                           const r = el.getBoundingClientRect();
@@ -1088,75 +1142,24 @@ export default function FurSureLandingPage() {
                           );
                         }}
                       >
-                        <div className="logo-wrap w-16 h-16 bg-white flex items-center justify-center mb-3 overflow-hidden border border-light-silver rounded-md">
-                          <Image src={p.img} alt={p.title} width={64} height={64} className="object-contain" />
+                        <div className="partner-card-inner counter-rotate">
+                          <div className="logo-wrap w-12 h-12 md:w-14 md:h-14 bg-white flex items-center justify-center mb-2 overflow-hidden border border-light-silver rounded-md">
+                            <Image src={p.img} alt={p.title} width={56} height={56} className="object-contain" />
+                          </div>
+                          <span className="text-charcoal text-xs md:text-sm font-medium text-center">{p.label}</span>
                         </div>
-
-                        <span className="text-charcoal text-sm font-medium text-center">{p.label}</span>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
 
-                  {/* SECOND LOOP (duplicate) for seamless infinite scroll */}
-                  {[
-                    "/dsc.jpeg",
-                    "/sg.jpeg",
-                    "/mrf.jpeg",
-                    "/ss.jpeg",
-                    "/adidasnew.jpeg",
-                    "/grayn.jpeg",
-                    "/kooko.jpeg",
-                    "/nbnew.jpeg",
-                  ].map((src, i) => (
-                    <div key={`dup-${i}`} className="flex-shrink-0 w-56 md:w-64 lg:w-72" aria-hidden>
-                      <div
-                        className="partner-card partner-card-inner group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver rounded-lg h-full"
-                        onMouseEnter={(e) => {
-                          const el = e.currentTarget as HTMLElement;
-                          const r = el.getBoundingClientRect();
-                          // quick mapping to the same titles/texts (kept simple)
-                          const map = {
-                            "/dsc.jpeg": { title: "DSC CRICKET BATS", text: "Premium cricket bats designed for exceptional performance, power, and precision on the field.", label: "Cricket Bats" },
-                            "/sg.jpeg": { title: "SG PREMIUM GEAR", text: "High-quality cricket equipment and gear designed for professional performance and durability.", label: "Premium Gear" },
-                            "/mrf.jpeg": { title: "MRF PREMIUM BATS", text: "Discover our range of Premium MRF cricket bats, crafted for power, precision, and durability.", label: "Premium Bats" },
-                            "/ss.jpeg": { title: "SS EQUIPMENTS", text: "Explore gloves, pads and accessories—engineered for comfort, protection and superior performance.", label: "Equipment" },
-                            "/adidasnew.jpeg": { title: "ADIDAS APPAREL", text: "Step onto the field in style with our premium cricket apparel, designed for comfort and performance.", label: "Apparel" },
-                            "/grayn.jpeg": { title: "HERITAGE COLLECTION", text: "Celebrate the legacy of cricket with our Heritage collection, blending tradition with timeless craftsmanship.", label: "Heritage" },
-                            "/kooko.jpeg": { title: "BALLS AND GEAR", text: "From practice sessions to big matches, our cricket balls and training gear deliver precision every time.", label: "Balls & Gear" },
-                            "/nbnew.jpeg": { title: "FOOTWEAR", text: "Experience unmatched grip and comfort with our cricket footwear for speed, agility and endurance.", label: "Footwear" },
-                          } as any;
-                          const info = map[src];
-                          window.dispatchEvent(
-                            new CustomEvent("partners-tooltip-show", {
-                              detail: {
-                                title: info.title,
-                                text: info.text,
-                                left: r.left + r.width / 2,
-                                top: r.bottom + 14,
-                                width: r.width,
-                              },
-                            })
-                          );
-                        }}
-                        onMouseLeave={() =>
-                          window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
-                        }
-                      >
-                        <div className="logo-wrap w-16 h-16 bg-white flex items-center justify-center mb-3 overflow-hidden border border-light-silver rounded-md">
-                          <Image src={src} alt="" width={64} height={64} className="object-contain" />
-                        </div>
-                        <span className="text-charcoal text-sm font-medium text-center">
-                          {/* quick label fallback */}
-                          {src.includes("dsc") ? "Cricket Bats" : src.includes("sg") ? "Premium Gear" : src.includes("mrf") ? "Premium Bats" : src.includes("ss") ? "Equipment" : src.includes("adidas") ? "Apparel" : src.includes("grayn") ? "Heritage" : src.includes("kooko") ? "Balls & Gear" : "Footwear"}
-                        </span>
-                      </div>
+                  {/* Center circle decoration */}
+                  <div className="circle-center">
+                    <div className="circle-center-text">
+                      TRUSTED<br />PARTNERS
                     </div>
-                  ))}
+                  </div>
                 </div>
               </div>
-
-              {/* faint center highlight for depth */}
-              <div className="partners-highlight hidden sm:block" />
 
               {/* Fixed tooltip (component already defined in file) */}
               <FixedPartnersTooltip />

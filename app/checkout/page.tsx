@@ -9,11 +9,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select } from "@/components/ui/select";
-import { Truck, Package, Lock } from "lucide-react";
+import { Truck, Package, Lock, Plus, Minus } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function CheckoutPage() {
-  const { cartItems, getCartTotal } = useCart();
+  const { cartItems, getCartTotal, updateQuantity, removeFromCart } = useCart();
   const router = useRouter();
   const [shippingMethod, setShippingMethod] = useState<"delivery" | "pickup">(
     "delivery"
@@ -103,36 +103,6 @@ export default function CheckoutPage() {
 
       <main className="flex-1 py-8 md:py-12">
         <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-          {/* Progress Steps */}
-          <div className="flex items-center justify-center mb-8 md:mb-12 gap-4 md:gap-8">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-teal-blue text-white flex items-center justify-center">
-                ✓
-              </div>
-              <span className="text-sm md:text-base text-gray-700 font-medium">
-                Cart
-              </span>
-            </div>
-            <div className="w-12 md:w-20 h-0.5 bg-teal-blue"></div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-teal-blue text-white flex items-center justify-center">
-                ✓
-              </div>
-              <span className="text-sm md:text-base text-gray-700 font-medium">
-                Review
-              </span>
-            </div>
-            <div className="w-12 md:w-20 h-0.5 bg-teal-blue"></div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold">
-                3
-              </div>
-              <span className="text-sm md:text-base text-gray-900 font-semibold">
-                Checkout
-              </span>
-            </div>
-          </div>
-
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Left Column - Checkout Form */}
             <div className="bg-white rounded-lg shadow-sm p-6 md:p-8">
@@ -145,28 +115,13 @@ export default function CheckoutPage() {
                 <h2 className="text-lg font-semibold text-navy-blue mb-4">
                   Shipping Information
                 </h2>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4">
                   <button
                     onClick={() => setShippingMethod("delivery")}
-                    className={`flex items-center justify-center gap-2 p-4 border-2 rounded-lg transition-all ${
-                      shippingMethod === "delivery"
-                        ? "border-teal-blue bg-teal-blue/5"
-                        : "border-gray-200 hover:border-gray-300"
-                    }`}
+                    className="flex items-center justify-center gap-2 p-4 border-2 rounded-lg border-teal-blue bg-teal-blue/5"
                   >
                     <Truck className="w-5 h-5 text-teal-blue" />
                     <span className="font-medium">Delivery</span>
-                  </button>
-                  <button
-                    onClick={() => setShippingMethod("pickup")}
-                    className={`flex items-center justify-center gap-2 p-4 border-2 rounded-lg transition-all ${
-                      shippingMethod === "pickup"
-                        ? "border-teal-blue bg-teal-blue/5"
-                        : "border-gray-200 hover:border-gray-300"
-                    }`}
-                  >
-                    <Package className="w-5 h-5 text-teal-blue" />
-                    <span className="font-medium">Pick up</span>
                   </button>
                 </div>
               </div>
@@ -369,16 +324,47 @@ export default function CheckoutPage() {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="flex-1">
-                        <h3 className="font-medium text-gray-900">
-                          {item.name}
-                        </h3>
-                        <p className="text-sm text-gray-500">
-                          {item.quantity}x
-                        </p>
-                        <p className="font-semibold text-gray-900 mt-1">
-                          ${itemPrice.toFixed(2)}
-                        </p>
+
+                      <div className="flex-1 flex items-center justify-between">
+                        <div>
+                          <h3 className="font-medium text-gray-900">
+                            {item.name}
+                          </h3>
+                          <p className="text-sm text-gray-500">
+                            {item.quantity}x
+                          </p>
+                          <p className="font-semibold text-gray-900 mt-1">
+                            ₹{itemPrice.toFixed(2)}
+                          </p>
+                        </div>
+
+                        {/* Quantity Controls - Horizontal */}
+                        <div className="flex gap-2 items-center">
+                          <button
+                            onClick={() => {
+                              if (item.quantity > 1) {
+                                updateQuantity(item.id, item.quantity - 1);
+                              } else {
+                                if (confirm(`Remove ${item.name} from cart?`)) {
+                                  removeFromCart(item.id);
+                                }
+                              }
+                            }}
+                            className="w-8 h-8 flex items-center justify-center border-2 border-gray-300 rounded-md hover:bg-red-50 hover:border-red-400 transition-colors"
+                            aria-label="Decrease quantity"
+                          >
+                            <Minus className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() =>
+                              updateQuantity(item.id, item.quantity + 1)
+                            }
+                            className="w-8 h-8 flex items-center justify-center border-2 border-teal-blue rounded-md hover:bg-teal-blue hover:text-white transition-colors"
+                            aria-label="Increase quantity"
+                          >
+                            <Plus className="w-4 h-4" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   );
@@ -414,21 +400,21 @@ export default function CheckoutPage() {
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-gray-600">
                   <span>Subtotal</span>
-                  <span className="font-medium">${subtotal.toFixed(2)}</span>
+                  <span className="font-medium">₹{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>Shipping</span>
-                  <span className="font-medium">${shipping.toFixed(2)}</span>
+                  <span className="font-medium">₹{shipping.toFixed(2)}</span>
                 </div>
                 {discount > 0 && (
                   <div className="flex justify-between text-green-600">
                     <span>Discount</span>
-                    <span className="font-medium">-${discount.toFixed(2)}</span>
+                    <span className="font-medium">-₹{discount.toFixed(2)}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-lg font-bold text-gray-900 pt-3 border-t border-gray-200">
                   <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>₹{total.toFixed(2)}</span>
                 </div>
               </div>
 

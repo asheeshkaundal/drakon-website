@@ -312,6 +312,7 @@ export default function ProductDetailClient({ ball }: { ball: Ball }) {
                     Remove from Cart
                   </Button>
                 </div>
+            
               ) : (
                 <Button
                   onClick={() => {
