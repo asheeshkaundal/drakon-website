@@ -890,376 +890,280 @@ export default function FurSureLandingPage() {
             
           </div>
         </section>
-        {/* Official Partners & Suppliers Section (carousel with hover tooltips, fixed tooltip to avoid scrollbars) */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-light-gray">
+  
+  
+        {/* Official Partners & Suppliers Section (enhanced, dynamic carousel + fixed tooltips) */}
+        <section className="w-full py-12 md:py-20 lg:py-28 bg-gradient-to-b from-white/80 to-light-gray relative overflow-hidden">
           <div className="container px-4 md:px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-navy-blue mb-4 font-serif">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-navy-blue mb-3 font-serif">
                 Official Partners & Suppliers
               </h2>
-              <p className="text-xl text-silver-gray max-w-2xl mx-auto">
-                Trusted partnerships with the world's leading cricket brands and
-                manufacturers
+              <p className="text-lg md:text-xl text-silver-gray max-w-2xl mx-auto">
+                Trusted partnerships with the world's leading cricket brands and manufacturers
               </p>
             </div>
 
             <div className="relative">
               <style>{`
-                :root { --carousel-duration: 20s; } /* adjust loop time here */
+                :root { --partners-duration: 18s; --card-gap: 1.25rem; }
 
-                /* allow tooltips to escape vertically while still clipping horizontal scroll */
+                /* viewport hides horizontal overflow but allows popups vertically */
                 .partners-viewport {
                   overflow-x: hidden;
                   overflow-y: visible;
+                  position: relative;
                 }
 
+                /* track: horizontally laid out and animated */
                 .partners-track {
                   display: flex;
-                  gap: 1.5rem;
+                  gap: var(--card-gap);
                   align-items: stretch;
-                  animation: partners-scroll var(--carousel-duration) linear infinite;
+                  will-change: transform;
+                  animation: partners-scroll var(--partners-duration) linear infinite;
+                  padding: 0.5rem 0;
                 }
 
-                /* pause the scroll when pointer is over the track or any child card */
+                /* pause when hovering anywhere over the track or a card */
                 .partners-track:hover,
-                .partners-track :where(.group:hover) {
+                .partners-track :where(.partner-card:hover) {
                   animation-play-state: paused;
                 }
 
                 @keyframes partners-scroll {
-                  0%   { transform: translateX(0); }
+                  0% { transform: translateX(0); }
                   100% { transform: translateX(-50%); }
                 }
 
-                /* respect reduced motion */
+                /* card visual improvements */
+                .partner-card {
+                  transition: transform 280ms cubic-bezier(.2,.9,.3,1), box-shadow 280ms, border-color 280ms;
+                  transform-origin: center;
+                  backface-visibility: hidden;
+                }
+
+                .partner-card:hover {
+                  transform: perspective(900px) translateY(-8px) scale(1.04);
+                  box-shadow: 0 18px 40px rgba(8,15,30,0.12);
+                  border-color: rgba(6,95,91,0.12);
+                }
+
+                .partner-card .logo-wrap {
+                  transition: transform 360ms ease, filter 360ms ease;
+                }
+
+                .partner-card:hover .logo-wrap {
+                  transform: scale(1.08);
+                  filter: drop-shadow(0 6px 18px rgba(6,95,91,0.08));
+                }
+
+                /* center highlight (visual cue) */
+                .partners-highlight {
+                  position: absolute;
+                  left: 50%;
+                  top: 50%;
+                  transform: translate(-50%, -50%);
+                  pointer-events: none;
+                  width: calc(45% + 10rem);
+                  height: 120px;
+                  border-radius: 16px;
+                  background: radial-gradient(closest-side, rgba(14,78,74,0.04), transparent 60%);
+                  mix-blend-mode: normal;
+                  z-index: 0;
+                }
+
+                /* stop motion for reduced-motion users */
                 @media (prefers-reduced-motion: reduce) {
                   .partners-track { animation: none !important; }
+                  .partner-card, .partner-card .logo-wrap { transition: none !important; }
                 }
               `}</style>
 
-              {/* Fixed tooltip is rendered outside the track (fixed positioning) to avoid any parent overflow clipping or scrollbars */}
-              {/* Tooltip state & handlers are implemented on the card elements below */}
-              <div className="partners-viewport">
-                {/* partners-track contains the set twice for seamless infinite scroll */}
-                <div className="partners-track" role="list" aria-label="Partner logos carousel">
-                  {/* ---------- FIRST LOOP ---------- */}
-                  <div className="flex-shrink-0 w-56 md:w-64 lg:w-72">
-                    <div
-                      className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue h-full"
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLElement;
-                        const r = el.getBoundingClientRect();
-                        // dispatch custom event with tooltip data so fixed tooltip (below) can show it
-                        window.dispatchEvent(
-                          new CustomEvent("partners-tooltip-show", {
-                            detail: {
-                              title: "DSC CRICKET BATS",
-                              text:
-                                "Premium cricket bats designed for exceptional performance, power, and precision on the field.",
-                              left: r.left + r.width / 2,
-                              top: r.bottom + 12,
-                              width: r.width,
-                            },
-                          })
-                        );
-                      }}
-                      onMouseLeave={() =>
-                        window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
-                      }
-                      onTouchStart={(e) => {
-                        // show on touch too
-                        const el = e.currentTarget as HTMLElement;
-                        const r = el.getBoundingClientRect();
-                        window.dispatchEvent(
-                          new CustomEvent("partners-tooltip-show", {
-                            detail: {
-                              title: "DSC CRICKET BATS",
-                              text:
-                                "Premium cricket bats designed for exceptional performance, power, and precision on the field.",
-                              left: r.left + r.width / 2,
-                              top: r.bottom + 12,
-                              width: r.width,
-                            },
-                          })
-                        );
-                      }}
-                    >
-                      <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
-                        <Image src="/dsc.jpeg" alt="DSC Logo" width={64} height={64} className="object-contain" />
-                      </div>
-                      <span className="text-charcoal text-sm font-medium text-center">Cricket Bats</span>
-
-                      {/* keep inline tooltip markup for accessibility/fallback (will be clipped by parents if present) */}
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 hidden lg:group-hover:block z-50 w-64 bg-white text-black text-sm p-4 rounded-lg shadow-xl border-2 border-gray-300">
-                        <div className="font-semibold mb-2 text-teal-blue">DSC CRICKET BATS</div>
-                        <div className="text-xs leading-relaxed">
-                          Premium cricket bats designed for exceptional performance,
-                          power, and precision on the field.
-                        </div>
-                        <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white rotate-45 border-l-2 border-t-2 border-gray-300"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* SG */}
-                  <div className="flex-shrink-0 w-56 md:w-64 lg:w-72">
-                    <div
-                      className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue h-full"
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLElement;
-                        const r = el.getBoundingClientRect();
-                        window.dispatchEvent(
-                          new CustomEvent("partners-tooltip-show", {
-                            detail: {
-                              title: "SG PREMIUM GEAR",
-                              text:
-                                "High-quality cricket equipment and gear designed for professional performance and durability.",
-                              left: r.left + r.width / 2,
-                              top: r.bottom + 12,
-                              width: r.width,
-                            },
-                          })
-                        );
-                      }}
-                      onMouseLeave={() =>
-                        window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
-                      }
-                    >
-                      <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
-                        <Image src="/sg.jpeg" alt="SG Logo" width={64} height={64} className="object-contain" />
-                      </div>
-                      <span className="text-charcoal text-sm font-medium text-center">Premium Gear</span>
-                    </div>
-                  </div>
-
-                  {/* MRF */}
-                  <div className="flex-shrink-0 w-56 md:w-64 lg:w-72">
-                    <div
-                      className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue h-full"
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLElement;
-                        const r = el.getBoundingClientRect();
-                        window.dispatchEvent(
-                          new CustomEvent("partners-tooltip-show", {
-                            detail: {
-                              title: "MRF PREMIUM BATS",
-                              text:
-                                "Discover our range of Premium MRF cricket bats, crafted for power, precision, and durability.",
-                              left: r.left + r.width / 2,
-                              top: r.bottom + 12,
-                              width: r.width,
-                            },
-                          })
-                        );
-                      }}
-                      onMouseLeave={() =>
-                        window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
-                      }
-                    >
-                      <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
-                        <Image src="/mrf.jpeg" alt="MRF Logo" width={64} height={64} className="object-contain" />
-                      </div>
-                      <span className="text-charcoal text-sm font-medium text-center">Premium Bats</span>
-                    </div>
-                  </div>
-
-                  {/* SS */}
-                  <div className="flex-shrink-0 w-56 md:w-64 lg:w-72">
-                    <div
-                      className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue h-full"
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLElement;
-                        const r = el.getBoundingClientRect();
-                        window.dispatchEvent(
-                          new CustomEvent("partners-tooltip-show", {
-                            detail: {
-                              title: "SS EQUIPMENTS",
-                              text:
-                                "Explore our wide range of SS cricket equipment, including gloves, pads, and accessories—engineered for comfort, protection, and superior performance on the pitch.",
-                              left: r.left + r.width / 2,
-                              top: r.bottom + 12,
-                              width: r.width,
-                            },
-                          })
-                        );
-                      }}
-                      onMouseLeave={() =>
-                        window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
-                      }
-                    >
-                      <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
-                        <Image src="/ss.jpeg" alt="SS Logo" width={64} height={64} className="object-contain" />
-                      </div>
-                      <span className="text-charcoal text-sm font-medium text-center">Equipment</span>
-                    </div>
-                  </div>
-
-                  {/* Adidas */}
-                  <div className="flex-shrink-0 w-56 md:w-64 lg:w-72">
-                    <div
-                      className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue h-full"
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLElement;
-                        const r = el.getBoundingClientRect();
-                        window.dispatchEvent(
-                          new CustomEvent("partners-tooltip-show", {
-                            detail: {
-                              title: "ADIDAS APPAREL",
-                              text:
-                                "Step onto the field in style with our premium cricket apparel, designed for comfort, performance, and a professional look.",
-                              left: r.left + r.width / 2,
-                              top: r.bottom + 12,
-                              width: r.width,
-                            },
-                          })
-                        );
-                      }}
-                      onMouseLeave={() =>
-                        window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
-                      }
-                    >
-                      <div className="w-16 h-16 bg-black flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
-                        <Image src="/adidasnew.jpeg" alt="Adidas Logo" width={64} height={64} className="object-contain" />
-                      </div>
-                      <span className="text-charcoal text-sm font-medium text-center">Apparel</span>
-                    </div>
-                  </div>
-
-                  {/* Gray-Nicolls */}
-                  <div className="flex-shrink-0 w-56 md:w-64 lg:w-72">
-                    <div
-                      className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue h-full"
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLElement;
-                        const r = el.getBoundingClientRect();
-                        window.dispatchEvent(
-                          new CustomEvent("partners-tooltip-show", {
-                            detail: {
-                              title: "HERITAGE COLLECTION",
-                              text:
-                                "Celebrate the legacy of cricket with our Heritage collection, blending tradition with timeless quality and craftsmanship.",
-                              left: r.left + r.width / 2,
-                              top: r.bottom + 12,
-                              width: r.width,
-                            },
-                          })
-                        );
-                      }}
-                      onMouseLeave={() =>
-                        window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
-                      }
-                    >
-                      <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
-                        <Image src="/grayn.jpeg" alt="Gray-Nicolls Logo" width={64} height={64} className="object-contain" />
-                      </div>
-                      <span className="text-charcoal text-sm font-medium text-center">Heritage</span>
-                    </div>
-                  </div>
-
-                  {/* Kookaburra */}
-                  <div className="flex-shrink-0 w-56 md:w-64 lg:w-72">
-                    <div
-                      className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue h-full"
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLElement;
-                        const r = el.getBoundingClientRect();
-                        window.dispatchEvent(
-                          new CustomEvent("partners-tooltip-show", {
-                            detail: {
-                              title: "BALLS AND GEAR",
-                              text:
-                                "From practice sessions to big matches, our cricket balls and training gear deliver reliability and precision every time.",
-                              left: r.left + r.width / 2,
-                              top: r.bottom + 12,
-                              width: r.width,
-                            },
-                          })
-                        );
-                      }}
-                      onMouseLeave={() =>
-                        window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
-                      }
-                    >
-                      <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
-                        <Image src="/kooko.jpeg" alt="Kookaburra Logo" width={64} height={64} className="object-contain" />
-                      </div>
-                      <span className="text-charcoal text-sm font-medium text-center">Balls & Gear</span>
-                    </div>
-                  </div>
-
-                  {/* New Balance */}
-                  <div className="flex-shrink-0 w-56 md:w-64 lg:w-72">
-                    <div
-                      className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue h-full"
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLElement;
-                        const r = el.getBoundingClientRect();
-                        window.dispatchEvent(
-                          new CustomEvent("partners-tooltip-show", {
-                            detail: {
-                              title: "FOOTWEAR",
-                              text:
-                                "Experience unmatched grip and comfort with our cricket footwear, built to support speed, agility, and endurance on the pitch.",
-                              left: r.left + r.width / 2,
-                              top: r.bottom + 12,
-                              width: r.width,
-                            },
-                          })
-                        );
-                      }}
-                      onMouseLeave={() =>
-                        window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
-                      }
-                    >
-                      <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
-                        <Image src="/nbnew.jpeg" alt="New Balance Logo" width={64} height={64} className="object-contain" />
-                      </div>
-                      <span className="text-charcoal text-sm font-medium text-center">Footwear</span>
-                    </div>
-                  </div>
-
-                  {/* ---------- SECOND LOOP (duplicate for seamless) ---------- */}
-                  {/* duplicate the same cards (with same handlers) to complete the loop */}
-                  {/* DSC duplicate */}
-                  <div className="flex-shrink-0 w-56 md:w-64 lg:w-72">
-                    <div
-                      className="group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver hover:bg-light-gray transition-all duration-300 hover:border-teal-blue h-full"
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLElement;
-                        const r = el.getBoundingClientRect();
-                        window.dispatchEvent(
-                          new CustomEvent("partners-tooltip-show", {
-                            detail: {
-                              title: "DSC CRICKET BATS",
-                              text:
-                                "Premium cricket bats designed for exceptional performance, power, and precision on the field.",
-                              left: r.left + r.width / 2,
-                              top: r.bottom + 12,
-                              width: r.width,
-                            },
-                          })
-                        );
-                      }}
-                      onMouseLeave={() =>
-                        window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
-                      }
-                    >
-                      <div className="w-16 h-16 bg-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 overflow-hidden border border-light-silver">
-                        <Image src="/dsc.jpeg" alt="DSC Logo" width={64} height={64} className="object-contain" />
-                      </div>
-                      <span className="text-charcoal text-sm font-medium text-center">Cricket Bats</span>
-                    </div>
-                  </div>
-
-                  {/* For brevity: you can duplicate the remaining items similarly to fill the second loop */}
+              {/* decorative subtle floating shapes behind the track */}
+              <div aria-hidden className="absolute inset-x-0 -top-6 pointer-events-none z-0">
+                <div className="mx-auto max-w-7xl flex justify-center gap-6 opacity-30">
+                  <div className="w-28 h-6 rounded-full bg-teal-blue/8 blur-sm"></div>
+                  <div className="w-20 h-5 rounded-full bg-cricket-red/8 blur-sm"></div>
+                  <div className="w-24 h-6 rounded-full bg-wicket-green/8 blur-sm"></div>
                 </div>
               </div>
 
-              {/* Fixed / portal tooltip (rendered once) */}
+              <div className="partners-viewport relative z-10">
+                <div className="partners-track" role="list" aria-label="Partner logos carousel">
+                  {/* FIRST LOOP - card markup kept consistent with fixed tooltip handlers */}
+                  {[
+                    {
+                      img: "/dsc.jpeg",
+                      title: "DSC CRICKET BATS",
+                      label: "Cricket Bats",
+                      text:
+                        "Premium cricket bats designed for exceptional performance, power, and precision on the field.",
+                    },
+                    {
+                      img: "/sg.jpeg",
+                      title: "SG PREMIUM GEAR",
+                      label: "Premium Gear",
+                      text:
+                        "High-quality cricket equipment and gear designed for professional performance and durability.",
+                    },
+                    {
+                      img: "/mrf.jpeg",
+                      title: "MRF PREMIUM BATS",
+                      label: "Premium Bats",
+                      text:
+                        "Discover our range of Premium MRF cricket bats, crafted for power, precision, and durability.",
+                    },
+                    {
+                      img: "/ss.jpeg",
+                      title: "SS EQUIPMENTS",
+                      label: "Equipment",
+                      text:
+                        "Explore gloves, pads and accessories—engineered for comfort, protection and superior performance.",
+                    },
+                    {
+                      img: "/adidasnew.jpeg",
+                      title: "ADIDAS APPAREL",
+                      label: "Apparel",
+                      text:
+                        "Step onto the field in style with our premium cricket apparel, designed for comfort and performance.",
+                    },
+                    {
+                      img: "/grayn.jpeg",
+                      title: "HERITAGE COLLECTION",
+                      label: "Heritage",
+                      text:
+                        "Celebrate the legacy of cricket with our Heritage collection, blending tradition with timeless craftsmanship.",
+                    },
+                    {
+                      img: "/kooko.jpeg",
+                      title: "BALLS AND GEAR",
+                      label: "Balls & Gear",
+                      text:
+                        "From practice sessions to big matches, our cricket balls and training gear deliver precision every time.",
+                    },
+                    {
+                      img: "/nbnew.jpeg",
+                      title: "FOOTWEAR",
+                      label: "Footwear",
+                      text:
+                        "Experience unmatched grip and comfort with our cricket footwear for speed, agility and endurance.",
+                    },
+                  ].map((p, i) => (
+                    <div key={`p-${i}`} className="flex-shrink-0 w-56 md:w-64 lg:w-72">
+                      <div
+                        className="partner-card partner-card-inner group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver rounded-lg h-full"
+                        role="listitem"
+                        onMouseEnter={(e) => {
+                          const el = e.currentTarget as HTMLElement;
+                          const r = el.getBoundingClientRect();
+                          window.dispatchEvent(
+                            new CustomEvent("partners-tooltip-show", {
+                              detail: {
+                                title: p.title,
+                                text: p.text,
+                                left: r.left + r.width / 2,
+                                top: r.bottom + 14,
+                                width: r.width,
+                              },
+                            })
+                          );
+                        }}
+                        onMouseLeave={() =>
+                          window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
+                        }
+                        onTouchStart={(e) => {
+                          const el = e.currentTarget as HTMLElement;
+                          const r = el.getBoundingClientRect();
+                          window.dispatchEvent(
+                            new CustomEvent("partners-tooltip-show", {
+                              detail: {
+                                title: p.title,
+                                text: p.text,
+                                left: r.left + r.width / 2,
+                                top: r.bottom + 14,
+                                width: r.width,
+                              },
+                            })
+                          );
+                        }}
+                      >
+                        <div className="logo-wrap w-16 h-16 bg-white flex items-center justify-center mb-3 overflow-hidden border border-light-silver rounded-md">
+                          <Image src={p.img} alt={p.title} width={64} height={64} className="object-contain" />
+                        </div>
+
+                        <span className="text-charcoal text-sm font-medium text-center">{p.label}</span>
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* SECOND LOOP (duplicate) for seamless infinite scroll */}
+                  {[
+                    "/dsc.jpeg",
+                    "/sg.jpeg",
+                    "/mrf.jpeg",
+                    "/ss.jpeg",
+                    "/adidasnew.jpeg",
+                    "/grayn.jpeg",
+                    "/kooko.jpeg",
+                    "/nbnew.jpeg",
+                  ].map((src, i) => (
+                    <div key={`dup-${i}`} className="flex-shrink-0 w-56 md:w-64 lg:w-72" aria-hidden>
+                      <div
+                        className="partner-card partner-card-inner group relative flex flex-col items-center justify-center p-6 bg-white border-2 border-light-silver rounded-lg h-full"
+                        onMouseEnter={(e) => {
+                          const el = e.currentTarget as HTMLElement;
+                          const r = el.getBoundingClientRect();
+                          // quick mapping to the same titles/texts (kept simple)
+                          const map = {
+                            "/dsc.jpeg": { title: "DSC CRICKET BATS", text: "Premium cricket bats designed for exceptional performance, power, and precision on the field.", label: "Cricket Bats" },
+                            "/sg.jpeg": { title: "SG PREMIUM GEAR", text: "High-quality cricket equipment and gear designed for professional performance and durability.", label: "Premium Gear" },
+                            "/mrf.jpeg": { title: "MRF PREMIUM BATS", text: "Discover our range of Premium MRF cricket bats, crafted for power, precision, and durability.", label: "Premium Bats" },
+                            "/ss.jpeg": { title: "SS EQUIPMENTS", text: "Explore gloves, pads and accessories—engineered for comfort, protection and superior performance.", label: "Equipment" },
+                            "/adidasnew.jpeg": { title: "ADIDAS APPAREL", text: "Step onto the field in style with our premium cricket apparel, designed for comfort and performance.", label: "Apparel" },
+                            "/grayn.jpeg": { title: "HERITAGE COLLECTION", text: "Celebrate the legacy of cricket with our Heritage collection, blending tradition with timeless craftsmanship.", label: "Heritage" },
+                            "/kooko.jpeg": { title: "BALLS AND GEAR", text: "From practice sessions to big matches, our cricket balls and training gear deliver precision every time.", label: "Balls & Gear" },
+                            "/nbnew.jpeg": { title: "FOOTWEAR", text: "Experience unmatched grip and comfort with our cricket footwear for speed, agility and endurance.", label: "Footwear" },
+                          } as any;
+                          const info = map[src];
+                          window.dispatchEvent(
+                            new CustomEvent("partners-tooltip-show", {
+                              detail: {
+                                title: info.title,
+                                text: info.text,
+                                left: r.left + r.width / 2,
+                                top: r.bottom + 14,
+                                width: r.width,
+                              },
+                            })
+                          );
+                        }}
+                        onMouseLeave={() =>
+                          window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
+                        }
+                      >
+                        <div className="logo-wrap w-16 h-16 bg-white flex items-center justify-center mb-3 overflow-hidden border border-light-silver rounded-md">
+                          <Image src={src} alt="" width={64} height={64} className="object-contain" />
+                        </div>
+                        <span className="text-charcoal text-sm font-medium text-center">
+                          {/* quick label fallback */}
+                          {src.includes("dsc") ? "Cricket Bats" : src.includes("sg") ? "Premium Gear" : src.includes("mrf") ? "Premium Bats" : src.includes("ss") ? "Equipment" : src.includes("adidas") ? "Apparel" : src.includes("grayn") ? "Heritage" : src.includes("kooko") ? "Balls & Gear" : "Footwear"}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* faint center highlight for depth */}
+              <div className="partners-highlight hidden sm:block" />
+
+              {/* Fixed tooltip (component already defined in file) */}
               <FixedPartnersTooltip />
             </div>
           </div>
         </section>
+
 
         {/* Enhanced Trusted by Cricket's Finest Section */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
