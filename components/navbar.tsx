@@ -236,20 +236,22 @@ export const Navbar = () => {
               </Button>
 
               {/* Cart Button - Always visible */}
-              <Button
-                variant="ghost"
-                size="sm"
-                className="p-2 hover:bg-gray-100 text-navy-blue hover:text-teal-blue transition-colors duration-200 relative"
-                aria-label="Shopping Cart"
-              >
-                <ShoppingCart className="h-4 w-4" />
-                {/* Cart item count badge */}
-                {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-cricket-red text-white text-xs rounded-full h-4 w-4 flex items-center justify-center text-[10px] font-bold">
-                    {cartCount}
-                  </span>
-                )}
-              </Button>
+              <Link href="/checkout">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="p-2 hover:bg-gray-100 text-navy-blue hover:text-teal-blue transition-colors duration-200 relative"
+                  aria-label="Shopping Cart"
+                >
+                  <ShoppingCart className="h-4 w-4" />
+                  {/* Cart item count badge */}
+                  {cartCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-cricket-red text-white text-xs rounded-full h-4 w-4 flex items-center justify-center text-[10px] font-bold">
+                      {cartCount}
+                    </span>
+                  )}
+                </Button>
+              </Link>
 
               {/* Region Dropdown - Desktop only */}
               <div className="hidden md:block relative">
