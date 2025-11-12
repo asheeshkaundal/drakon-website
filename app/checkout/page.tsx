@@ -176,7 +176,9 @@ export default function CheckoutPage() {
                   </Label>
                   <div className="flex mt-1">
                     <div className="flex items-center gap-2 px-3 border border-r-0 rounded-l-md bg-gray-50">
-                      <span className="text-xl">🇺🇸</span>
+                      <span className="text-sm font-semibold text-gray-700">
+                        +91
+                      </span>
                       <span className="text-sm">▼</span>
                     </div>
                     <Input
@@ -209,11 +211,7 @@ export default function CheckoutPage() {
                         className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-blue"
                       >
                         <option value="">Choose country</option>
-                        <option value="US">United States</option>
-                        <option value="UK">United Kingdom</option>
                         <option value="IN">India</option>
-                        <option value="AU">Australia</option>
-                        <option value="CA">Canada</option>
                       </select>
                     </div>
 
