@@ -9,8 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select } from "@/components/ui/select";
-import { Truck, Package, Lock, Plus, Minus } from "lucide-react";
+import { Truck, Package, Lock, Plus, Minus, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+
 
 export default function CheckoutPage() {
   const { cartItems, getCartTotal, updateQuantity, removeFromCart } = useCart();
@@ -106,10 +107,19 @@ export default function CheckoutPage() {
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Left Column - Checkout Form */}
             <div className="bg-white rounded-lg shadow-sm p-6 md:p-8">
-              <h1 className="text-2xl md:text-3xl font-bold text-navy-blue mb-6">
-                Checkout
-              </h1>
-
+              <div className="flex items-center justify-between gap-4 mb-6">
+                <h1 className="text-2xl md:text-3xl font-bold text-navy-blue m-0">
+                  Checkout
+                </h1>
+                <Button
+                  variant="ghost"
+                  onClick={() => router.push("/premium-balls")}
+                  aria-label="Back to Premium Balls"
+                  className="hidden md:inline-flex items-center justify-center w-12 h-12 rounded-lg border border-gray-200 bg-white transition-transform duration-200 ease-out transform hover:scale-105 hover:translate-x-0.5 hover:shadow-md focus:outline-none"
+                >
+                  <ArrowLeft className="w-5 h-5 text-gray-900" />
+                </Button>
+              </div>
               {/* Shipping Method */}
               <div className="mb-6">
                 <h2 className="text-lg font-semibold text-navy-blue mb-4">
@@ -179,7 +189,7 @@ export default function CheckoutPage() {
                       <span className="text-sm font-semibold text-gray-700">
                         +91
                       </span>
-                      <span className="text-sm">▼</span>
+                      <span className="text-sm"></span>
                     </div>
                     <Input
                       id="phoneNumber"
