@@ -886,13 +886,9 @@ export default function FurSureLandingPage() {
                 </div>
               </div>
             </div>
-
-            
           </div>
         </section>
-  
-  
-        
+
         {/* Official Partners & Suppliers Section (Horizontal looping marquee) */}
         <section className="w-full py-12 md:py-20 lg:py-28 bg-gradient-to-b from-white/80 to-light-gray relative overflow-hidden">
           <div className="container px-4 md:px-6">
@@ -901,7 +897,8 @@ export default function FurSureLandingPage() {
                 Official Partners & Suppliers
               </h2>
               <p className="text-lg md:text-xl text-silver-gray max-w-2xl mx-auto">
-                Trusted partnerships with the world's leading cricket brands and manufacturers
+                Trusted partnerships with the world's leading cricket brands and
+                manufacturers
               </p>
             </div>
 
@@ -980,7 +977,10 @@ export default function FurSureLandingPage() {
               `}</style>
 
               {/* subtle background shapes */}
-              <div aria-hidden className="absolute inset-x-0 -top-6 pointer-events-none z-0">
+              <div
+                aria-hidden
+                className="absolute inset-x-0 -top-6 pointer-events-none z-0"
+              >
                 <div className="mx-auto max-w-7xl flex justify-center gap-6 opacity-30">
                   <div className="w-28 h-6 rounded-full bg-teal-blue/8 blur-sm"></div>
                   <div className="w-20 h-5 rounded-full bg-cricket-red/8 blur-sm"></div>
@@ -993,21 +993,65 @@ export default function FurSureLandingPage() {
                   {/* prepare partners once and duplicate for seamless loop */}
                   {(() => {
                     const partners = [
-                      { img: "/dsc.jpeg", title: "DSC CRICKET BATS", label: "Cricket Bats", text: "Premium cricket bats designed for exceptional performance, power, and precision on the field." },
-                      { img: "/sg.jpeg", title: "SG PREMIUM GEAR", label: "Premium Gear", text: "High-quality cricket equipment and gear designed for professional performance and durability." },
-                      { img: "/mrf.jpeg", title: "MRF PREMIUM BATS", label: "Premium Bats", text: "Discover our range of Premium MRF cricket bats, crafted for power, precision, and durability." },
-                      { img: "/ss.jpeg", title: "SS EQUIPMENTS", label: "Equipment", text: "Explore gloves, pads and accessories—engineered for comfort, protection and superior performance." },
-                      { img: "/adidasnew.jpeg", title: "ADIDAS APPAREL", label: "Apparel", text: "Step onto the field in style with our premium cricket apparel, designed for comfort and performance." },
-                      { img: "/grayn.jpeg", title: "HERITAGE COLLECTION", label: "Heritage", text: "Celebrate the legacy of cricket with our Heritage collection, blending tradition with timeless craftsmanship." },
-                      { img: "/kooko.jpeg", title: "BALLS AND GEAR", label: "Balls & Gear", text: "From practice sessions to big matches, our cricket balls and training gear deliver precision every time." },
-                      { img: "/nbnew.jpeg", title: "FOOTWEAR", label: "Footwear", text: "Experience unmatched grip and comfort with our cricket footwear for speed, agility and endurance." }
+                      {
+                        img: "/dsc.jpeg",
+                        title: "DSC CRICKET BATS",
+                        label: "Cricket Bats",
+                        text: "Premium cricket bats designed for exceptional performance, power, and precision on the field.",
+                      },
+                      {
+                        img: "/sg.jpeg",
+                        title: "SG PREMIUM GEAR",
+                        label: "Premium Gear",
+                        text: "High-quality cricket equipment and gear designed for professional performance and durability.",
+                      },
+                      {
+                        img: "/mrf.jpeg",
+                        title: "MRF PREMIUM BATS",
+                        label: "Premium Bats",
+                        text: "Discover our range of Premium MRF cricket bats, crafted for power, precision, and durability.",
+                      },
+                      {
+                        img: "/ss.jpeg",
+                        title: "SS EQUIPMENTS",
+                        label: "Equipment",
+                        text: "Explore gloves, pads and accessories—engineered for comfort, protection and superior performance.",
+                      },
+                      {
+                        img: "/adidasnew.jpeg",
+                        title: "ADIDAS APPAREL",
+                        label: "Apparel",
+                        text: "Step onto the field in style with our premium cricket apparel, designed for comfort and performance.",
+                      },
+                      {
+                        img: "/grayn.jpeg",
+                        title: "HERITAGE COLLECTION",
+                        label: "Heritage",
+                        text: "Celebrate the legacy of cricket with our Heritage collection, blending tradition with timeless craftsmanship.",
+                      },
+                      {
+                        img: "/kooko.jpeg",
+                        title: "BALLS AND GEAR",
+                        label: "Balls & Gear",
+                        text: "From practice sessions to big matches, our cricket balls and training gear deliver precision every time.",
+                      },
+                      {
+                        img: "/nbnew.jpeg",
+                        title: "FOOTWEAR",
+                        label: "Footwear",
+                        text: "Experience unmatched grip and comfort with our cricket footwear for speed, agility and endurance.",
+                      },
                     ];
 
                     // duplicate the list so animation can loop seamlessly
                     const loopList = [...partners, ...partners];
 
                     return (
-                      <div className="horizontal-track" role="list" aria-label="Partner logos carousel">
+                      <div
+                        className="horizontal-track"
+                        role="list"
+                        aria-label="Partner logos carousel"
+                      >
                         {loopList.map((p, i) => (
                           <div
                             key={`partner-${i}`}
@@ -1016,24 +1060,52 @@ export default function FurSureLandingPage() {
                             onMouseEnter={(e) => {
                               const el = e.currentTarget as HTMLElement;
                               const r = el.getBoundingClientRect();
-                              window.dispatchEvent(new CustomEvent("partners-tooltip-show", {
-                                detail: { title: p.title, text: p.text, left: r.left + r.width / 2, top: r.bottom + 14, width: r.width }
-                              }));
+                              window.dispatchEvent(
+                                new CustomEvent("partners-tooltip-show", {
+                                  detail: {
+                                    title: p.title,
+                                    text: p.text,
+                                    left: r.left + r.width / 2,
+                                    top: r.bottom + 14,
+                                    width: r.width,
+                                  },
+                                })
+                              );
                             }}
-                            onMouseLeave={() => window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))}
+                            onMouseLeave={() =>
+                              window.dispatchEvent(
+                                new CustomEvent("partners-tooltip-hide")
+                              )
+                            }
                             onTouchStart={(e) => {
                               const el = e.currentTarget as HTMLElement;
                               const r = el.getBoundingClientRect();
-                              window.dispatchEvent(new CustomEvent("partners-tooltip-show", {
-                                detail: { title: p.title, text: p.text, left: r.left + r.width / 2, top: r.bottom + 14, width: r.width }
-                              }));
+                              window.dispatchEvent(
+                                new CustomEvent("partners-tooltip-show", {
+                                  detail: {
+                                    title: p.title,
+                                    text: p.text,
+                                    left: r.left + r.width / 2,
+                                    top: r.bottom + 14,
+                                    width: r.width,
+                                  },
+                                })
+                              );
                             }}
                           >
                             <div className="partner-card-inner">
                               <div className="logo-wrap w-12 h-12 md:w-14 md:h-14 bg-white flex items-center justify-center mb-2 overflow-hidden border border-light-silver rounded-md">
-                                <Image src={p.img} alt={p.title} width={56} height={56} className="object-contain" />
+                                <Image
+                                  src={p.img}
+                                  alt={p.title}
+                                  width={56}
+                                  height={56}
+                                  className="object-contain"
+                                />
                               </div>
-                              <span className="text-charcoal text-xs md:text-sm font-medium text-center">{p.label}</span>
+                              <span className="text-charcoal text-xs md:text-sm font-medium text-center">
+                                {p.label}
+                              </span>
                             </div>
                           </div>
                         ))}
@@ -1048,7 +1120,6 @@ export default function FurSureLandingPage() {
             </div>
           </div>
         </section>
-
 
         {/* Enhanced Trusted by Cricket's Finest Section */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
@@ -1339,7 +1410,7 @@ export default function FurSureLandingPage() {
       <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-3">
         {/* WhatsApp Button */}
         <a
-          href="https://wa.me/918888813841?text=Hello%20Drakon%20Sports!%20I%20would%20like%20to%20know%20more%20about%20your%20products."
+          href="https://wa.me/919717124149?text=Hello%20Drakon%20Sports!%20I%20would%20like%20to%20know%20more%20about%20your%20products."
           target="_blank"
           rel="noopener noreferrer"
           className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
@@ -1365,7 +1436,12 @@ export default function FurSureLandingPage() {
 
 function FixedPartnersTooltip() {
   const [visible, setVisible] = useState(false);
-  const [data, setData] = useState<{ title?: string; text?: string; left?: number; top?: number } | null>(null);
+  const [data, setData] = useState<{
+    title?: string;
+    text?: string;
+    left?: number;
+    top?: number;
+  } | null>(null);
 
   useEffect(() => {
     const show = (e: Event) => {
@@ -1385,7 +1461,10 @@ function FixedPartnersTooltip() {
     window.addEventListener("resize", hide);
 
     return () => {
-      window.removeEventListener("partners-tooltip-show", show as EventListener);
+      window.removeEventListener(
+        "partners-tooltip-show",
+        show as EventListener
+      );
       window.removeEventListener("partners-tooltip-hide", hide);
       window.removeEventListener("scroll", hide);
       window.removeEventListener("resize", hide);
