@@ -892,7 +892,8 @@ export default function FurSureLandingPage() {
         </section>
   
   
-        {/* Official Partners & Suppliers Section (Circular Carousel) */}
+        
+        {/* Official Partners & Suppliers Section (Horizontal looping marquee) */}
         <section className="w-full py-12 md:py-20 lg:py-28 bg-gradient-to-b from-white/80 to-light-gray relative overflow-hidden">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-10">
@@ -906,125 +907,79 @@ export default function FurSureLandingPage() {
 
             <div className="relative">
               <style>{`
-                :root { 
-                  --circular-duration: 20s; 
-                  --circle-radius: clamp(200px, 40vw, 320px);
+                :root{
+                  --marquee-duration: 28s;
+                  --partner-gap: clamp(1.25rem, 2.4vw, 2.5rem);
+                  --partner-width: clamp(120px, 14vw, 160px);
+                  --partner-height: clamp(120px, 16vw, 160px);
                 }
 
-                .circular-carousel-container {
-                  position: relative;
+                .horizontal-carousel-container { position: relative; width: 100%; display:flex; align-items:center; justify-content:center; }
+
+                .horizontal-viewport {
                   width: 100%;
-                  min-height: clamp(500px, 90vw, 750px);
+                  overflow: hidden;
+                  padding: 2.5rem 0;
+                }
+
+                .horizontal-track {
+                  display: flex;
+                  align-items: center;
+                  gap: var(--partner-gap);
+                  width: max-content;
+                  will-change: transform;
+                  animation: marquee var(--marquee-duration) linear infinite;
+                }
+
+                .horizontal-track:hover { animation-play-state: paused; }
+
+                .partner-item {
+                  flex: 0 0 auto;
+                  width: var(--partner-width);
+                  height: var(--partner-height);
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  overflow: visible;
-                }
-
-                .circular-track {
-                  position: relative;
-                  width: calc(var(--circle-radius) * 2);
-                  height: calc(var(--circle-radius) * 2);
-                  animation: rotate-circle var(--circular-duration) linear infinite;
-                  transform-style: preserve-3d;
-                }
-
-                .circular-track:hover {
-                  animation-play-state: paused;
-                }
-
-                @keyframes rotate-circle {
-                  0% { transform: rotate(0deg); }
-                  100% { transform: rotate(360deg); }
-                }
-
-                .partner-card-circular {
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  width: clamp(120px, 20vw, 160px);
-                  height: clamp(140px, 22vw, 180px);
-                  transform-origin: center center;
-                  transition: transform 280ms cubic-bezier(.2,.9,.3,1), box-shadow 280ms, border-color 280ms, z-index 0s;
-                }
-
-                .partner-card-circular:hover {
-                  transform: scale(1.15) !important;
-                  box-shadow: 0 20px 50px rgba(8,15,30,0.2);
-                  border-color: rgba(6,95,91,0.3);
-                  z-index: 100;
                 }
 
                 .partner-card-inner {
                   width: 100%;
                   height: 100%;
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  justify-content: center;
-                  padding: 1rem;
+                  display:flex;
+                  flex-direction:column;
+                  align-items:center;
+                  justify-content:center;
                   background: white;
-                  border: 2px solid #e5e7eb;
                   border-radius: 12px;
-                  transition: all 280ms ease;
+                  border: 2px solid #e5e7eb;
+                  padding: 0.9rem;
+                  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
                 }
 
-                .partner-card-inner .logo-wrap {
-                  transition: transform 360ms ease, filter 360ms ease;
+                .partner-item:hover .partner-card-inner {
+                  transform: translateY(-6px) scale(1.03);
+                  box-shadow: 0 18px 38px rgba(8,15,30,0.12);
+                  border-color: rgba(6,95,91,0.22);
                 }
 
-                .partner-card-circular:hover .partner-card-inner {
-                  border-color: rgba(6,95,91,0.4);
+                .partner-card-inner .logo-wrap { width: 56px; height:56px; transition: transform 300ms ease, filter 300ms ease; }
+                .partner-item:hover .logo-wrap { transform: scale(1.08); filter: drop-shadow(0 6px 18px rgba(6,95,91,0.08)); }
+
+                @keyframes marquee {
+                  0%   { transform: translateX(0); }
+                  100% { transform: translateX(-50%); } /* track contains duplicated content, shift by half */
                 }
 
-                .partner-card-circular:hover .logo-wrap {
-                  transform: scale(1.1);
-                  filter: drop-shadow(0 6px 18px rgba(6,95,91,0.15));
-                }
+                /* center decorative circle preserved */
+                .circle-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: clamp(80px, 15vw, 120px); height: clamp(80px, 15vw, 120px); border-radius: 50%; background: linear-gradient(135deg, #065f5b 0%, #0e9f98 100%); box-shadow: 0 8px 30px rgba(6,95,91,0.3); display:flex; align-items:center; justify-content:center; z-index:10; pointer-events:none; }
+                .circle-center-text { color:white; font-size: clamp(0.7rem,2vw,0.9rem); font-weight:700; text-align:center; line-height:1.2; }
 
-                /* Counter-rotate text so it stays upright */
-                .counter-rotate {
-                  animation: counter-rotate var(--circular-duration) linear infinite;
-                }
-
-                @keyframes counter-rotate {
-                  0% { transform: rotate(0deg); }
-                  100% { transform: rotate(-360deg); }
-                }
-
-                /* Center decoration */
-                .circle-center {
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  transform: translate(-50%, -50%);
-                  width: clamp(80px, 15vw, 120px);
-                  height: clamp(80px, 15vw, 120px);
-                  border-radius: 50%;
-                  background: linear-gradient(135deg, #065f5b 0%, #0e9f98 100%);
-                  box-shadow: 0 8px 30px rgba(6,95,91,0.3);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  z-index: 10;
-                }
-
-                .circle-center-text {
-                  color: white;
-                  font-size: clamp(0.7rem, 2vw, 0.9rem);
-                  font-weight: 700;
-                  text-align: center;
-                  line-height: 1.2;
-                }
-
-                /* stop motion for reduced-motion users */
                 @media (prefers-reduced-motion: reduce) {
-                  .circular-track, .counter-rotate { animation: none !important; }
-                  .partner-card-circular, .partner-card-inner, .logo-wrap { transition: none !important; }
+                  .horizontal-track { animation: none !important; }
                 }
               `}</style>
 
-              {/* decorative subtle floating shapes behind the carousel */}
+              {/* subtle background shapes */}
               <div aria-hidden className="absolute inset-x-0 -top-6 pointer-events-none z-0">
                 <div className="mx-auto max-w-7xl flex justify-center gap-6 opacity-30">
                   <div className="w-28 h-6 rounded-full bg-teal-blue/8 blur-sm"></div>
@@ -1033,135 +988,62 @@ export default function FurSureLandingPage() {
                 </div>
               </div>
 
-              <div className="circular-carousel-container relative z-10">
-                <div className="circular-track" role="list" aria-label="Partner logos carousel">
-                  {[
-                    {
-                      img: "/dsc.jpeg",
-                      title: "DSC CRICKET BATS",
-                      label: "Cricket Bats",
-                      text:
-                        "Premium cricket bats designed for exceptional performance, power, and precision on the field.",
-                    },
-                    {
-                      img: "/sg.jpeg",
-                      title: "SG PREMIUM GEAR",
-                      label: "Premium Gear",
-                      text:
-                        "High-quality cricket equipment and gear designed for professional performance and durability.",
-                    },
-                    {
-                      img: "/mrf.jpeg",
-                      title: "MRF PREMIUM BATS",
-                      label: "Premium Bats",
-                      text:
-                        "Discover our range of Premium MRF cricket bats, crafted for power, precision, and durability.",
-                    },
-                    {
-                      img: "/ss.jpeg",
-                      title: "SS EQUIPMENTS",
-                      label: "Equipment",
-                      text:
-                        "Explore gloves, pads and accessories—engineered for comfort, protection and superior performance.",
-                    },
-                    {
-                      img: "/adidasnew.jpeg",
-                      title: "ADIDAS APPAREL",
-                      label: "Apparel",
-                      text:
-                        "Step onto the field in style with our premium cricket apparel, designed for comfort and performance.",
-                    },
-                    {
-                      img: "/grayn.jpeg",
-                      title: "HERITAGE COLLECTION",
-                      label: "Heritage",
-                      text:
-                        "Celebrate the legacy of cricket with our Heritage collection, blending tradition with timeless craftsmanship.",
-                    },
-                    {
-                      img: "/kooko.jpeg",
-                      title: "BALLS AND GEAR",
-                      label: "Balls & Gear",
-                      text:
-                        "From practice sessions to big matches, our cricket balls and training gear deliver precision every time.",
-                    },
-                    {
-                      img: "/nbnew.jpeg",
-                      title: "FOOTWEAR",
-                      label: "Footwear",
-                      text:
-                        "Experience unmatched grip and comfort with our cricket footwear for speed, agility and endurance.",
-                    },
-                  ].map((p, i, arr) => {
-                    const angle = (360 / arr.length) * i;
-                    const radius = 'var(--circle-radius)';
-                    
+              <div className="horizontal-carousel-container relative z-10">
+                <div className="horizontal-viewport" aria-hidden={false}>
+                  {/* prepare partners once and duplicate for seamless loop */}
+                  {(() => {
+                    const partners = [
+                      { img: "/dsc.jpeg", title: "DSC CRICKET BATS", label: "Cricket Bats", text: "Premium cricket bats designed for exceptional performance, power, and precision on the field." },
+                      { img: "/sg.jpeg", title: "SG PREMIUM GEAR", label: "Premium Gear", text: "High-quality cricket equipment and gear designed for professional performance and durability." },
+                      { img: "/mrf.jpeg", title: "MRF PREMIUM BATS", label: "Premium Bats", text: "Discover our range of Premium MRF cricket bats, crafted for power, precision, and durability." },
+                      { img: "/ss.jpeg", title: "SS EQUIPMENTS", label: "Equipment", text: "Explore gloves, pads and accessories—engineered for comfort, protection and superior performance." },
+                      { img: "/adidasnew.jpeg", title: "ADIDAS APPAREL", label: "Apparel", text: "Step onto the field in style with our premium cricket apparel, designed for comfort and performance." },
+                      { img: "/grayn.jpeg", title: "HERITAGE COLLECTION", label: "Heritage", text: "Celebrate the legacy of cricket with our Heritage collection, blending tradition with timeless craftsmanship." },
+                      { img: "/kooko.jpeg", title: "BALLS AND GEAR", label: "Balls & Gear", text: "From practice sessions to big matches, our cricket balls and training gear deliver precision every time." },
+                      { img: "/nbnew.jpeg", title: "FOOTWEAR", label: "Footwear", text: "Experience unmatched grip and comfort with our cricket footwear for speed, agility and endurance." }
+                    ];
+
+                    // duplicate the list so animation can loop seamlessly
+                    const loopList = [...partners, ...partners];
+
                     return (
-                      <div
-                        key={`p-${i}`}
-                        className="partner-card-circular"
-                        role="listitem"
-                        style={{
-                          transform: `
-                            translate(-50%, -50%) 
-                            rotate(${angle}deg) 
-                            translateY(calc(-1 * ${radius}))
-                          `,
-                        }}
-                        onMouseEnter={(e) => {
-                          const el = e.currentTarget as HTMLElement;
-                          const r = el.getBoundingClientRect();
-                          window.dispatchEvent(
-                            new CustomEvent("partners-tooltip-show", {
-                              detail: {
-                                title: p.title,
-                                text: p.text,
-                                left: r.left + r.width / 2,
-                                top: r.bottom + 14,
-                                width: r.width,
-                              },
-                            })
-                          );
-                        }}
-                        onMouseLeave={() =>
-                          window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))
-                        }
-                        onTouchStart={(e) => {
-                          const el = e.currentTarget as HTMLElement;
-                          const r = el.getBoundingClientRect();
-                          window.dispatchEvent(
-                            new CustomEvent("partners-tooltip-show", {
-                              detail: {
-                                title: p.title,
-                                text: p.text,
-                                left: r.left + r.width / 2,
-                                top: r.bottom + 14,
-                                width: r.width,
-                              },
-                            })
-                          );
-                        }}
-                      >
-                        <div className="partner-card-inner counter-rotate">
-                          <div className="logo-wrap w-12 h-12 md:w-14 md:h-14 bg-white flex items-center justify-center mb-2 overflow-hidden border border-light-silver rounded-md">
-                            <Image src={p.img} alt={p.title} width={56} height={56} className="object-contain" />
+                      <div className="horizontal-track" role="list" aria-label="Partner logos carousel">
+                        {loopList.map((p, i) => (
+                          <div
+                            key={`partner-${i}`}
+                            className="partner-item"
+                            role="listitem"
+                            onMouseEnter={(e) => {
+                              const el = e.currentTarget as HTMLElement;
+                              const r = el.getBoundingClientRect();
+                              window.dispatchEvent(new CustomEvent("partners-tooltip-show", {
+                                detail: { title: p.title, text: p.text, left: r.left + r.width / 2, top: r.bottom + 14, width: r.width }
+                              }));
+                            }}
+                            onMouseLeave={() => window.dispatchEvent(new CustomEvent("partners-tooltip-hide"))}
+                            onTouchStart={(e) => {
+                              const el = e.currentTarget as HTMLElement;
+                              const r = el.getBoundingClientRect();
+                              window.dispatchEvent(new CustomEvent("partners-tooltip-show", {
+                                detail: { title: p.title, text: p.text, left: r.left + r.width / 2, top: r.bottom + 14, width: r.width }
+                              }));
+                            }}
+                          >
+                            <div className="partner-card-inner">
+                              <div className="logo-wrap w-12 h-12 md:w-14 md:h-14 bg-white flex items-center justify-center mb-2 overflow-hidden border border-light-silver rounded-md">
+                                <Image src={p.img} alt={p.title} width={56} height={56} className="object-contain" />
+                              </div>
+                              <span className="text-charcoal text-xs md:text-sm font-medium text-center">{p.label}</span>
+                            </div>
                           </div>
-                          <span className="text-charcoal text-xs md:text-sm font-medium text-center">{p.label}</span>
-                        </div>
+                        ))}
                       </div>
                     );
-                  })}
-
-                  {/* Center circle decoration */}
-                  <div className="circle-center">
-                    <div className="circle-center-text">
-                      TRUSTED<br />PARTNERS
-                    </div>
-                  </div>
+                  })()}
                 </div>
               </div>
 
-              {/* Fixed tooltip (component already defined in file) */}
+              {/* tooltip component already defined in file */}
               <FixedPartnersTooltip />
             </div>
           </div>
