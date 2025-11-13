@@ -206,23 +206,69 @@ export default function CheckoutPage() {
                 {shippingMethod === "delivery" && (
                   <>
                     {/* Country */}
-                    <div>
+                      <div>
                       <Label
                         htmlFor="country"
                         className="text-sm font-medium text-gray-700"
                       >
                         Country <span className="text-red-500">*</span>
                       </Label>
-                      <select
-                        id="country"
-                        name="country"
-                        value={formData.country}
-                        onChange={handleInputChange}
-                        className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-blue"
-                      >
-                        <option value="">Choose country</option>
-                        <option value="IN">India</option>
-                      </select>
+
+                      <div className="mt-1 relative">
+                        {/* left icon */}
+                        <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5 text-gray-400"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden
+                          >
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M2 12h20"></path>
+                            <path d="M12 2a15.3 15.3 0 0 1 0 20"></path>
+                          </svg>
+                        </div>
+
+                        <select
+                          id="country"
+                          name="country"
+                          value={formData.country}
+                          onChange={handleInputChange}
+                          aria-required="true"
+                          className="appearance-none -webkit-appearance-none -moz-appearance-none w-full pl-12 pr-12 py-2 border border-gray-300 rounded-xl bg-white shadow-sm hover:shadow-md transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-blue focus:border-teal-blue text-gray-800">
+                          <option value="">Choose country</option>
+                          <option value="IN">India</option>
+                        </select>
+
+                        {/* custom chevron */}
+                        <div className="pointer-events-none absolute inset-y-0 right-0 pr-3 flex items-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4 text-gray-400"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            aria-hidden
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
+                      </div>
+
+                      <p className="mt-2 text-xs text-gray-500">
+                        We currently ship within India. If you need international shipping,{" "}
+                        <a href="/contact-us" className="text-teal-blue hover:underline">
+                          contact us
+                        </a>
+                        .
+                      </p>
+                      
                     </div>
 
                     {/* City, State, ZIP Code */}
@@ -281,6 +327,7 @@ export default function CheckoutPage() {
                     </div>
                   </>
                 )}
+                
 
                 {/* Terms and Conditions */}
                 <div className="flex items-start gap-2 pt-2">
