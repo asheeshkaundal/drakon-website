@@ -12,7 +12,6 @@ import { Select } from "@/components/ui/select";
 import { Truck, Package, Lock, Plus, Minus, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-
 export default function CheckoutPage() {
   const { cartItems, getCartTotal, updateQuantity, removeFromCart } = useCart();
   const router = useRouter();
@@ -27,6 +26,7 @@ export default function CheckoutPage() {
     email: "",
     phoneNumber: "",
     country: "",
+    streetAddress: "",
     city: "",
     state: "",
     zipCode: "",
@@ -206,7 +206,7 @@ export default function CheckoutPage() {
                 {shippingMethod === "delivery" && (
                   <>
                     {/* Country */}
-                      <div>
+                    <div>
                       <Label
                         htmlFor="country"
                         className="text-sm font-medium text-gray-700"
@@ -240,7 +240,8 @@ export default function CheckoutPage() {
                           value={formData.country}
                           onChange={handleInputChange}
                           aria-required="true"
-                          className="appearance-none -webkit-appearance-none -moz-appearance-none w-full pl-12 pr-12 py-2 border border-gray-300 rounded-xl bg-white shadow-sm hover:shadow-md transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-blue focus:border-teal-blue text-gray-800">
+                          className="appearance-none -webkit-appearance-none -moz-appearance-none w-full pl-12 pr-12 py-2 border border-gray-300 rounded-xl bg-white shadow-sm hover:shadow-md transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-blue focus:border-teal-blue text-gray-800"
+                        >
                           <option value="">Choose country</option>
                           <option value="IN">India</option>
                         </select>
@@ -256,19 +257,46 @@ export default function CheckoutPage() {
                             strokeWidth="2"
                             aria-hidden
                           >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M19 9l-7 7-7-7"
+                            />
                           </svg>
                         </div>
                       </div>
 
                       <p className="mt-2 text-xs text-gray-500">
-                        We currently ship within India. If you need international shipping,{" "}
-                        <a href="/contact-us" className="text-teal-blue hover:underline">
+                        We currently ship within India. If you need
+                        international shipping,{" "}
+                        <a
+                          href="/contact-us"
+                          className="text-teal-blue hover:underline"
+                        >
                           contact us
                         </a>
                         .
                       </p>
-                      
+                    </div>
+
+                    {/* Street Address */}
+                    <div>
+                      <Label
+                        htmlFor="streetAddress"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Street Address <span className="text-red-500">*</span>
+                      </Label>
+                      <Input
+                        id="streetAddress"
+                        name="streetAddress"
+                        type="text"
+                        placeholder="Enter your street address"
+                        value={formData.streetAddress}
+                        onChange={handleInputChange}
+                        className="mt-1"
+                        required
+                      />
                     </div>
 
                     {/* City, State, ZIP Code */}
@@ -327,7 +355,6 @@ export default function CheckoutPage() {
                     </div>
                   </>
                 )}
-                
 
                 {/* Terms and Conditions */}
                 <div className="flex items-start gap-2 pt-2">
