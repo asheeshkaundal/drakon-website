@@ -10,9 +10,9 @@ import {
   Linkedin,
   Youtube,
   Search,
-  Globe,
   ChevronDown,
   ShoppingCart,
+  User,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
@@ -33,8 +33,6 @@ const XIcon = ({ className }: { className?: string }) => (
 export const Navbar = () => {
   const { cartCount } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isRegionOpen, setIsRegionOpen] = useState(false);
-  const [selectedRegion, setSelectedRegion] = useState("Region");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isBannerVisible, setIsBannerVisible] = useState(true);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -253,46 +251,18 @@ export const Navbar = () => {
                 </Button>
               </Link>
 
-              {/* Region Dropdown - Desktop only */}
-              <div className="hidden md:block relative">
-                <button
-                  onClick={() => setIsRegionOpen(!isRegionOpen)}
-                  className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-navy-blue hover:text-teal-blue transition-colors duration-200"
-                  aria-label="Select Region"
+              {/* Login Button - Desktop only */}
+              <Link href="/login-page">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="hidden md:flex items-center space-x-2 px-3 py-2 text-sm font-medium text-navy-blue hover:text-blue transition-colors duration-200"
+                  aria-label="Login"
                 >
-                  <Globe className="h-4 w-4" />
-                  <span>{selectedRegion}</span>
-                  <ChevronDown
-                    className={`h-3 w-3 transition-transform duration-200 ${
-                      isRegionOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                {/* Region Dropdown Menu */}
-                {isRegionOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
-                    {[
-                      "India",
-                      "Australia",
-                      "Europe",
-                      "North America",
-                      "Asia Pacific",
-                    ].map((region) => (
-                      <button
-                        key={region}
-                        onClick={() => {
-                          setSelectedRegion(region);
-                          setIsRegionOpen(false);
-                        }}
-                        className="w-full text-left px-4 py-2 text-sm text-navy-blue hover:text-teal-blue hover:bg-gray-50 transition-colors duration-200"
-                      >
-                        {region}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
+                  <User className="h-4 w-4" />
+                  <span>Login</span>
+                </Button>
+              </Link>
 
               {/* Mobile Menu Button */}
               <Button
@@ -430,48 +400,16 @@ export const Navbar = () => {
               >
                 Contact Us
               </Link>
-
-              {/* Region Selector */}
-              <div className="border-b border-gray-100">
-                <button
-                  onClick={() => setIsRegionOpen(!isRegionOpen)}
-                  className="w-full text-left flex items-center justify-between px-6 py-3 text-navy-blue hover:text-teal-blue hover:bg-teal-blue/5 transition-colors duration-200 font-medium"
-                >
-                  <div className="flex items-center">
-                    <Globe className="h-5 w-5 mr-3" />
-                    {selectedRegion}
-                  </div>
-                  <ChevronDown
-                    className={`h-4 w-4 transition-transform duration-200 ${
-                      isRegionOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                {isRegionOpen && (
-                  <div className="bg-gray-50 py-2">
-                    {[
-                      "India",
-                      "Australia",
-                      "Europe",
-                      "North America",
-                      "Asia Pacific",
-                    ].map((region) => (
-                      <button
-                        key={region}
-                        onClick={() => {
-                          setSelectedRegion(region);
-                          setIsRegionOpen(false);
-                          setIsMenuOpen(false);
-                        }}
-                        className="w-full text-left px-10 py-2 text-sm text-navy-blue hover:text-teal-blue hover:bg-teal-blue/5 transition-colors duration-200"
-                      >
-                        {region}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <Link
+                href="/login-page"
+                className="block px-6 py-3 text-navy-blue hover:text-teal-blue hover:bg-teal-blue/5 transition-colors duration-200 font-medium border-b border-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <div className="flex items-center">
+                  <User className="h-5 w-5 mr-3" />
+                  Login
+                </div>
+              </Link>
 
               {/* Social Links in Mobile Menu */}
               <div className="px-6 py-4 mt-4">
